@@ -41,7 +41,7 @@ public class FreeFlow {
         int lvlNumber = 1;
         String line;
         try {
-            sc = new Scanner(new File("levels.csv"));
+            sc = new Scanner(new File("resources/data/levels.csv"));
             while (sc.hasNextLine()) {
                 line = sc.nextLine();
                 StringBuilder stringBuilder = new StringBuilder();

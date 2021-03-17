@@ -26,7 +26,6 @@ public class SettingsView extends BorderPane {
         title = new Label("Instellingen");
         styleButton = new Button("Stijl: Classic");
         sound = new Button("SFX: Aan");
-        passwordChange = new Button("Wachtwoord veranderen");
     }
 
     private void layoutNodes() {
@@ -37,13 +36,11 @@ public class SettingsView extends BorderPane {
         gridPane.add(title,1,1,2,1);
         gridPane.add(styleButton,1,2,2,1);
         gridPane.add(sound,1,3,2,1);
-        gridPane.add(passwordChange,1,5,2,1);
 
         setMargin(back, new Insets(5));
         GridPane.setMargin(title, new Insets(10,0,10,0));
         GridPane.setMargin(styleButton, new Insets(10,0,10,0));
         GridPane.setMargin(sound, new Insets(10,0,10,0));
-        GridPane.setMargin(passwordChange, new Insets(10,0,10,0));
     }
 
     public Button getBack() {
@@ -59,7 +56,4 @@ public class SettingsView extends BorderPane {
         return sound;
     }
 
-    public Button getPasswordChange() {
-        return passwordChange;
-    }
 }

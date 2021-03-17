@@ -1,28 +1,20 @@
 package be.kdg.freeflow.model;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Login {
     private FreeFlow game;
-
-    ArrayList<Player> players = new ArrayList<>();
     Player player;
 
     public boolean login(String name, String password) {
-        String username;
-        String pass;
         try (BufferedReader is = new BufferedReader(new FileReader("resources/data/users.csv"));) {
             String user = is.readLine();
             while (user != null) {
                 String[] userIter = user.split(";");
                 if (name.equals(userIter[1]) && password.equals(userIter[2])) {
-                    username = name;
-                    pass = password;
-                    this.player = new Player(username, pass);
+                    this.player = new Player(name, password);
                     is.close();
                     return true;
                 }
@@ -35,13 +27,14 @@ public class Login {
         return false;
     }
 
-    public void register(String mail, String password, String repeatPassword) throws FreeFlowException {
-        this.player = new Player(mail, password, repeatPassword);
+    public void register(String username, String password, String repeatPassword) throws FreeFlowException {
+        this.player = new Player(username, password, repeatPassword);
     }
 
     public void logout() {
         this.player = null;
     }
+
 
     private void startGame() {
         int lvl = levelMenu();
@@ -51,88 +44,9 @@ public class Login {
     /**
      * Display highscore menu
      */
-    private void highscores() {
-        List<Level> levels = game.listLevels();
-        StringBuilder stringBuilder = new StringBuilder();
-        int total = 0;
-        int max = levels.size() * 3;
-        for (Level level : levels) {
-            stringBuilder.append(level.toString()).append("\n");
-            total += level.getHighscore();
-        }
-        System.out.printf("%n%10s%s%n%n", " ", "SCORES");
-        System.out.printf("Totale score: %d/%d%n", total, max);
-        System.out.println("Highscore per level:");
-        System.out.println(stringBuilder.toString());
-        System.out.print("Druk op enter om terug te gaan.");
-        Scanner sc = new Scanner(System.in);
-        sc.nextLine();
-    }
-
-    /**
-     * Create new player
-     */
-    private Player newPlayer() {
-        Player player = null;
-        Scanner sc = new Scanner(System.in);
-        String naam, email;
-        String ww, herhaalww;
-
-        boolean repeat;
-        do {
-            try {
-                System.out.printf("%n%15s%s%n%n", " ", "REGISTRATIE");
-                System.out.print("Geef een gebruikersnaam in: ");
-                System.out.print("Geef uw e-mail in: ");
-                email = sc.nextLine();
-                System.out.print("Geef een wachtwoord in: ");
-                ww = sc.nextLine();
-                player = new Player(email, ww);
-                repeat = false;
-            } catch (InputMismatchException e) {
-                repeat = true;
-                System.out.println(e.getMessage());
-            }
-        } while (repeat);
-        return player;
-    }
-
-    /**
-     * Change settings:
-     * setStyle & setSoundEffects cycle through all possible settings
-     */
 
 
 
-
-    private void changePassword() {
-        String oldPassword, newPassword, repeatNewPassword;
-        Scanner sc = new Scanner(System.in);
-        boolean repeat;
-        do {
-            try {
-                System.out.printf("%n%15s%s%n%n", " ", "SETTINGS");
-                System.out.println("Geef 0 in om deze actie te annuleren\n");
-                System.out.print("Geef het oud wachtwoord in: ");
-                oldPassword = sc.nextLine();
-                if (oldPassword.equals("0"))
-                    return;
-                System.out.print("Geef het nieuw wachtwoord in: ");
-                newPassword = sc.nextLine();
-                if (newPassword.equals("0"))
-                    return;
-                System.out.print("herhaal het nieuwe wachtwoord in: ");
-                repeatNewPassword = sc.nextLine();
-                if (repeatNewPassword.equals("0"))
-                    return;
-                player.newWachtwoord(oldPassword, newPassword, repeatNewPassword);
-                repeat = false;
-            } catch (InputMismatchException e) {
-                repeat = true;
-                System.out.println(e.getMessage());
-            }
-        } while (repeat);
-    }
 
     /**
      * Everything called by startGame()
@@ -183,4 +97,11 @@ public class Login {
         return Integer.parseInt(choice);
     }
 
+    public FreeFlow getGame() {
+        return game;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
 }

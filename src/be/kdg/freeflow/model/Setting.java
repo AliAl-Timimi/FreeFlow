@@ -25,8 +25,4 @@ public class Setting {
     public boolean getSoundEffects() {
         return soundEffects;
     }
-
-    private void changePassword() {
-
-    }
 }

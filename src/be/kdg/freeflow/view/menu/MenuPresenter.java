@@ -77,13 +77,13 @@ public class MenuPresenter {
 
     private void updateToScores() {
         HighscoresView highscoresView = new HighscoresView();
-        HighscoresPresenter highscoresPresenter = new HighscoresPresenter(highscoresView);
+        HighscoresPresenter highscoresPresenter = new HighscoresPresenter(highscoresView, login, view);
         view.getScene().setRoot(highscoresView);
     }
 
     private void updateToLevels() {
         LevelChooserView levelChooserView = new LevelChooserView();
-        LevelChooserPresenter levelChooserPresenter = new LevelChooserPresenter(levelChooserView);
+        LevelChooserPresenter levelChooserPresenter = new LevelChooserPresenter(levelChooserView, login);
         view.getScene().setRoot(levelChooserView);
     }
 
