@@ -1,5 +1,6 @@
 package be.kdg.freeflow.view.register;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -7,10 +8,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 
-public class RegisterView extends BorderPane {
-    private GridPane grid;
+public class RegisterView extends GridPane {
     private Button back;
     private Label title;
     private TextField email;
@@ -25,7 +26,6 @@ public class RegisterView extends BorderPane {
     }
 
     private void initialiseNodes() {
-        grid = new GridPane();
         back = new Button("Terug");
         title = new Label("Registratie");
         email = new TextField();
@@ -36,16 +36,20 @@ public class RegisterView extends BorderPane {
     }
 
     private void layoutNodes() {
-        this.setLeft(back);
-        this.setCenter(grid);
 
-        grid.setAlignment(Pos.CENTER);
-        grid.add(title, 1, 1);
-        grid.add(email, 1, 2);
-        grid.add(password, 1, 3);
-        grid.add(repeatPassword, 1, 4);
-        grid.add(error, 1, 5);
-        grid.add(create, 1, 6);
+        this.setAlignment(Pos.CENTER);
+        GridPane.setHalignment(title, HPos.CENTER);
+        this.add(title, 1, 1);
+        this.add(email, 1, 2);
+        this.add(password, 1, 3);
+        this.add(repeatPassword, 1, 4);
+        this.add(error, 1, 5);
+        this.add(create, 1, 6);
+
+        ColumnConstraints colum1 = new ColumnConstraints(200);
+        ColumnConstraints colum2 = new ColumnConstraints(200);
+        ColumnConstraints colum3 = new ColumnConstraints(200);
+        this.getColumnConstraints().addAll(colum1, colum2, colum3);
 
         setMargin(back, new Insets(5));
         GridPane.setMargin(title, new Insets(10, 0, 10, 0));

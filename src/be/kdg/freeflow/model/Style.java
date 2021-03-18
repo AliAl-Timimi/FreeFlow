@@ -7,6 +7,14 @@ public enum Style {
     HOLLIDAY,
     WINTER_CHILL;
 
+    /*
+    classic: standaard
+    dark: zwarte achtergrond, geel, rood
+    light: witte achtergrond, blauw
+    holliday: rood, groen, blauw
+    winter_chill: blauw, wit
+     */
+
     @Override
     public String toString() {
         String name = name().toLowerCase().replaceAll("_", " ");
