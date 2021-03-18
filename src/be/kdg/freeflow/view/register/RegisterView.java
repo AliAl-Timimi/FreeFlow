@@ -61,7 +61,6 @@ public class RegisterView extends GridPane {
         GridPane.setMargin(create, new Insets(10, 0, 0, 0));
 
         create.setPrefWidth(200);
-
         email.setPromptText("gebruikersnaam");
         password.setPromptText("wachtwoord");
         repeatPassword.setPromptText("herhaal wachtwoord");

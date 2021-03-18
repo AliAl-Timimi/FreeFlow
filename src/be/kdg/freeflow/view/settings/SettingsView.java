@@ -23,7 +23,7 @@ public class SettingsView extends GridPane {
     private void initialiseNodes() {
         back = new Button("Terug");
         title = new Label("Instellingen");
-        styleButton = new Button("Stijl: Classic");
+        styleButton = new Button();
         sound = new Button("SFX: Aan");
     }
 

@@ -21,11 +21,12 @@ public class MenuPresenter {
     private Login login;
     private LoginView loginView;
     private Level level;
-
+    Setting setting;
     public MenuPresenter(MenuView menuView, Login login, LoginView loginView) {
         this.view = menuView;
         this.login = login;
         this.loginView = loginView;
+        setting = new Setting();
         addEventHandlers();
     }
 
@@ -71,7 +72,6 @@ public class MenuPresenter {
     }
 
     private void updateToSettings() {
-        Setting setting = new Setting();
         SettingsView settingsView = new SettingsView();
         SettingsPresenter settingsPresenter = new SettingsPresenter(setting, settingsView, view);
         view.getScene().setRoot(settingsView);

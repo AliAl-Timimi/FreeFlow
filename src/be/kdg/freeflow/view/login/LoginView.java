@@ -72,7 +72,7 @@ public class LoginView extends GridPane {
         username.setPromptText("gebruikersnaam");
         password.setPromptText("wachtwoord");
 
-        /*welkom.setId("titles");*/
+        flow.setId("titles");
     }
 
     protected Button getRegister() {

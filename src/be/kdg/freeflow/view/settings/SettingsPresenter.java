@@ -18,7 +18,7 @@ public class SettingsPresenter {
         this.setting = setting;
         this.view = settingsView;
         this.menuView = menuView;
-
+        view.getStyleButton().setText(String.format("Stijl: %s",setting.getStyle()));
         addEventHandlers();
     }
 
@@ -27,7 +27,9 @@ public class SettingsPresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 setting.cycleStyle();
+                view.getScene().getStylesheets().clear();
                 view.getStyleButton().setText(String.format("Stijl: %s",setting.getStyle()));
+                view.getScene().getStylesheets().add(setting.getStyle().getS());
             }
         });
         view.getSound().setOnAction(new EventHandler<ActionEvent>() {

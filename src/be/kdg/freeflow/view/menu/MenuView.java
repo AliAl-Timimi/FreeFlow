@@ -71,6 +71,7 @@ public class MenuView extends GridPane {
         GridPane.setMargin(scores, new Insets(10,5,10,0));
         GridPane.setMargin(help, new Insets(10,0,10,5));
 
+        flow.setId("titles");
         logout.setId("back");
         start.setId("start");
         settings.setId("settings");

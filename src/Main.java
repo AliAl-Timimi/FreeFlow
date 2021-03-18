@@ -17,7 +17,7 @@ public class Main extends Application {
         new LoginPresenter(login, view);
         primaryStage.setTitle("FreeFlow By Ali & Gilles");
         Scene scene = new Scene(view);
-        scene.getStylesheets().add("/stylesheets/darkmode.css");
+        scene.getStylesheets().add("/stylesheets/default.css");
         primaryStage.setScene(scene);
         primaryStage.setWidth(600);
         primaryStage.setHeight(600);
