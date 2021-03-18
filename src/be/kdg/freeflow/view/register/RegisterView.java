@@ -39,6 +39,8 @@ public class RegisterView extends GridPane {
 
         this.setAlignment(Pos.CENTER);
         GridPane.setHalignment(title, HPos.CENTER);
+
+        this.add(back,0,0);
         this.add(title, 1, 1);
         this.add(email, 1, 2);
         this.add(password, 1, 3);
@@ -51,7 +53,7 @@ public class RegisterView extends GridPane {
         ColumnConstraints colum3 = new ColumnConstraints(200);
         this.getColumnConstraints().addAll(colum1, colum2, colum3);
 
-        setMargin(back, new Insets(5));
+        setMargin(back, new Insets(25, 10, 25, 25));
         GridPane.setMargin(title, new Insets(10, 0, 10, 0));
         GridPane.setMargin(email, new Insets(5, 0, 5, 0));
         GridPane.setMargin(password, new Insets(5, 0, 5, 0));

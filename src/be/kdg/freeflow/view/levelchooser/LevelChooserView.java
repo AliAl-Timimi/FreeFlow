@@ -76,6 +76,11 @@ public class LevelChooserView extends GridPane {
         GridPane.setMargin(next, new Insets(0, 0, 10, 0));
 
         title.setId("titles");
+        level1.setId("level1");
+        level2.setId("level2");
+        level3.setId("level3");
+        level4.setId("level4");
+        level5.setId("level5");
     }
 
     Label getTitle() {

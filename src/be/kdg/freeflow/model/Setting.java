@@ -9,7 +9,7 @@ public class Setting {
 
 
     public void cycleStyle() {
-        if (style == 4)
+        if (style == 2)
             style = 0;
         else style++;
     }

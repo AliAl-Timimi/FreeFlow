@@ -26,10 +26,10 @@ public class HelpView extends GridPane {
         help = new Label();
 
         help.setText(
-                "Het doel van het spel is om alle bollen (letters)\n" +
+                "Het doel van het spel is om alle bollen\n" +
                         "die dezelfde kleur hebben met elkaar te verbinden\n" +
                         "zonder dat deze verbindingen over een andere verbinding gaan\n" +
-                        "Wanneer elke bol met de andere bol van dezelfde kleur verbonden is\n" +
+                        "Wanneer elke bol met de andere bol van dezelfde kleur verbonden is,\n" +
                         "is dat level gedaan. Probeer elk level met zo weinig mogelijk moves\n" +
                         "af te maken om de hoogst mogelijke score te behalen!");
     }
@@ -47,11 +47,11 @@ public class HelpView extends GridPane {
         ColumnConstraints colum2 = new ColumnConstraints(400);
         ColumnConstraints colum3 = new ColumnConstraints(100);
         this.getColumnConstraints().addAll(colum1, colum2, colum3);
-
-        GridPane.setMargin(title, new Insets(0,0,10,15));
-        setMargin(back, new Insets(25));
+        GridPane.setMargin(title, new Insets(0,0,10,5));
+        setMargin(back, new Insets(25, 10, 25, 25));
 
         title.setId("titles");
+        help.setId("helptekst");
     }
 
     public Button getBack() {

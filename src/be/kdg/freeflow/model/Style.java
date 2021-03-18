@@ -3,9 +3,7 @@ package be.kdg.freeflow.model;
 public enum Style {
     CLASSIC,
     DARK_MODE,
-    LIGHT,
-    HOLLIDAY,
-    WINTER_CHILL;
+    LIGHT;
 
     /*
     classic: standaard
