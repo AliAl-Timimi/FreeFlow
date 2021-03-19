@@ -2,6 +2,7 @@ package be.kdg.freeflow.view.menu;
 
 
 import be.kdg.freeflow.model.FreeFlow;
+import be.kdg.freeflow.model.FreeFlowException;
 import be.kdg.freeflow.model.menus.LevelChooser;
 import be.kdg.freeflow.model.players.Login;
 import be.kdg.freeflow.model.menus.Setting;
@@ -31,10 +32,13 @@ public class MenuPresenter {
         this.view = menuView;
         this.login = login;
         this.loginView = loginView;
-        SaveToFile.setPlayer(login.getPlayer());
         ReadFromFile.setPlayer(login.getPlayer());
         ReadFromFile.setGame();
-        this.game = ReadFromFile.read();
+        FreeFlow game1 = ReadFromFile.read();
+        if (game1 != null)
+            this.game = game1;
+        else
+            throw new FreeFlowException("Game is null");
         setting = new Setting();
         addEventHandlers();
     }

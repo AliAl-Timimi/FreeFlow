@@ -1,41 +1,41 @@
 package be.kdg.freeflow.model.players;
 
+import be.kdg.freeflow.model.FreeFlow;
 import be.kdg.freeflow.model.FreeFlowException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.InputMismatchException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Player {
     private String username;
-    private String wachtwoord;
+    private String password;
 
-    public Player(String username, String wachtwoord, String herhaalWachtwoord) {
-
+    public Player(String username, String password, String repeatPassword) {
         if (nietGebruikt(username))
                 this.username = username;
         else
-            throw new FreeFlowException("gebruikersnaam is al in gebruik");
+            throw new FreeFlowException("Gebruikersnaam is al in gebruik");
 
-        if (wachtwoord.equals(herhaalWachtwoord)) {
-            this.wachtwoord = wachtwoord;
+        if (password.equals(repeatPassword)) {
+            this.password = password;
         } else {
             throw new FreeFlowException("Wachtwoorden komen niet overeen");
         }
+        SaveToFile.setLevels(new FreeFlow(this).listLevels());
+        SaveToFile.addPlayer(this);
     }
 
     public Player(String username, String pass) {
         this.username = username;
-        this.wachtwoord = pass;
+        this.password = pass;
     }
 
     public void newWachtwoord(String oudWachtwoord, String nieuwWachtwoord, String herhaalNieuwWachtwoord) {
-        if (wachtwoord.equals(oudWachtwoord)) {
+        if (password.equals(oudWachtwoord)) {
             if (nieuwWachtwoord.equals(herhaalNieuwWachtwoord))
-                wachtwoord = nieuwWachtwoord;
+                password = nieuwWachtwoord;
             else throw new InputMismatchException("Wachtwoorden komen niet overeen!");
         } else
             throw new InputMismatchException("Het oude wachtwoord klopt niet!");
@@ -62,11 +62,11 @@ public class Player {
         return username;
     }
 
-    public String getWachtwoord() {
-        return wachtwoord;
+    public String getPassword() {
+        return password;
     }
 
     public String toString() {
-        return String.format("%s;%s", username, wachtwoord);
+        return String.format("%s;%s", username, password);
     }
 }

@@ -4,7 +4,6 @@ import be.kdg.freeflow.model.FreeFlow;
 import be.kdg.freeflow.model.lvlbuild.Level;
 import be.kdg.freeflow.model.menus.LevelChooser;
 import be.kdg.freeflow.model.players.Login;
-import be.kdg.freeflow.model.players.SaveToFile;
 import be.kdg.freeflow.view.game.GamePresenter;
 import be.kdg.freeflow.view.game.GameView;
 import be.kdg.freeflow.view.login.LoginView;

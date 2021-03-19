@@ -30,19 +30,17 @@ public class Login {
     }
 
     public void register(String username, String password, String repeatPassword) throws FreeFlowException {
-        this.player = new Player(username, password, repeatPassword);
+        if (username.length() < 2)
+            throw new FreeFlowException("Gebruikersnaam moet minstens\n 2 karakters lang zijn.");
+        else if (password.length() < 4)
+            throw new FreeFlowException("Wachtwoord moet minstens\n 4 karakters lang zijn.");
+        else
+            this.player = new Player(username, password, repeatPassword);
     }
 
     public void logout() {
         this.player = null;
     }
-
-    /**
-     * Display highscore menu
-     */
-
-
-
 
     /**
      * Everything called by startGame()
