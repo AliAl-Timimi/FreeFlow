@@ -1,6 +1,7 @@
 package be.kdg.freeflow.view.register;
 
 import be.kdg.freeflow.model.FreeFlowException;
+import be.kdg.freeflow.model.menus.Setting;
 import be.kdg.freeflow.model.players.Login;
 import be.kdg.freeflow.view.login.LoginView;
 import be.kdg.freeflow.view.menu.MenuPresenter;
@@ -9,15 +10,19 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.paint.Color;
 
+import java.util.Set;
+
 public class RegisterPresenter {
     private Login login;
     private RegisterView view;
     private LoginView loginView;
+    private Setting setting;
 
-    public RegisterPresenter(Login login, RegisterView view, LoginView loginView) {
+    public RegisterPresenter(Login login, RegisterView view, LoginView loginView, Setting setting) {
         this.loginView = loginView;
         this.login = login;
         this.view = view;
+        this.setting = setting;
 
         addEventHandlers();
     }
@@ -50,7 +55,7 @@ public class RegisterPresenter {
 
     private void updateToMenu() {
         MenuView menuView = new MenuView();
-        MenuPresenter menuPresenter = new MenuPresenter(menuView, login, loginView);
+        MenuPresenter menuPresenter = new MenuPresenter(menuView, login, loginView, setting);
         view.getScene().setRoot(menuView);
     }
 }

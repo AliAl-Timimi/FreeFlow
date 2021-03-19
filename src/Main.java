@@ -19,10 +19,10 @@ public class Main extends Application {
     public void start(Stage primaryStage){
         final Login login = new Login();
         final LoginView view = new LoginView();
-        new LoginPresenter(login, view);
+        LoginPresenter presenter = new LoginPresenter(login, view);
         primaryStage.setTitle("FreeFlow By Ali & Gilles");
         Scene scene = new Scene(view);
-        scene.getStylesheets().add("/stylesheets/default.css");
+        presenter.applySettings();
         primaryStage.setScene(scene);
         primaryStage.setWidth(800);
         primaryStage.setHeight(800);

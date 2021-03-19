@@ -35,8 +35,8 @@ public class GameView extends GridPane {
 
     private void initialiseNodes() {
         back = new Button("back");
-        levelMarker = new Label("null");
-        moves = new Label("null");
+        levelMarker = new Label();
+        moves = new Label();
     }
     private void layoutNodes() {
         this.setAlignment(Pos.CENTER);

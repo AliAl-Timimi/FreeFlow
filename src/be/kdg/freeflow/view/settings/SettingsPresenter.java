@@ -33,13 +33,14 @@ public class SettingsPresenter {
         view.getSound().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                setting.setSoundEffects();
+                setting.cycleSoundEffects();
                 view.getSound().setText(String.format("SFX: %s",setting.getSoundEffects()?"Aan":"Uit"));
             }
         });
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                setting.save();
                 updateToMenu();
             }
         });

@@ -28,7 +28,7 @@ public class MenuPresenter {
     private FreeFlow game;
 
 
-    public MenuPresenter(MenuView menuView, Login login, LoginView loginView) {
+    public MenuPresenter(MenuView menuView, Login login, LoginView loginView, Setting setting) {
         this.view = menuView;
         this.login = login;
         this.loginView = loginView;
@@ -39,7 +39,7 @@ public class MenuPresenter {
             this.game = game1;
         else
             throw new FreeFlowException("Game is null");
-        setting = new Setting();
+        this.setting = setting;
         addEventHandlers();
     }
 

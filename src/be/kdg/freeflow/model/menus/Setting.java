@@ -1,9 +1,24 @@
 package be.kdg.freeflow.model.menus;
 
+import be.kdg.freeflow.model.FreeFlowException;
+
+import java.io.*;
+
 public class Setting {
     private int style = 0;
     private boolean soundEffects = true;
 
+    public Setting() {
+        try (BufferedReader is = new BufferedReader(new FileReader("resources/data/settings.txt"))) {
+            String[] settings = is.readLine().split(";");
+            this.setStyle(Integer.parseInt(settings[0]));
+            setSoundEffects(settings[1].toLowerCase().equals("true"));
+
+        }
+        catch (IOException e) {
+            throw new FreeFlowException("Geen settings file");
+        }
+    }
 
     public void cycleStyle() {
         if (style >= 2)
@@ -11,8 +26,16 @@ public class Setting {
         else style++;
     }
 
-    public void setSoundEffects() {
+    public void cycleSoundEffects() {
         soundEffects = !soundEffects;
+    }
+
+    public void setSoundEffects(Boolean bool) {
+        soundEffects = bool;
+    }
+
+    public void setStyle(int i) {
+        this.style = i;
     }
 
     public Style getStyle() {
@@ -21,5 +44,13 @@ public class Setting {
 
     public boolean getSoundEffects() {
         return soundEffects;
+    }
+
+    public void save() {
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("resources/data/settings.txt")))) {
+            pw.write(style+";"+String.valueOf(getSoundEffects()));
+        } catch (IOException e) {
+            throw new FreeFlowException("Settings file niet gevonden.");
+        }
     }
 }

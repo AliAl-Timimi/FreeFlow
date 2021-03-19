@@ -7,7 +7,7 @@
 
 .root {
     /*-fx-background-color: black;*/
-    -fx-background-image: url("../lightthemebackground.png");
+    -fx-background-image: url("../backgrounds/lightthemebackground.png");
 }
 
 .button {

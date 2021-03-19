@@ -130,7 +130,6 @@ public class LevelChooserPresenter {
     }
 
     private void updateViewToMenu() {
-        MenuPresenter menuPresenter = new MenuPresenter(menuView, login, loginView);
         view.getScene().setRoot(menuView);
     }
 
