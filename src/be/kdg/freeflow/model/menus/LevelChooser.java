@@ -20,12 +20,6 @@ public class LevelChooser {
         for (int i = 5 * page; i < 5 * page + 5 && i < levels.size(); i++) {
             displayLevels.add(levels.get(i));
         }
-
-        if (lvlReached == 0)
-            System.out.println();
-        else
-            System.out.println(" \uD83D\uDD12");
-
         return displayLevels;
     }
 
@@ -41,13 +35,19 @@ public class LevelChooser {
         }
     }
 
-    public void prevPage() {
-        if (page > 0)
+    public boolean prevPage() {
+        if (page > 0) {
             page--;
+            return true;
+        }
+        return false;
     }
 
-    public void nextPage() {
-        if (5 * page <= levels.size())
+    public boolean nextPage() {
+        if (5 * page <= levels.size()) {
             page++;
+            return true;
+        }
+        return false;
     }
 }

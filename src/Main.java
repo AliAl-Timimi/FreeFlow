@@ -1,14 +1,20 @@
+import be.kdg.freeflow.model.FreeFlow;
 import be.kdg.freeflow.model.menus.Login;
+import be.kdg.freeflow.model.players.Player;
 import be.kdg.freeflow.view.login.LoginPresenter;
 import be.kdg.freeflow.view.login.LoginView;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 public class Main extends Application {
     public static void main(String[] args) {
         Application.launch(args);
     }
+
 
     @Override
     public void start(Stage primaryStage){

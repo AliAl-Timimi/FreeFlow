@@ -75,19 +75,19 @@ public class LoginView extends GridPane {
         flow.setId("titles");
     }
 
-    protected Button getRegister() {
+    public Button getRegister() {
         return register;
     }
 
-    protected TextField getUsername() {
+    public TextField getUsername() {
         return username;
     }
 
-    protected TextField getPassword() {
+    public TextField getPassword() {
         return password;
     }
 
-    protected Button getLogin() {
+    public Button getLogin() {
         return login;
     }
 

@@ -23,14 +23,6 @@ public class FreeFlow {
         return levels.get(i - 1);
     }
 
-    public List<Level> listLevels() {
-        return levels;
-    }
-
-    public String toString() {
-        return "";
-    } //nog uitwerken
-
     private void createLevels() {
         //Start reading external file
         Scanner sc;
@@ -41,8 +33,8 @@ public class FreeFlow {
             while (sc.hasNextLine()) {
                 line = sc.nextLine();
                 StringBuilder stringBuilder = new StringBuilder();
-                while (line.charAt(0) != ',') {
-                    line = line.replaceAll(",", "");
+                while (line.charAt(0) != ';') {
+                    line = line.replaceAll(";", "");
                     stringBuilder.append(line).append("\n");
                     line = sc.nextLine();
                 }
@@ -108,5 +100,9 @@ public class FreeFlow {
 
          */
         // end
+    }
+
+    public List<Level> listLevels() {
+        return levels;
     }
 }
