@@ -22,6 +22,7 @@ public class Scores {
     }
 
     public String highscores() {
+        setScores();
         levels = game.listLevels();
         StringBuilder stringBuilder = new StringBuilder();
         StringBuilder stringBuilder2 = new StringBuilder();
@@ -39,7 +40,6 @@ public class Scores {
 
     private void setScores() {
         ReadFromFile.setPlayer(game.getPlayer());
-        ReadFromFile.setGame();
         game = ReadFromFile.read();
     }
 }

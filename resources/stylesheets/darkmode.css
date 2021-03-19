@@ -82,6 +82,7 @@
     -fx-text-fill: red;
     /*-fx-font-family: Impact;*/
     -fx-font-weight: bold;
+    -fx-text-alignment: center;
 }
 
 #highscores {

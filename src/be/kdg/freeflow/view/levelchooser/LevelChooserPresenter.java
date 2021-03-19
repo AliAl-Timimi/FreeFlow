@@ -25,13 +25,13 @@ public class LevelChooserPresenter {
     private List<Level> levels;
     private FreeFlow game;
 
-    public LevelChooserPresenter(LevelChooser model, LevelChooserView view, Login login, MenuView menuView, LoginView loginView, FreeFlow game) {
+    public LevelChooserPresenter(LevelChooser model, LevelChooserView view, Login login, MenuView menuView, LoginView loginView) {
         this.view = view;
         this.model = model;
         this.login = login;
         this.menuView = menuView;
         this.loginView = loginView;
-        this.game = game;
+        this.game = model.getGame();
         this.levels = model.levelMenu();
         setLevelText();
         addEventHandlers();

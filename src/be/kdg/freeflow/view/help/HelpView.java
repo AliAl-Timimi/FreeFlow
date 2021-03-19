@@ -37,6 +37,7 @@ public class HelpView extends GridPane {
     private void layoutNodes() {
         GridPane.setHalignment(title, HPos.LEFT);
         GridPane.setHalignment(help, HPos.CENTER);
+        GridPane.setHalignment(title, HPos.CENTER);
 
         this.setAlignment(Pos.CENTER);
         this.add(back, 0, 0);
@@ -46,7 +47,9 @@ public class HelpView extends GridPane {
         ColumnConstraints colum1 = new ColumnConstraints(100);
         ColumnConstraints colum2 = new ColumnConstraints(400);
         ColumnConstraints colum3 = new ColumnConstraints(100);
+
         this.getColumnConstraints().addAll(colum1, colum2, colum3);
+
         GridPane.setMargin(title, new Insets(0,0,10,5));
         setMargin(back, new Insets(25, 10, 25, 25));
 

@@ -7,12 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelChooser {
+    private FreeFlow game;
     private List<Level> levels;
     private int page = 0;
-    private int lvlReached = 0;
 
     public LevelChooser(FreeFlow game) {
-        this.levels = game.listLevels();
+        this.game = game;
+        this.levels = this.game.listLevels();
     }
 
     public List<Level> levelMenu() {
@@ -25,14 +26,10 @@ public class LevelChooser {
 
 
     public boolean isLevelUnlocked(int lvl) {
-        return lvl-1 <= lvlReached;
-    }
-
-    public void setLevelReached() {
-        for (int i = 0; i < levels.size(); i++) {
-            if (i != 0 && levels.get(i - 1).getHighscore() != 0)
-                lvlReached++;
-        }
+        if (lvl > 1)
+            return levels.get(lvl-2).getHighscore() > 0;
+        else
+            return true;
     }
 
     public boolean prevPage() {
@@ -49,5 +46,9 @@ public class LevelChooser {
             return true;
         }
         return false;
+    }
+
+    public FreeFlow getGame() {
+        return game;
     }
 }
