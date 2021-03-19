@@ -1,6 +1,8 @@
 package be.kdg.freeflow.model;
 
-import be.kdg.freeflow.model.Player;
+import be.kdg.freeflow.model.lvlbuild.Grid;
+import be.kdg.freeflow.model.lvlbuild.Level;
+import be.kdg.freeflow.model.players.Player;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,12 +19,8 @@ public class FreeFlow {
         createLevels();
     }
 
-    public void chooseLevel(int i) {
-        levels.get(i - 1).speel();
-    }
-
-    public void addLevel(Level level) {
-        levels.add(level);
+    public Level chooseLevel(int i) {
+        return levels.get(i - 1);
     }
 
     public List<Level> listLevels() {
@@ -34,10 +32,8 @@ public class FreeFlow {
     } //nog uitwerken
 
     private void createLevels() {
-
         //Start reading external file
-
-        Scanner sc = null;
+        Scanner sc;
         int lvlNumber = 1;
         String line;
         try {

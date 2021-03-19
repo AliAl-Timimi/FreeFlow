@@ -1,12 +1,9 @@
 package be.kdg.freeflow.view.settings;
 
-import be.kdg.freeflow.model.Setting;
-import be.kdg.freeflow.model.Style;
+import be.kdg.freeflow.model.menus.Setting;
 import be.kdg.freeflow.view.menu.MenuView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
-import static be.kdg.freeflow.model.Style.*;
 
 public class SettingsPresenter {
     private Setting setting;
@@ -19,6 +16,7 @@ public class SettingsPresenter {
         this.view = settingsView;
         this.menuView = menuView;
         view.getStyleButton().setText(String.format("Stijl: %s",setting.getStyle()));
+        view.getSound().setText(String.format("SFX: %s",setting.getSoundEffects()?"Aan":"Uit"));
         addEventHandlers();
     }
 

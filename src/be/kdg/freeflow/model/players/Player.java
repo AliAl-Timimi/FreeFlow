@@ -1,4 +1,6 @@
-package be.kdg.freeflow.model;
+package be.kdg.freeflow.model.players;
+
+import be.kdg.freeflow.model.FreeFlowException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

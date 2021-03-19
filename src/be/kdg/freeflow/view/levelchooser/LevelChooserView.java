@@ -31,11 +31,11 @@ public class LevelChooserView extends GridPane {
         back = new Button("back");
         prev = new Button("prev");
         next = new Button("next");
-        level1 = new Button("Level 1: 5x5");
-        level2 = new Button("Level 2");
-        level3 = new Button("Level 3");
-        level4 = new Button("Level 4");
-        level5 = new Button("Level 5");
+        level1 = new Button();
+        level2 = new Button();
+        level3 = new Button();
+        level4 = new Button();
+        level5 = new Button();
     }
 
     private void layoutNodes () {

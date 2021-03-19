@@ -1,4 +1,4 @@
-package be.kdg.freeflow.model;
+package be.kdg.freeflow.model.menus;
 
 public enum Style {
     CLASSIC("/stylesheets/default.css"),

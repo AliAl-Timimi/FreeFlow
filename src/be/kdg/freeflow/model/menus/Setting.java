@@ -1,7 +1,4 @@
-package be.kdg.freeflow.model;
-
-import java.util.InputMismatchException;
-import java.util.Scanner;
+package be.kdg.freeflow.model.menus;
 
 public class Setting {
     private int style = 0;

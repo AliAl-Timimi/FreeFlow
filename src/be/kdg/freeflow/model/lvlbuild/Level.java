@@ -1,4 +1,4 @@
-package be.kdg.freeflow.model;
+package be.kdg.freeflow.model.lvlbuild;
 
 import java.util.Scanner;
 
@@ -47,7 +47,7 @@ public class Level implements Comparable<Level> {
         return moves;
     }
 
-    public void speel() {
+    public void play() {
         Scanner keyboard = new Scanner(System.in);
         while (!isGedaan()) {
             boolean repeat = true;

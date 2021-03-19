@@ -1,4 +1,4 @@
-package be.kdg.freeflow.model;
+package be.kdg.freeflow.model.flow;
 
 public enum Color {
     R("RED"),

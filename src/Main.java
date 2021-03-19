@@ -1,4 +1,4 @@
-import be.kdg.freeflow.model.Login;
+import be.kdg.freeflow.model.menus.Login;
 import be.kdg.freeflow.view.login.LoginPresenter;
 import be.kdg.freeflow.view.login.LoginView;
 import javafx.application.Application;

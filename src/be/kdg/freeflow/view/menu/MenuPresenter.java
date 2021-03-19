@@ -1,9 +1,11 @@
 package be.kdg.freeflow.view.menu;
 
 
-import be.kdg.freeflow.model.Level;
-import be.kdg.freeflow.model.Login;
-import be.kdg.freeflow.model.Setting;
+import be.kdg.freeflow.model.FreeFlow;
+import be.kdg.freeflow.model.lvlbuild.Level;
+import be.kdg.freeflow.model.menus.LevelChooser;
+import be.kdg.freeflow.model.menus.Login;
+import be.kdg.freeflow.model.menus.Setting;
 import be.kdg.freeflow.view.help.HelpPresenter;
 import be.kdg.freeflow.view.help.HelpView;
 import be.kdg.freeflow.view.highscores.HighscoresPresenter;
@@ -21,7 +23,8 @@ public class MenuPresenter {
     private Login login;
     private LoginView loginView;
     private Level level;
-    Setting setting;
+    private Setting setting;
+
     public MenuPresenter(MenuView menuView, Login login, LoginView loginView) {
         this.view = menuView;
         this.login = login;
@@ -84,8 +87,10 @@ public class MenuPresenter {
     }
 
     private void updateToLevels() {
+        FreeFlow game = new FreeFlow(login.getPlayer());
         LevelChooserView levelChooserView = new LevelChooserView();
-        LevelChooserPresenter levelChooserPresenter = new LevelChooserPresenter(level, levelChooserView);
+        LevelChooser levelChooser = new LevelChooser(game);
+        LevelChooserPresenter levelChooserPresenter = new LevelChooserPresenter(levelChooser, levelChooserView, login, view, loginView, game);
         view.getScene().setRoot(levelChooserView);
     }
 

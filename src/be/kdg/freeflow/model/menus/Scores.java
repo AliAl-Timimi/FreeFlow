@@ -1,14 +1,19 @@
-package be.kdg.freeflow.model;
+package be.kdg.freeflow.model.menus;
+
+import be.kdg.freeflow.model.FreeFlow;
+import be.kdg.freeflow.model.lvlbuild.Level;
 
 import java.util.List;
 
 public class Scores {
+    private List<Level> levels;
 
-    public Scores() {
+    public Scores(FreeFlow game) {
+        levels = game.listLevels();
     }
 
-    public String highscores(FreeFlow game) {
-        List<Level> levels = game.listLevels();
+    public String highscores() {
+
         StringBuilder stringBuilder = new StringBuilder();
         StringBuilder stringBuilder2 = new StringBuilder();
         int total = 0;

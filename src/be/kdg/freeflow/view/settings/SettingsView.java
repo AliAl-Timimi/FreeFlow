@@ -24,7 +24,7 @@ public class SettingsView extends GridPane {
         back = new Button("Terug");
         title = new Label("Instellingen");
         styleButton = new Button();
-        sound = new Button("SFX: Aan");
+        sound = new Button();
     }
 
     private void layoutNodes() {

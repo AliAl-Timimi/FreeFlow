@@ -1,4 +1,7 @@
 package be.kdg.freeflow.view.game;
 
-public class GameView {
+import javafx.scene.layout.GridPane;
+
+public class GameView extends GridPane {
+
 }

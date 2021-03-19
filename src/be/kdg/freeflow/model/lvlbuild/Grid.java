@@ -1,5 +1,8 @@
-package be.kdg.freeflow.model;
+package be.kdg.freeflow.model.lvlbuild;
 
+
+import be.kdg.freeflow.model.flow.Ball;
+import be.kdg.freeflow.model.flow.Color;
 
 public class Grid {
     private Cell[][] grid;

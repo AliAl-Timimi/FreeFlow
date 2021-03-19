@@ -1,4 +1,8 @@
-package be.kdg.freeflow.model;
+package be.kdg.freeflow.model.lvlbuild;
+
+import be.kdg.freeflow.model.flow.Ball;
+import be.kdg.freeflow.model.flow.Color;
+import be.kdg.freeflow.model.flow.Pipe;
 
 public class Cell {
     private Ball ball = null;
