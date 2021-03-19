@@ -5,7 +5,7 @@ import be.kdg.freeflow.model.flow.Ball;
 import be.kdg.freeflow.model.flow.Color;
 
 public class Grid {
-    private Cell[][] grid;
+    private final Cell[][] grid;
 
     public Grid(int size) {
 

@@ -6,9 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 public class SettingsPresenter {
-    private Setting setting;
-    private SettingsView view;
-    private MenuView menuView;
+    private final Setting setting;
+    private final SettingsView view;
+    private final MenuView menuView;
 
 
     public SettingsPresenter(Setting setting, SettingsView settingsView, MenuView menuView) {
@@ -26,7 +26,7 @@ public class SettingsPresenter {
             public void handle(ActionEvent actionEvent) {
                 setting.cycleStyle();
                 view.getScene().getStylesheets().clear();
-                view.getStyleButton().setText(String.format("Stijl: %s",setting.getStyle()));
+                view.getStyleButton().setText(String.format("Stijl: %s", setting.getStyle()));
                 view.getScene().getStylesheets().add(setting.getStyle().getS());
             }
         });

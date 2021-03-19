@@ -1,15 +1,12 @@
 package be.kdg.freeflow.view.game;
 
 import be.kdg.freeflow.model.lvlbuild.Level;
-import be.kdg.freeflow.view.game.GameView;
 import be.kdg.freeflow.view.levelchooser.LevelChooserView;
-import javafx.event.EventHandler;
-import javafx.event.ActionEvent;
 
 public class GamePresenter {
-    private Level model;
-    private GameView view;
-    private LevelChooserView levelChooserView;
+    private final Level model;
+    private final GameView view;
+    private final LevelChooserView levelChooserView;
 
     public GamePresenter(Level model, GameView view, LevelChooserView levelChooserView) {
         this.model = model;
@@ -25,16 +22,11 @@ public class GamePresenter {
     }
 
     private void updateMoves() {
-        view.getMoves().setText(String.format("Moves: %d", model.getMoves()));
+        view.getMoves().setText(String.format("Moves: %d/%d", model.getMoves(), model.getEmpty().minMoves()));
     }
 
     private void addEventHandlers() {
-        view.getBack().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                updateViewToLevelChooser();
-            }
-        });
+        view.getBack().setOnAction(event -> updateViewToLevelChooser());
     }
 
     private void updateViewToLevelChooser() {

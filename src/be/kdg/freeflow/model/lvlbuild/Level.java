@@ -3,11 +3,11 @@ package be.kdg.freeflow.model.lvlbuild;
 import java.util.Scanner;
 
 public class Level implements Comparable<Level> {
-    private int levelNummer;
-    private int size;
+    private final int levelNummer;
+    private final int size;
     private int highscore;
-    private Grid empty;
-    private Grid solution;
+    private final Grid empty;
+    private final Grid solution;
     private int moves;
 
     public Level(int levelNummer, int size, Grid empty, Grid solution) {
@@ -95,8 +95,8 @@ public class Level implements Comparable<Level> {
                 System.out.println("Doe een move: ");
                 String move = keyboard.nextLine().toLowerCase();
                 moveArray = move.toCharArray();
-                for (int i = 0; i < moveArray.length; i++) {
-                    if (moveArray[i] != 'l' && moveArray[i] != 'r' && moveArray[i] != 'u' && moveArray[i] != 'd') {
+                for (char c : moveArray) {
+                    if (c != 'l' && c != 'r' && c != 'u' && c != 'd') {
                         System.out.println("Ongeldige input");
                         repeat = true;
                     } else {

@@ -7,7 +7,6 @@ import be.kdg.freeflow.model.players.Login;
 import be.kdg.freeflow.view.game.GamePresenter;
 import be.kdg.freeflow.view.game.GameView;
 import be.kdg.freeflow.view.login.LoginView;
-import be.kdg.freeflow.view.menu.MenuPresenter;
 import be.kdg.freeflow.view.menu.MenuView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

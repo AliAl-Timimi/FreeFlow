@@ -12,11 +12,6 @@ public class Cell {
         return pipe == null && ball == null;
     }
 
-    public void empty() {
-        this.ball = null;
-        this.pipe = null;
-    }
-
     @Override
     public String toString() {
         if (ball != null)

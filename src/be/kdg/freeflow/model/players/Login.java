@@ -2,12 +2,12 @@ package be.kdg.freeflow.model.players;
 
 import be.kdg.freeflow.model.FreeFlow;
 import be.kdg.freeflow.model.FreeFlowException;
-import be.kdg.freeflow.model.players.Player;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Login {
-    private FreeFlow game;
     Player player;
 
     public boolean login(String name, String password) {
@@ -40,15 +40,6 @@ public class Login {
 
     public void logout() {
         this.player = null;
-    }
-
-    /**
-     * Everything called by startGame()
-     */
-
-
-    public FreeFlow getGame() {
-        return game;
     }
 
     public Player getPlayer() {

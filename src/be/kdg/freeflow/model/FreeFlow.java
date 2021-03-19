@@ -3,7 +3,6 @@ package be.kdg.freeflow.model;
 import be.kdg.freeflow.model.lvlbuild.Grid;
 import be.kdg.freeflow.model.lvlbuild.Level;
 import be.kdg.freeflow.model.players.Player;
-import be.kdg.freeflow.model.players.ReadFromFile;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,11 +11,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FreeFlow {
-    private List<Level> levels = new ArrayList<>();
-    private Player player;
+    private final List<Level> levels;
+    private final Player player;
 
     public FreeFlow(Player player) {
         this.player = player;
+        this.levels = new ArrayList<>();
         createLevels();
     }
 
@@ -72,35 +72,6 @@ public class FreeFlow {
         } catch (FileNotFoundException e) {
             System.out.println("Bestand ontbreekt: levels.csv");
         }
-
-        // End entire levels.csv file
-
-        // Start single level
-        /*
-        Grid solution = new Grid(5);
-        String[] lines = {"RgGyY", "rgByO", "rgbyo", "rGbYo", "rRBOo"};
-        int k = 0;
-        for (String line : lines) {
-            for (int j = 0; j < line.length(); j++) {
-                solution.fillCell(k, j, line.charAt(j) + "");
-            }
-            k++;
-        }
-        String[] emptyLines = {"R G Y", "  B O", "     ", " G Y ", " RBO "};
-        Grid empty = new Grid(5);
-        int i = 0;
-        for (String line : emptyLines) {
-            for (int j = 0; j < line.length(); j++) {
-                String letter = line.charAt(j) + "";
-                if (!letter.equals(" "))
-                    empty.fillCell(i, j, letter);
-            }
-            i++;
-        }
-        levels.add(new Level(1, 5, empty, solution));
-
-         */
-        // end
     }
 
     public List<Level> listLevels() {

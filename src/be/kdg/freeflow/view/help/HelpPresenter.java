@@ -5,17 +5,17 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 public class HelpPresenter {
-    private HelpView view;
-    private MenuView menuView;
+    private final HelpView VIEW;
+    private final MenuView menuView;
 
     public HelpPresenter(HelpView helpView, MenuView menuView) {
-        this.view = helpView;
+        this.VIEW = helpView;
         this.menuView = menuView;
         addEventHandlers();
     }
 
     private void addEventHandlers() {
-        view.getBack().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 updateView();
@@ -24,6 +24,6 @@ public class HelpPresenter {
     }
 
     private void updateView() {
-        view.getScene().setRoot(menuView);
+        VIEW.getScene().setRoot(menuView);
     }
 }

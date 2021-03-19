@@ -12,7 +12,7 @@ public class Setting {
         try (BufferedReader is = new BufferedReader(new FileReader("resources/data/settings.txt"))) {
             String[] settings = is.readLine().split(";");
             this.setStyle(Integer.parseInt(settings[0]));
-            setSoundEffects(settings[1].toLowerCase().equals("true"));
+            setSoundEffects(settings[1].equalsIgnoreCase("true"));
 
         }
         catch (IOException e) {
@@ -48,7 +48,7 @@ public class Setting {
 
     public void save() {
         try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("resources/data/settings.txt")))) {
-            pw.write(style+";"+String.valueOf(getSoundEffects()));
+            pw.write(style+";"+getSoundEffects());
         } catch (IOException e) {
             throw new FreeFlowException("Settings file niet gevonden.");
         }

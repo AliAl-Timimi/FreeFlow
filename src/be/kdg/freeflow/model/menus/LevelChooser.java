@@ -7,13 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelChooser {
-    private FreeFlow game;
-    private List<Level> levels;
+    private final FreeFlow game;
+    private final List<Level> levels;
     private int page = 0;
+    private final int maxPage;
 
     public LevelChooser(FreeFlow game) {
         this.game = game;
         this.levels = this.game.listLevels();
+        this.maxPage = (int) Math.ceil(levels.size()/5.0)-1;
     }
 
     public List<Level> levelMenu() {
@@ -41,7 +43,7 @@ public class LevelChooser {
     }
 
     public boolean nextPage() {
-        if (5 * page <= levels.size()) {
+        if (page < maxPage) {
             page++;
             return true;
         }

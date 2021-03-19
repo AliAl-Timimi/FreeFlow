@@ -10,8 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.paint.Color;
 
-import java.util.Set;
-
 public class RegisterPresenter {
     private Login login;
     private RegisterView view;
@@ -55,7 +53,7 @@ public class RegisterPresenter {
 
     private void updateToMenu() {
         MenuView menuView = new MenuView();
-        MenuPresenter menuPresenter = new MenuPresenter(menuView, login, loginView, setting);
+        new MenuPresenter(menuView, login, loginView, setting);
         view.getScene().setRoot(menuView);
     }
 }

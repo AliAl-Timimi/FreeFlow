@@ -90,7 +90,7 @@ public class SaveToFile {
             stringBuilder.append(player.getUsername()).append(";");
             stringBuilder.append(player.getPassword()).append(";");
             for (int i = 0; i < levels.size(); i++) {
-                stringBuilder.append(String.valueOf(levels.get(i).getHighscore())).append(";");
+                stringBuilder.append(levels.get(i).getHighscore()).append(";");
             }
             stringBuilder.append("\n");
             pw.write(stringBuilder.toString());

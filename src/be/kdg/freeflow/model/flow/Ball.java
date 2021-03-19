@@ -2,7 +2,7 @@ package be.kdg.freeflow.model.flow;
 
 
 public class Ball {
-    private Color color;
+    private final Color color;
     private boolean lineCreated = false;
 
     public Ball(Color color) {

@@ -1,14 +1,9 @@
 package be.kdg.freeflow.model.menus;
 
 import be.kdg.freeflow.model.FreeFlow;
-import be.kdg.freeflow.model.FreeFlowException;
 import be.kdg.freeflow.model.lvlbuild.Level;
 import be.kdg.freeflow.model.players.ReadFromFile;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Scores {

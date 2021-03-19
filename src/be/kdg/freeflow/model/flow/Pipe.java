@@ -2,7 +2,7 @@ package be.kdg.freeflow.model.flow;
 
 
 public class Pipe {
-    private Color color;
+    private final Color color;
 
     public Pipe(Color color) {
         this.color = color;

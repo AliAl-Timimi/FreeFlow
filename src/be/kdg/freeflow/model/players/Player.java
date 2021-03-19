@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 
 public class Player {
-    private String username;
+    private final String username;
     private String password;
 
     public Player(String username, String password, String repeatPassword) {
@@ -42,7 +42,7 @@ public class Player {
     }
 
     private boolean nietGebruikt(String name) {
-        try (BufferedReader is = new BufferedReader(new FileReader("resources/data/users.csv"));) {
+        try (BufferedReader is = new BufferedReader(new FileReader("resources/data/users.csv"))) {
             String line = is.readLine();
             while (line != null) {
                 String readName = line.split(";")[1];

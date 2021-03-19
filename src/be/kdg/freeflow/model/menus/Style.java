@@ -13,7 +13,7 @@ public enum Style {
     winter_chill: blauw, wit
      */
 
-    private String s;
+    private final String s;
 
     Style(String s) {
         this.s=s;
