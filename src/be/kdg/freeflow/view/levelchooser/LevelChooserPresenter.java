@@ -3,7 +3,8 @@ package be.kdg.freeflow.view.levelchooser;
 import be.kdg.freeflow.model.FreeFlow;
 import be.kdg.freeflow.model.lvlbuild.Level;
 import be.kdg.freeflow.model.menus.LevelChooser;
-import be.kdg.freeflow.model.menus.Login;
+import be.kdg.freeflow.model.players.Login;
+import be.kdg.freeflow.model.players.SaveToFile;
 import be.kdg.freeflow.view.game.GamePresenter;
 import be.kdg.freeflow.view.game.GameView;
 import be.kdg.freeflow.view.login.LoginView;
@@ -14,7 +15,6 @@ import javafx.event.EventHandler;
 
 import java.util.List;
 
-;
 
 public class LevelChooserPresenter {
 
@@ -136,8 +136,8 @@ public class LevelChooserPresenter {
     }
 
     private void updateViewToGame(int lvl) {
-        GameView gameView = new GameView();
-        GamePresenter gamePresenter = new GamePresenter(game.chooseLevel(lvl), gameView);
+        GameView gameView = new GameView(game.chooseLevel(lvl));
+        GamePresenter gamePresenter = new GamePresenter(game.chooseLevel(lvl), gameView, view);
         view.getScene().setRoot(gameView);
     }
 }

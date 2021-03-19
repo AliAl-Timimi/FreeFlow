@@ -58,6 +58,14 @@ public class Player {
         return true;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getWachtwoord() {
+        return wachtwoord;
+    }
+
     public String toString() {
         return String.format("%s;%s", username, wachtwoord);
     }

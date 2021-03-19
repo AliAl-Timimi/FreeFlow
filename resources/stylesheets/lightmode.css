@@ -133,3 +133,15 @@
 #level5:hover {
     -fx-background-color: lightblue;
 }
+
+#levelmarker {
+    -fx-font-family: Impact;
+    -fx-font-size: 20px;
+    -fx-text-fill: turquoise;
+}
+
+#moves {
+    -fx-font-family: Impact;
+    -fx-font-size: 20px;
+    -fx-text-fill: orangered;
+}

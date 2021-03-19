@@ -1,7 +1,7 @@
 package be.kdg.freeflow.view.register;
 
 import be.kdg.freeflow.model.FreeFlowException;
-import be.kdg.freeflow.model.menus.Login;
+import be.kdg.freeflow.model.players.Login;
 import be.kdg.freeflow.view.login.LoginView;
 import be.kdg.freeflow.view.menu.MenuPresenter;
 import be.kdg.freeflow.view.menu.MenuView;

@@ -3,3 +3,13 @@
     -fx-font-size: 35;
     -fx-text-alignment: center;
 }
+
+#levelmarker {
+    -fx-font-family: Impact;
+    -fx-font-size: 20px;
+}
+
+#moves {
+    -fx-font-family: Impact;
+    -fx-font-size: 20px;
+}

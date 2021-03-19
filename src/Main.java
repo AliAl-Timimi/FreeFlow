@@ -1,13 +1,11 @@
 import be.kdg.freeflow.model.FreeFlow;
-import be.kdg.freeflow.model.menus.Login;
-import be.kdg.freeflow.model.players.Player;
+import be.kdg.freeflow.model.players.Login;
+import be.kdg.freeflow.model.players.ReadFromFile;
+import be.kdg.freeflow.model.players.SaveToFile;
 import be.kdg.freeflow.view.login.LoginPresenter;
 import be.kdg.freeflow.view.login.LoginView;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -25,8 +23,8 @@ public class Main extends Application {
         Scene scene = new Scene(view);
         scene.getStylesheets().add("/stylesheets/default.css");
         primaryStage.setScene(scene);
-        primaryStage.setWidth(600);
-        primaryStage.setHeight(600);
+        primaryStage.setWidth(800);
+        primaryStage.setHeight(800);
         primaryStage.show();
     }
 }

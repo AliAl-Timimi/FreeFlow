@@ -3,7 +3,6 @@ package be.kdg.freeflow.model;
 import be.kdg.freeflow.model.lvlbuild.Grid;
 import be.kdg.freeflow.model.lvlbuild.Level;
 import be.kdg.freeflow.model.players.Player;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -104,5 +103,9 @@ public class FreeFlow {
 
     public List<Level> listLevels() {
         return levels;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

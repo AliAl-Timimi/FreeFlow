@@ -1,19 +1,28 @@
 package be.kdg.freeflow.model.menus;
 
 import be.kdg.freeflow.model.FreeFlow;
+import be.kdg.freeflow.model.FreeFlowException;
 import be.kdg.freeflow.model.lvlbuild.Level;
+import be.kdg.freeflow.model.players.ReadFromFile;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Scores {
     private List<Level> levels;
+    private FreeFlow game;
 
     public Scores(FreeFlow game) {
         levels = game.listLevels();
+        this.game = game;
+        setScores();
     }
 
     public String highscores() {
-
+        levels = game.listLevels();
         StringBuilder stringBuilder = new StringBuilder();
         StringBuilder stringBuilder2 = new StringBuilder();
         int total = 0;
@@ -26,5 +35,11 @@ public class Scores {
         stringBuilder2.append("Highscore per level\n");
         stringBuilder2.append(stringBuilder.toString());
         return stringBuilder2.toString();
+    }
+
+    private void setScores() {
+        ReadFromFile.setPlayer(game.getPlayer());
+        ReadFromFile.setGame();
+        game = ReadFromFile.read();
     }
 }

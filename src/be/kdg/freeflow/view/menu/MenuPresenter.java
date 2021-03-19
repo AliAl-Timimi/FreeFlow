@@ -2,10 +2,11 @@ package be.kdg.freeflow.view.menu;
 
 
 import be.kdg.freeflow.model.FreeFlow;
-import be.kdg.freeflow.model.lvlbuild.Level;
 import be.kdg.freeflow.model.menus.LevelChooser;
-import be.kdg.freeflow.model.menus.Login;
+import be.kdg.freeflow.model.players.Login;
 import be.kdg.freeflow.model.menus.Setting;
+import be.kdg.freeflow.model.players.ReadFromFile;
+import be.kdg.freeflow.model.players.SaveToFile;
 import be.kdg.freeflow.view.help.HelpPresenter;
 import be.kdg.freeflow.view.help.HelpView;
 import be.kdg.freeflow.view.highscores.HighscoresPresenter;
@@ -22,13 +23,18 @@ public class MenuPresenter {
     private MenuView view;
     private Login login;
     private LoginView loginView;
-    private Level level;
     private Setting setting;
+    private FreeFlow game;
+
 
     public MenuPresenter(MenuView menuView, Login login, LoginView loginView) {
         this.view = menuView;
         this.login = login;
         this.loginView = loginView;
+        SaveToFile.setPlayer(login.getPlayer());
+        ReadFromFile.setPlayer(login.getPlayer());
+        ReadFromFile.setGame();
+        this.game = ReadFromFile.read();
         setting = new Setting();
         addEventHandlers();
     }
@@ -82,12 +88,11 @@ public class MenuPresenter {
 
     private void updateToScores() {
         HighscoresView highscoresView = new HighscoresView();
-        HighscoresPresenter highscoresPresenter = new HighscoresPresenter(highscoresView, login, view);
+        HighscoresPresenter highscoresPresenter = new HighscoresPresenter(highscoresView, view, game);
         view.getScene().setRoot(highscoresView);
     }
 
     private void updateToLevels() {
-        FreeFlow game = new FreeFlow(login.getPlayer());
         LevelChooserView levelChooserView = new LevelChooserView();
         LevelChooser levelChooser = new LevelChooser(game);
         LevelChooserPresenter levelChooserPresenter = new LevelChooserPresenter(levelChooser, levelChooserView, login, view, loginView, game);
