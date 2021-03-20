@@ -8,6 +8,7 @@
 .root {
     /*-fx-background-color: black;*/
     -fx-background-image: url("../backgrounds/lightthemebackground.png");
+    -fx-font-family: Impact;
 }
 
 .button {
@@ -137,7 +138,7 @@
 
 #levelmarker {
     -fx-font-family: Impact;
-    -fx-font-size: 20px;
+    -fx-font-size: 35px;
     -fx-text-fill: turquoise;
 }
 

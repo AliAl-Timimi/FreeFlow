@@ -79,10 +79,10 @@ public class LevelChooserPresenter {
                     updateViewToGame(lvl);
             }
         });
-        view.getLevel4().setOnAction(new EventHandler<ActionEvent>() {
+        view.getLevel5().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                int lvl = Integer.parseInt(view.getLevel4().getText().split(" ")[1].replaceAll(":", ""));
+                int lvl = Integer.parseInt(view.getLevel5().getText().split(" ")[1].replaceAll(":", ""));
                 if (model.isLevelUnlocked(lvl))
                     updateViewToGame(lvl);
             }
@@ -137,7 +137,7 @@ public class LevelChooserPresenter {
 
     private void updateViewToGame(int lvl) {
         GameView gameView = new GameView(game.chooseLevel(lvl));
-        GamePresenter gamePresenter = new GamePresenter(game.chooseLevel(lvl), gameView, view, setting);
+        GamePresenter gamePresenter = new GamePresenter(game.chooseLevel(lvl), gameView, view, setting, game);
         view.getScene().setRoot(gameView);
     }
 }

@@ -6,7 +6,8 @@ public class Level implements Comparable<Level> {
     private final int levelNummer;
     private final int size;
     private int highscore;
-    private final Grid empty;
+    private final Grid reset;
+    private Grid empty;
     private final Grid solution;
     private int moves;
 
@@ -15,9 +16,12 @@ public class Level implements Comparable<Level> {
         this.size = size;
         this.highscore = 0;
         this.empty = empty;
+        this.reset = empty;
         this.solution = solution;
         this.moves = 0;
     }
+
+
 
     public int getSize() {
         return size;
@@ -43,9 +47,28 @@ public class Level implements Comparable<Level> {
         return solution;
     }
 
+    public void reset() {
+        empty = reset;
+        moves = 0;
+    }
+
     public int getMoves() {
         return moves;
     }
+
+    public String getColor(int row, int col) {
+        if (empty.getGrid()[row][col].getBall() != null)
+            return empty.getGrid()[row][col].getBall().getColor().toString();
+        else
+            return empty.getGrid()[row][col].getPipe().getColor().toString();
+    }
+
+    public void drawOne(int row, int col, String color) {
+        if (empty.getGrid()[row][col].isEmpty()) {
+            empty.fillCell(row, col, color);
+        }
+    }
+
 
     public void play() {
         Scanner keyboard = new Scanner(System.in);

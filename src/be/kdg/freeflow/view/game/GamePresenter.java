@@ -1,5 +1,7 @@
 package be.kdg.freeflow.view.game;
 
+import be.kdg.freeflow.model.FreeFlow;
+import be.kdg.freeflow.model.lvlbuild.Cell;
 import be.kdg.freeflow.model.lvlbuild.Level;
 import be.kdg.freeflow.model.menus.Setting;
 import be.kdg.freeflow.view.levelchooser.LevelChooserView;
@@ -14,16 +16,58 @@ public class GamePresenter {
     private final GameView view;
     private final LevelChooserView levelChooserView;
     private Setting setting;
+    private FreeFlow game;
 
-    public GamePresenter(Level model, GameView view, LevelChooserView levelChooserView, Setting setting) {
+    public GamePresenter(Level model, GameView view, LevelChooserView levelChooserView, Setting setting, FreeFlow game) {
         this.model = model;
         this.view = view;
         this.levelChooserView = levelChooserView;
         this.setting = setting;
+        this.game = game;
         updateMoves();
         setLevelText();
+        fillLevel();
         addEventHandlers();
     }
+
+    /*
+    private int translateXToColumn(final double x) {
+        final double width = this.view.getCanvas().getWidth();
+        final int columnResult = (int)(x / width * model.getSize());
+        if (columnResult >= 0 && columnResult < model.getSize()) {
+            return columnResult;
+        }
+        else {
+            return -1;
+        }
+    }
+
+    private int translateYToRow(final double y) {
+        final double height = this.view.().getHeight();
+        final int rowResult = (int)(y / height * model.getSize());
+        if (rowResult >= 0 && rowResult < model.getSize()) {
+            return rowResult;
+        }
+        else {
+            return -1;
+        }
+    }
+
+     */
+
+
+    private void fillLevel() {
+        Cell[][] game = model.getEmpty().getGrid();
+        for (int i = 0; i < game.length; i++) {
+            for (int j = 0; j < game.length; j++) {
+                if (game[i][j].getBall() != null) {
+                    view.fillBalls(j, i,game[i][j].getBall().getColor());
+                }
+            }
+
+        }
+    }
+
 
     private void setLevelText() {
         view.getLevelMarker().setText(String.format("Level: %d", model.getLevelNummer()));
@@ -46,15 +90,14 @@ public class GamePresenter {
 
     private void showPupWindow() {
         PopupView pop = new PopupView();
-        PopupPresenter presenter = new PopupPresenter(model, pop);
+        PopupPresenter presenter = new PopupPresenter(model, pop, view, levelChooserView, setting, game);
         Stage popupStage = new Stage();
         popupStage.initModality(Modality.APPLICATION_MODAL);
         popupStage.setScene(new Scene(pop));
         popupStage.setTitle(String.format("Level %d complete!", model.getLevelNummer()));
         pop.getScene().getStylesheets().add(setting.getStyle().getS());
-        // pop.setStyle("-fx-background-image: url(/backgrounds/darkthemebackground.jpg)");
         popupStage.setHeight(300);
         popupStage.setWidth(325);
-        popupStage.showAndWait();
+        popupStage.show();
     }
 }

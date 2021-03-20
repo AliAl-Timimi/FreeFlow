@@ -1,25 +1,29 @@
 package be.kdg.freeflow.model.flow;
 
 public enum Color {
-    R("RED"),
-    Y("YELLOW"),
-    G("GREEN"),
-    L("LIME"),
-    T("DONKERGROEN"),
-    B("BLUE"),
-    C("CYAN"),
-    D("DARKBLUE"),
-    O("ORANGE"),
-    N("BROWN"),
-    W("WHITE"),
-    GREY("GREY"),
-    P("PINK"),
-    U("PURPLE");
+    R(javafx.scene.paint.Color.RED),
+    Y(javafx.scene.paint.Color.YELLOW),
+    G(javafx.scene.paint.Color.GREEN),
+    L(javafx.scene.paint.Color.LIME),
+    T(javafx.scene.paint.Color.DARKGREEN),
+    B(javafx.scene.paint.Color.BLUE),
+    C(javafx.scene.paint.Color.CYAN),
+    D(javafx.scene.paint.Color.DARKBLUE),
+    O(javafx.scene.paint.Color.ORANGE),
+    N(javafx.scene.paint.Color.BROWN),
+    W(javafx.scene.paint.Color.WHITE),
+    GREY(javafx.scene.paint.Color.GREY),
+    P(javafx.scene.paint.Color.PINK),
+    U(javafx.scene.paint.Color.PURPLE);
 
-    private String s;
+    private javafx.scene.paint.Color color;
 
-    Color(String s) {
-        this.s = s;
+    Color(javafx.scene.paint.Color color) {
+        this.color = color;
+    }
+
+    public javafx.scene.paint.Color getColor() {
+        return color;
     }
 
     public String getC() {
