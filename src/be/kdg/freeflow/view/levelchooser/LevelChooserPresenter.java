@@ -3,6 +3,7 @@ package be.kdg.freeflow.view.levelchooser;
 import be.kdg.freeflow.model.FreeFlow;
 import be.kdg.freeflow.model.lvlbuild.Level;
 import be.kdg.freeflow.model.menus.LevelChooser;
+import be.kdg.freeflow.model.menus.Setting;
 import be.kdg.freeflow.model.players.Login;
 import be.kdg.freeflow.view.game.GamePresenter;
 import be.kdg.freeflow.view.game.GameView;
@@ -23,8 +24,9 @@ public class LevelChooserPresenter {
     private Login login;
     private List<Level> levels;
     private FreeFlow game;
+    private Setting setting;
 
-    public LevelChooserPresenter(LevelChooser model, LevelChooserView view, Login login, MenuView menuView, LoginView loginView) {
+    public LevelChooserPresenter(LevelChooser model, LevelChooserView view, Login login, MenuView menuView, LoginView loginView, Setting setting) {
         this.view = view;
         this.model = model;
         this.login = login;
@@ -32,6 +34,7 @@ public class LevelChooserPresenter {
         this.loginView = loginView;
         this.game = model.getGame();
         this.levels = model.levelMenu();
+        this.setting = setting;
         setLevelText();
         addEventHandlers();
     }
@@ -134,7 +137,7 @@ public class LevelChooserPresenter {
 
     private void updateViewToGame(int lvl) {
         GameView gameView = new GameView(game.chooseLevel(lvl));
-        GamePresenter gamePresenter = new GamePresenter(game.chooseLevel(lvl), gameView, view);
+        GamePresenter gamePresenter = new GamePresenter(game.chooseLevel(lvl), gameView, view, setting);
         view.getScene().setRoot(gameView);
     }
 }

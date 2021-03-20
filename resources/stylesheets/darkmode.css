@@ -146,3 +146,7 @@
     -fx-font-size: 20px;
     -fx-text-fill: red;
 }
+
+#score {
+    -fx-text-fill: gold;
+}

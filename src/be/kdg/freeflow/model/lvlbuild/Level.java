@@ -127,6 +127,9 @@ public class Level implements Comparable<Level> {
                 moves++;
             }
         }
+    }
+
+    public void createScore() {
         if (getMoves() == empty.minMoves())
             setHighscore(3);
         else if (getMoves() + 1 == empty.minMoves())
@@ -141,6 +144,14 @@ public class Level implements Comparable<Level> {
 
     public String toString() {
         return String.format("Level %d: %dx%d %d★", getLevelNummer(), getSize(), getSize(), getHighscore());
+    }
+
+    public String starScore() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = getHighscore(); i > 0; i--) {
+            stringBuilder.append("★").append(" ");
+        }
+        return stringBuilder.toString();
     }
 
     @Override

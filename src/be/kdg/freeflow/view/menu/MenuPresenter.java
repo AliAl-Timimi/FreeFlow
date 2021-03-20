@@ -98,7 +98,7 @@ public class MenuPresenter {
     private void updateToLevels() {
         LevelChooserView levelChooserView = new LevelChooserView();
         LevelChooser levelChooser = new LevelChooser(game);
-        LevelChooserPresenter levelChooserPresenter = new LevelChooserPresenter(levelChooser, levelChooserView, login, view, loginView);
+        LevelChooserPresenter levelChooserPresenter = new LevelChooserPresenter(levelChooser, levelChooserView, login, view, loginView, setting);
         view.getScene().setRoot(levelChooserView);
     }
 

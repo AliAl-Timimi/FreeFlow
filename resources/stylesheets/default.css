@@ -17,3 +17,7 @@
 #helptekst {
     -fx-text-alignment: center;
 }
+
+#score {
+    -fx-text-fill: gold;
+}
