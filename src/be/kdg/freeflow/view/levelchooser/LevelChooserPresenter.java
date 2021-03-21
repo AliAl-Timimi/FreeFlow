@@ -4,6 +4,7 @@ import be.kdg.freeflow.model.FreeFlow;
 import be.kdg.freeflow.model.lvlbuild.Level;
 import be.kdg.freeflow.model.menus.LevelChooser;
 import be.kdg.freeflow.model.menus.Setting;
+import be.kdg.freeflow.model.menus.Sound;
 import be.kdg.freeflow.model.players.Login;
 import be.kdg.freeflow.view.game.GamePresenter;
 import be.kdg.freeflow.view.game.GameView;
@@ -43,6 +44,7 @@ public class LevelChooserPresenter {
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Sound.play();
                 updateViewToMenu();
             }
         });
@@ -50,6 +52,7 @@ public class LevelChooserPresenter {
         view.getLevel1().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Sound.play();
                 int lvl = Integer.parseInt(view.getLevel1().getText().split(" ")[1].replaceAll(":", ""));
                 if (model.isLevelUnlocked(lvl))
                     updateViewToGame(lvl);
@@ -58,6 +61,7 @@ public class LevelChooserPresenter {
         view.getLevel2().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Sound.play();
                 int lvl = Integer.parseInt(view.getLevel2().getText().split(" ")[1].replaceAll(":", ""));
                 if (model.isLevelUnlocked(lvl))
                     updateViewToGame(lvl);
@@ -66,6 +70,7 @@ public class LevelChooserPresenter {
         view.getLevel3().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Sound.play();
                 int lvl = Integer.parseInt(view.getLevel3().getText().split(" ")[1].replaceAll(":", ""));
                 if (model.isLevelUnlocked(lvl))
                     updateViewToGame(lvl);
@@ -74,6 +79,7 @@ public class LevelChooserPresenter {
         view.getLevel4().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Sound.play();
                 int lvl = Integer.parseInt(view.getLevel4().getText().split(" ")[1].replaceAll(":", ""));
                 if (model.isLevelUnlocked(lvl))
                     updateViewToGame(lvl);
@@ -82,6 +88,7 @@ public class LevelChooserPresenter {
         view.getLevel5().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Sound.play();
                 int lvl = Integer.parseInt(view.getLevel5().getText().split(" ")[1].replaceAll(":", ""));
                 if (model.isLevelUnlocked(lvl))
                     updateViewToGame(lvl);
@@ -90,6 +97,7 @@ public class LevelChooserPresenter {
         view.getPrev().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                Sound.play();
                 if (model.prevPage()) {
                     levels = model.levelMenu();
                     setLevelText();
@@ -99,6 +107,7 @@ public class LevelChooserPresenter {
         view.getNext().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                Sound.play();
                 if (model.nextPage()) {
                     levels = model.levelMenu();
                     setLevelText();

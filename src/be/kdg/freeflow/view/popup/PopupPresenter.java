@@ -3,6 +3,7 @@ package be.kdg.freeflow.view.popup;
 import be.kdg.freeflow.model.FreeFlow;
 import be.kdg.freeflow.model.lvlbuild.Level;
 import be.kdg.freeflow.model.menus.Setting;
+import be.kdg.freeflow.model.menus.Sound;
 import be.kdg.freeflow.view.game.GamePresenter;
 import be.kdg.freeflow.view.game.GameView;
 import be.kdg.freeflow.view.levelchooser.LevelChooserView;
@@ -35,6 +36,7 @@ public class PopupPresenter {
         view.getNext().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Sound.play();
                 if (model.getLevelNummer()<game.listLevels().size()) {
                     updateToNextGameView();
                 }
@@ -43,12 +45,14 @@ public class PopupPresenter {
         view.getReplay().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Sound.play();
                 updateToCurrentGameView();
             }
         });
         view.getMain().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Sound.play();
                 updateToLevelChooser();
             }
         });
@@ -56,6 +60,7 @@ public class PopupPresenter {
 
     private void updateToLevelChooser() {
         gameView.getScene().setRoot(levelChooserView);
+        model.reset();
         Stage stage = (Stage) view.getScene().getWindow();
         stage.close();
     }

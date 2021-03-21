@@ -13,7 +13,7 @@ public class Level {
     private Grid empty;
     private final Grid solution;
     private int moves;
-    private String color;
+    private Color color;
 
     public Level(int levelNummer, int size, Grid empty, Grid solution) {
         this.levelNummer = levelNummer;
@@ -50,7 +50,7 @@ public class Level {
     }
 
     public void reset() {
-        empty = reset;
+        empty = new Grid(reset);
         moves = 0;
     }
 
@@ -80,7 +80,7 @@ public class Level {
     }
 
     public void setSelectedColor(Color color) {
-        this.color = color.toString();
+        this.color = color;
     }
 
     public boolean cellEmpty(int row, int col) {
@@ -101,7 +101,7 @@ public class Level {
         moveArray.remove(moveArray.size() - 1);
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
@@ -125,7 +125,7 @@ public class Level {
                         break;
                 }
                 if (empty.getGrid()[row][col].isEmpty()) {
-                    empty.fillCell(row, col, getColor());
+                    empty.fillCell(row, col, getColor().toString());
                 } else {
                     i = moveArray.size();
                 }

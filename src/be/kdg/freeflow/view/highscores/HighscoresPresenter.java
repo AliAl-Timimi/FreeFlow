@@ -2,6 +2,7 @@ package be.kdg.freeflow.view.highscores;
 
 import be.kdg.freeflow.model.FreeFlow;
 import be.kdg.freeflow.model.menus.Scores;
+import be.kdg.freeflow.model.menus.Sound;
 import be.kdg.freeflow.view.menu.MenuView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,6 +24,7 @@ public class HighscoresPresenter {
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                Sound.play();
                 updateToMenu();
             }
         });

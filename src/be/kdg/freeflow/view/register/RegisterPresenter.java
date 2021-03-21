@@ -2,6 +2,7 @@ package be.kdg.freeflow.view.register;
 
 import be.kdg.freeflow.model.FreeFlowException;
 import be.kdg.freeflow.model.menus.Setting;
+import be.kdg.freeflow.model.menus.Sound;
 import be.kdg.freeflow.model.players.Login;
 import be.kdg.freeflow.view.login.LoginView;
 import be.kdg.freeflow.view.menu.MenuPresenter;
@@ -29,6 +30,7 @@ public class RegisterPresenter {
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                Sound.play();
                 updateToLogin();
             }
         });
@@ -36,6 +38,7 @@ public class RegisterPresenter {
         view.getCreate().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                Sound.play();
                 try {
                     login.register(view.getEmail().getText().toLowerCase(), view.getPassword().getText(), view.getRepeatPassword().getText());
                     updateToMenu();

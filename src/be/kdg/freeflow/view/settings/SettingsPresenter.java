@@ -25,6 +25,7 @@ public class SettingsPresenter {
         view.getStyleButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                Sound.play();
                 setting.cycleStyle();
                 view.getScene().getStylesheets().clear();
                 view.getStyleButton().setText(String.format("Stijl: %s", setting.getStyle()));
@@ -34,6 +35,7 @@ public class SettingsPresenter {
         view.getSound().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                Sound.play();
                 setting.cycleSoundEffects();
                 view.getSound().setText(String.format("SFX: %s",setting.getSoundEffects()?"Aan":"Uit"));
                 if (!setting.getSoundEffects())
@@ -45,6 +47,7 @@ public class SettingsPresenter {
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                Sound.play();
                 setting.save();
                 updateToMenu();
             }

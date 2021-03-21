@@ -5,6 +5,7 @@ import be.kdg.freeflow.model.FreeFlow;
 import be.kdg.freeflow.model.FreeFlowException;
 import be.kdg.freeflow.model.menus.LevelChooser;
 import be.kdg.freeflow.model.menus.Setting;
+import be.kdg.freeflow.model.menus.Sound;
 import be.kdg.freeflow.model.players.Login;
 import be.kdg.freeflow.model.players.ReadFromFile;
 import be.kdg.freeflow.model.players.SaveToFile;
@@ -49,30 +50,35 @@ public class MenuPresenter {
         view.getStart().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                Sound.play();
                 updateToLevels();
             }
         });
         view.getHelp().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                Sound.play();
                 updateToHelp();
             }
         });
         view.getScores().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                Sound.play();
                 updateToScores();
             }
         });
         view.getSettings().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                Sound.play();
                 updateToSettings();
             }
         });
         view.getLogout().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                Sound.play();
                 login.logout();
                 updateToLogin();
             }

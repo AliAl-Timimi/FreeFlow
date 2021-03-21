@@ -5,6 +5,7 @@ import be.kdg.freeflow.model.flow.Color;
 import be.kdg.freeflow.model.lvlbuild.Cell;
 import be.kdg.freeflow.model.lvlbuild.Level;
 import be.kdg.freeflow.model.menus.Setting;
+import be.kdg.freeflow.model.menus.Sound;
 import be.kdg.freeflow.model.players.SaveToFile;
 import be.kdg.freeflow.view.levelchooser.LevelChooserView;
 import be.kdg.freeflow.view.popup.PopupPresenter;
@@ -82,7 +83,7 @@ public class GamePresenter {
     }
 
     private void setLevelText() {
-        view.getLevelMarker().setText(String.format("Level: %d", model.getLevelNummer()));
+        view.getLevelMarker().setText(String.format("Level %d", model.getLevelNummer()));
     }
 
     private void updateMoves() {
@@ -93,7 +94,10 @@ public class GamePresenter {
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                Sound.play();
+                model.reset();
                 updateViewToLevelChooser();
+
             }
         });
         GridPane gridPane = view.getGamePane();
@@ -105,6 +109,7 @@ public class GamePresenter {
                 GamePresenter.currentHoverRow = translateYToRow(mouseEvent.getY());
                 if (model.isGameFinished())
                     gameFinished();
+                updateMoves();
 
             }
         });
@@ -118,27 +123,34 @@ public class GamePresenter {
                     if (prevHoverColumn != currentHoverColumn) {
                         switch (prevHoverColumn - currentHoverColumn) {
                             case 1:
-                                model.addMove('l'); break;
+                                model.addMove('l');
+                                break;
                             case -1:
-                                model.addMove('r'); break;
+                                model.addMove('r');
+                                break;
                         }
                         prevHoverColumn = currentHoverColumn;
                     } else if (prevHoverRow != currentHoverRow) {
                         switch (prevHoverRow - currentHoverRow) {
                             case 1:
-                                model.addMove('u'); break;
+                                model.addMove('u');
+                                break;
                             case -1:
-                                model.addMove('d'); break;
+                                model.addMove('d');
+                                break;
                         }
                         prevHoverRow = currentHoverRow;
                     }
+                    drawGrid(currentHoverRow, currentHoverColumn,color);
                 }
+
             }
         });
 
         gridPane.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                Sound.play();
                 selected = true;
                 prevHoverColumn = currentHoverColumn;
                 prevHoverRow = currentHoverRow;
@@ -150,16 +162,17 @@ public class GamePresenter {
                     model.setSelectedColor(model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getBall().getColor());
                 else if (model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getPipe().getColor() != null)
                     model.setSelectedColor(model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getPipe().getColor());
+                color = model.getColor();
             }
         });
 
         gridPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                Sound.play();
                 model.writeToLevel();
                 updateMoves();
                 selected = false;
-                System.out.print(model.getEmpty());
                 model.clearMoveArray();
             }
         });
@@ -168,9 +181,14 @@ public class GamePresenter {
 
     }
 
+    private void drawGrid(int row, int col, Color color) {
+        view.fillPipe(row, col, color);
+    }
+
     private void updateViewToLevelChooser() {
         view.getScene().setRoot(levelChooserView);
     }
+
 
     private void gameFinished() {
         model.createScore();

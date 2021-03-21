@@ -98,6 +98,16 @@ public class GameView<height> extends GridPane {
         return gamePane;
     }
 
+    public void fillPipe(int column, int row, be.kdg.freeflow.model.flow.Color color) {
+        if (level.getEmpty().getGrid()[column][row].isEmpty()) {
+            Circle circle = new Circle(width / level.getSize(), height / level.getSize(), ((width / level.getSize()) / 2) - 15);
+            circle.setFill(color.getColor());
+            gamePane.add(circle, row, column);
+            GridPane.setHalignment(circle, HPos.CENTER);
+            GridPane.setValignment(circle, VPos.CENTER);
+        }
+    }
+
     public void fillBalls(int column, int row, be.kdg.freeflow.model.flow.Color color) {
         Circle circle = new Circle(width/level.getSize(), height/level.getSize(),((width/level.getSize())/2)-5);
         circle.setFill(color.getColor());
