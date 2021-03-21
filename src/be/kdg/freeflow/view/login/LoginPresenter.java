@@ -2,11 +2,13 @@ package be.kdg.freeflow.view.login;
 
 import be.kdg.freeflow.model.FreeFlowException;
 import be.kdg.freeflow.model.menus.Setting;
+import be.kdg.freeflow.model.menus.Sound;
 import be.kdg.freeflow.model.players.Login;
 import be.kdg.freeflow.view.menu.MenuPresenter;
 import be.kdg.freeflow.view.menu.MenuView;
 import be.kdg.freeflow.view.register.RegisterPresenter;
 import be.kdg.freeflow.view.register.RegisterView;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -27,6 +29,8 @@ public class LoginPresenter {
     public void applySettings() {
         view.getScene().getStylesheets().clear();
         view.getScene().getStylesheets().add(setting.getStyle().getS());
+        if (!setting.getSoundEffects())
+            Sound.setVolume(0);
     }
 
     private void addEventHandlers() {

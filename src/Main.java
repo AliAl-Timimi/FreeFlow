@@ -5,6 +5,7 @@ import be.kdg.freeflow.view.login.LoginView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -20,9 +21,10 @@ public class Main extends Application {
         LoginPresenter presenter = new LoginPresenter(login, view);
         primaryStage.setTitle("FreeFlow By Ali & Gilles");
         Scene scene = new Scene(view);
+        primaryStage.getIcons().add(new Image("/pictures/icon.png"));
         presenter.applySettings();
         primaryStage.setScene(scene);
-        primaryStage.setWidth(800);
+        primaryStage.setWidth(700);
         primaryStage.setHeight(800);
         primaryStage.show();
     }

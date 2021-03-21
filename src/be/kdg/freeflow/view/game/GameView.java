@@ -4,18 +4,17 @@ import be.kdg.freeflow.model.lvlbuild.Level;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 
 public class GameView<height> extends GridPane {
-    //private Canvas canvas;
-    //private final double tileWidth;
-    //private final double tileHeight;
     private GridPane gamePane;
 
     Level level;
@@ -25,16 +24,9 @@ public class GameView<height> extends GridPane {
     private final double width = 500.0;
     private final double height = 500.0;
 
-    //private static final Color SELECTED_TILE_COLOR = Color.rgb(0, 0, 80);
-
-    //private static final double CANVAS_WIDTH= 500;
-    //private static final double CANVAS_HEIGHT= 500;
 
     public GameView(Level level) {
         this.level=level;
-        //this.tileWidth = CANVAS_WIDTH / level.getSize();
-        //this.tileHeight = CANVAS_HEIGHT / level.getSize();
-
         this.initialiseNodes();
         this.layoutNodes();
     }
@@ -46,9 +38,6 @@ public class GameView<height> extends GridPane {
         gamePane = new GridPane();
         gamePane.setMinWidth(width);
         gamePane.setMinHeight(height);
-        //canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-        /**/
-        //gamePane=new GridPane();
     }
     private void layoutNodes() {
         this.setAlignment(Pos.CENTER);
@@ -88,13 +77,6 @@ public class GameView<height> extends GridPane {
         gamePane.setId("game_background");
     }
 
-    /*
-    public Canvas getCanvas() {
-        return canvas;
-    }
-
-     */
-
     public Level getLevel() {
         return level;
     }
@@ -111,25 +93,10 @@ public class GameView<height> extends GridPane {
         return moves;
     }
 
-    /*
-    void displayCurrent(int currentHoverColumn, int currentHoverRow, int currentSelectedColumn, int currentSelectedRow) {
-        final GraphicsContext gc = this.canvas.getGraphicsContext2D();
-        gc.setFill(Color.DARKBLUE);
-        gc.fillRect(0.0, 0.0, CANVAS_WIDTH, CANVAS_HEIGHT);
-
-        if (currentHoverColumn != -1 && currentHoverRow != -1) {
-            gc.setFill(Color.BLUE);
-            gc.fillRect(currentHoverColumn * tileWidth, currentHoverRow * tileHeight, tileWidth, tileHeight);
-        }
-
-        if (currentSelectedColumn != -1 && currentSelectedRow != -1) {
-            gc.setStroke(SELECTED_TILE_COLOR);
-            gc.setLineWidth(20.0);
-            gc.strokeRect(currentSelectedColumn * tileWidth + 10.0, currentSelectedRow * tileHeight + 10.0, tileWidth - 20.0, tileHeight - 20.0);
-        }
+    public GridPane getGamePane() {
+        return gamePane;
     }
 
-*/
     public void fillBalls(int column, int row, be.kdg.freeflow.model.flow.Color color) {
         Circle circle = new Circle(width/level.getSize(), height/level.getSize(),((width/level.getSize())/2)-5);
         circle.setFill(color.getColor());

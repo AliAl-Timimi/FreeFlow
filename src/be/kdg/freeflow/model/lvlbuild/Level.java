@@ -1,8 +1,11 @@
 package be.kdg.freeflow.model.lvlbuild;
 
-import java.util.Scanner;
+import be.kdg.freeflow.model.flow.Color;
 
-public class Level implements Comparable<Level> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Level{
     private final int levelNummer;
     private final int size;
     private int highscore;
@@ -20,8 +23,6 @@ public class Level implements Comparable<Level> {
         this.solution = solution;
         this.moves = 0;
     }
-
-
 
     public int getSize() {
         return size;
@@ -56,79 +57,59 @@ public class Level implements Comparable<Level> {
         return moves;
     }
 
-    public String getColor(int row, int col) {
-        if (empty.getGrid()[row][col].getBall() != null)
-            return empty.getGrid()[row][col].getBall().getColor().toString();
-        else
-            return empty.getGrid()[row][col].getPipe().getColor().toString();
-    }
+    private int selectedRow;
+    private int selectedColumn;
 
-    public void drawOne(int row, int col, String color) {
-        if (empty.getGrid()[row][col].isEmpty()) {
-            empty.fillCell(row, col, color);
+    public void setSelectedCell(int column, int row) {
+        if (this.selectedColumn == column && this.selectedRow == row || getSelectedColor() == null) {
+            this.selectedColumn = -1;
+            this.selectedRow = -1;
+        } else {
+            this.selectedColumn = column;
+            this.selectedRow = row;
         }
     }
 
+    public void clearSelectedCell() {
+        this.selectedColumn = -1;
+        this.selectedRow = -1;
+    }
 
-    public void play() {
-        Scanner keyboard = new Scanner(System.in);
-        while (!isGedaan()) {
-            boolean repeat = true;
-            char[] moveArray;
+    public int getSelectedRow() {
+        return selectedRow;
+    }
 
-            int row;
-            int col;
-            boolean cont;
-            do {
-                System.out.print(empty);
-                cont = true;
-                System.out.print("Geef de startpositie (rij- en kolomnummer gescheiden door een spatie): ");
-                try {
-                    String input = keyboard.nextLine().toLowerCase();
-                    int spaces = 0;
-                    for (int i = 0; i < input.length(); i++) {
-                        if (!Character.isDigit(input.charAt(i)) && input.charAt(i) != ' ' || spaces > 1)
-                            throw new IllegalArgumentException();
-                        if (input.charAt(i) == ' ')
-                            spaces++;
-                    }
-                    String[] inArray =  input.split(" ");
-                    row = Integer.parseInt(inArray[0]);
-                    col = Integer.parseInt(inArray[1]);
-                } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
-                    row = -1;
-                    col = -1;
-                }
-                if (col >= getSize() || row >= getSize() || col < 0 || row < 0 ||
-                        (empty.getGrid()[row][col].getBall() == null && empty.getGrid()[row][col].getPipe() == null)) {
-                    System.out.println("Ongeldige startpositie");
-                    cont = false;
-                }
-            } while (!cont);
+    public int getSelectedColumn() {
+        return selectedColumn;
+    }
 
+    public Color getSelectedColor() {
+        if (empty.getGrid()[selectedRow][selectedColumn].getBall() != null)
+            return empty.getGrid()[selectedRow][selectedColumn].getBall().getColor();
+        else
+            return empty.getGrid()[selectedRow][selectedColumn].getPipe().getColor();
+    }
 
-            String color;
-            if (empty.getGrid()[row][col].getBall() != null)
-                color = empty.getGrid()[row][col].getBall().getColor().toString();
-            else
-                color = empty.getGrid()[row][col].getPipe().getColor().toString();
+    public boolean cellEmpty(int row, int col) {
+        return empty.getGrid()[row][col].isEmpty();
+    }
 
+    private List<Character> moveArray = new ArrayList<>();
 
-            do {
-                System.out.println("Doe een move: ");
-                String move = keyboard.nextLine().toLowerCase();
-                moveArray = move.toCharArray();
-                for (char c : moveArray) {
-                    if (c != 'l' && c != 'r' && c != 'u' && c != 'd') {
-                        System.out.println("Ongeldige input");
-                        repeat = true;
-                    } else {
-                        repeat = false;
-                    }
-                }
-            } while (repeat);
-            for (int i = 0; i < moveArray.length; i++) {
-                switch (moveArray[i]) {
+    public void addMove(char c) {
+        moveArray.add(c);
+    }
+
+    public void delMove() {
+        moveArray.remove(moveArray.size() - 1);
+    }
+
+    public void writeToLevel() {
+        if (moveArray.size() != 0) {
+            int col = selectedColumn;
+            int row = selectedRow;
+            for (int i = 0; i < moveArray.size(); i++) {
+                switch (moveArray.get(i)) {
                     case 'l':
                         col--;
                         break;
@@ -143,13 +124,14 @@ public class Level implements Comparable<Level> {
                         break;
                 }
                 if (empty.getGrid()[row][col].isEmpty()) {
-                    empty.fillCell(row, col, color);
+                    empty.fillCell(row, col, getSelectedColor().toString());
                 } else {
-                    i = moveArray.length;
+                    i = moveArray.size();
                 }
                 moves++;
             }
         }
+        isGameFinished();
     }
 
     public void createScore() {
@@ -161,7 +143,7 @@ public class Level implements Comparable<Level> {
             setHighscore(1);
     }
 
-    public boolean isGedaan() {
+    public boolean isGameFinished() {
         return getEmpty().equals(getSolution());
     }
 
@@ -175,10 +157,5 @@ public class Level implements Comparable<Level> {
             stringBuilder.append("★").append(" ");
         }
         return stringBuilder.toString();
-    }
-
-    @Override
-    public int compareTo(Level o) {
-        return getLevelNummer() - o.getLevelNummer();
     }
 }
