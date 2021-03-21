@@ -40,8 +40,8 @@ public class HelpView extends GridPane {
 
         this.setAlignment(Pos.CENTER);
         this.add(back, 0, 0);
-        this.add(title,1,1);
-        this.add(help,1,2);
+        this.add(title, 1, 1);
+        this.add(help, 1, 2);
 
         ColumnConstraints colum1 = new ColumnConstraints(100);
         ColumnConstraints colum2 = new ColumnConstraints(400);
@@ -49,7 +49,7 @@ public class HelpView extends GridPane {
 
         this.getColumnConstraints().addAll(colum1, colum2, colum3);
 
-        GridPane.setMargin(title, new Insets(0,0,10,5));
+        GridPane.setMargin(title, new Insets(0, 0, 10, 5));
         setMargin(back, new Insets(25, 10, 25, 25));
 
         title.setId("titles");

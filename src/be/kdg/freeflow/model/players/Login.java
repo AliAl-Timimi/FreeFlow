@@ -1,6 +1,5 @@
 package be.kdg.freeflow.model.players;
 
-import be.kdg.freeflow.model.FreeFlow;
 import be.kdg.freeflow.model.FreeFlowException;
 
 import java.io.BufferedReader;

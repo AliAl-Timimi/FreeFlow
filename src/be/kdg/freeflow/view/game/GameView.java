@@ -4,29 +4,29 @@ import be.kdg.freeflow.model.lvlbuild.Level;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 
 public class GameView<height> extends GridPane {
     private GridPane gamePane;
 
-    Level level;
+    private Level level;
     private Button back;
     private Label levelMarker;
     private Label moves;
+    private Button undo;
+    private Button restart;
     private final double width = 500.0;
     private final double height = 500.0;
 
 
     public GameView(Level level) {
-        this.level=level;
+        this.level = level;
         this.initialiseNodes();
         this.layoutNodes();
     }
@@ -38,13 +38,16 @@ public class GameView<height> extends GridPane {
         gamePane = new GridPane();
         gamePane.setMinWidth(width);
         gamePane.setMinHeight(height);
+        undo = new Button("Undo");
+        restart = new Button("Restart");
     }
+
     private void layoutNodes() {
         this.setAlignment(Pos.CENTER);
         this.add(back, 0, 0);
-        this.add(levelMarker, 1 ,0);
+        this.add(levelMarker, 1, 0);
         this.add(moves, 2, 0);
-        this.add(gamePane, 0,1,3,1);
+        this.add(gamePane, 0, 1, 3, 1);
 
         GridPane.setHalignment(back, HPos.LEFT);
         GridPane.setHalignment(levelMarker, HPos.CENTER);
@@ -52,7 +55,7 @@ public class GameView<height> extends GridPane {
         GridPane.setHalignment(gamePane, HPos.CENTER);
 
         ColumnConstraints column1 = new ColumnConstraints(166);
-        for (int i =0; i < 2; i++) {
+        for (int i = 0; i < 2; i++) {
             this.getColumnConstraints().add(column1);
         }
 
@@ -62,12 +65,12 @@ public class GameView<height> extends GridPane {
 
         levelMarker.setId("levelmarker");
         moves.setId("moves");
-        ColumnConstraints column = new ColumnConstraints(width/level.getSize());
-        for (int i =0; i < level.getSize(); i++) {
+        ColumnConstraints column = new ColumnConstraints(width / level.getSize());
+        for (int i = 0; i < level.getSize(); i++) {
             gamePane.getColumnConstraints().add(column);
         }
-        RowConstraints row = new RowConstraints(width/level.getSize());
-        for (int i =0; i < level.getSize(); i++) {
+        RowConstraints row = new RowConstraints(width / level.getSize());
+        for (int i = 0; i < level.getSize(); i++) {
             gamePane.getRowConstraints().add(row);
         }
 
@@ -109,7 +112,7 @@ public class GameView<height> extends GridPane {
     }
 
     public void fillBalls(int column, int row, be.kdg.freeflow.model.flow.Color color) {
-        Circle circle = new Circle(width/level.getSize(), height/level.getSize(),((width/level.getSize())/2)-5);
+        Circle circle = new Circle(width / level.getSize(), height / level.getSize(), ((width / level.getSize()) / 2) - 5);
         circle.setFill(color.getColor());
         gamePane.add(circle, column, row);
         GridPane.setHalignment(circle, HPos.CENTER);

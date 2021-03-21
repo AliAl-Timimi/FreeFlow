@@ -22,8 +22,8 @@ public class GamePresenter {
     private final Level model;
     private final GameView view;
     private final LevelChooserView levelChooserView;
-    private Setting setting;
-    private FreeFlow game;
+    private final Setting setting;
+    private final FreeFlow game;
 
     private static int currentHoverColumn;
     private static int currentHoverRow;
@@ -141,7 +141,7 @@ public class GamePresenter {
                         }
                         prevHoverRow = currentHoverRow;
                     }
-                    drawGrid(currentHoverRow, currentHoverColumn,color);
+                    drawGrid(currentHoverRow, currentHoverColumn, color);
                 }
 
             }
@@ -188,7 +188,6 @@ public class GamePresenter {
     private void updateViewToLevelChooser() {
         view.getScene().setRoot(levelChooserView);
     }
-
 
     private void gameFinished() {
         model.createScore();
