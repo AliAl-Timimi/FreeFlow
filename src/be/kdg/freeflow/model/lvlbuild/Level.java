@@ -5,7 +5,7 @@ import be.kdg.freeflow.model.flow.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Level{
+public class Level {
     private final int levelNummer;
     private final int size;
     private int highscore;
@@ -61,12 +61,11 @@ public class Level{
     private int selectedColumn;
 
     public void setSelectedCell(int column, int row) {
-        if (this.selectedColumn == column && this.selectedRow == row || getSelectedColor() == null) {
+        this.selectedColumn = column;
+        this.selectedRow = row;
+        if (empty.getGrid()[selectedRow][selectedColumn].getBall() == null && empty.getGrid()[selectedRow][selectedColumn].getPipe() == null) {
             this.selectedColumn = -1;
             this.selectedRow = -1;
-        } else {
-            this.selectedColumn = column;
-            this.selectedRow = row;
         }
     }
 
@@ -95,6 +94,10 @@ public class Level{
     }
 
     private List<Character> moveArray = new ArrayList<>();
+
+    public void clearMoveArray() {
+        moveArray.clear();
+    }
 
     public void addMove(char c) {
         moveArray.add(c);
@@ -129,6 +132,7 @@ public class Level{
                     i = moveArray.size();
                 }
                 moves++;
+                System.out.print(empty);
             }
         }
         isGameFinished();

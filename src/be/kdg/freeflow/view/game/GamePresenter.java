@@ -1,6 +1,7 @@
 package be.kdg.freeflow.view.game;
 
 import be.kdg.freeflow.model.FreeFlow;
+import be.kdg.freeflow.model.flow.Color;
 import be.kdg.freeflow.model.lvlbuild.Cell;
 import be.kdg.freeflow.model.lvlbuild.Level;
 import be.kdg.freeflow.model.menus.Setting;
@@ -25,6 +26,15 @@ public class GamePresenter {
     private static int currentHoverColumn;
     private static int currentHoverRow;
 
+    private static int currentSelectedColumn;
+    private static int currentSelectedRow;
+
+    private static int prevHoverColumn;
+    private static int prevHoverRow;
+
+    private boolean selected;
+    private Color color;
+
     public GamePresenter(Level model, GameView view, LevelChooserView levelChooserView, Setting setting, FreeFlow game) {
         this.model = model;
         this.view = view;
@@ -40,22 +50,20 @@ public class GamePresenter {
 
     private int translateXToColumn(final double x) {
         final double width = this.view.getGamePane().getWidth();
-        final int columnResult = (int)(x / width * model.getSize());
+        final int columnResult = (int) (x / width * model.getSize());
         if (columnResult >= 0 && columnResult < model.getSize()) {
             return columnResult;
-        }
-        else {
+        } else {
             return -1;
         }
     }
 
     private int translateYToRow(final double y) {
         final double height = this.view.getGamePane().getHeight();
-        final int rowResult = (int)(y / height * model.getSize());
+        final int rowResult = (int) (y / height * model.getSize());
         if (rowResult >= 0 && rowResult < model.getSize()) {
             return rowResult;
-        }
-        else {
+        } else {
             return -1;
         }
     }
@@ -65,7 +73,7 @@ public class GamePresenter {
         for (int i = 0; i < game.length; i++) {
             for (int j = 0; j < game.length; j++) {
                 if (game[i][j].getBall() != null) {
-                    view.fillBalls(j, i,game[i][j].getBall().getColor());
+                    view.fillBalls(j, i, game[i][j].getBall().getColor());
                 }
             }
 
@@ -82,7 +90,6 @@ public class GamePresenter {
 
     private void addEventHandlers() {
         view.getBack().setOnAction(event -> updateViewToLevelChooser());
-
         GridPane gridPane = view.getGamePane();
 
         gridPane.setOnMouseMoved(new EventHandler<MouseEvent>() {
@@ -92,24 +99,57 @@ public class GamePresenter {
                 GamePresenter.currentHoverRow = translateYToRow(mouseEvent.getY());
                 if (model.isGameFinished())
                     gameFinished();
+
             }
         });
 
-        gridPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        gridPane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                model.setSelectedCell(currentHoverColumn, currentHoverRow);
+                GamePresenter.currentHoverColumn = translateXToColumn(mouseEvent.getX());
+                GamePresenter.currentHoverRow = translateYToRow(mouseEvent.getY());
+                if (selected) {
+                    if (prevHoverColumn != currentHoverColumn) {
+                        switch (prevHoverColumn - currentHoverColumn) {
+                            case 1: model.addMove('l');
+                            case -1: model.addMove('r');
+                        }
+                        prevHoverColumn = currentHoverColumn;
+                    }
+                    else if (prevHoverRow != currentHoverRow) {
+                        switch (prevHoverRow - currentHoverRow) {
+                            case 1: model.addMove('d');
+                            case -1: model.addMove('u');
+                        }
+                        prevHoverRow = currentHoverRow;
+                    }
+                }
             }
         });
 
-        gridPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
+        gridPane.setOnMouseDragEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                selected = true;
+                prevHoverColumn = currentHoverColumn;
+                prevHoverRow = currentHoverRow;
+                currentSelectedRow = currentHoverRow;
+                currentSelectedColumn = currentHoverColumn;
+                model.setSelectedCell(currentSelectedRow ,currentSelectedColumn );
+                System.out.println(1);
+            }
+        });
+
+        gridPane.setOnMouseDragExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 model.writeToLevel();
-                model.clearSelectedCell();
+                updateMoves();
+                selected = false;
+                System.out.print(model.getEmpty());
+                model.clearMoveArray();
             }
         });
-
         if (model.isGameFinished())
             showPupWindow();
     }
