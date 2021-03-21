@@ -24,7 +24,7 @@ public class FreeFlow {
         return levels.get(i - 1);
     }
 
-    private void createLevels() {
+    public void createLevels() {
         //Start reading external file
         Scanner sc;
         int lvlNumber = 1;

@@ -4,6 +4,7 @@ import be.kdg.freeflow.model.FreeFlowException;
 import be.kdg.freeflow.model.menus.Setting;
 import be.kdg.freeflow.model.menus.Sound;
 import be.kdg.freeflow.model.players.Login;
+import be.kdg.freeflow.model.players.SaveToFile;
 import be.kdg.freeflow.view.menu.MenuPresenter;
 import be.kdg.freeflow.view.menu.MenuView;
 import be.kdg.freeflow.view.register.RegisterPresenter;
@@ -37,6 +38,7 @@ public class LoginPresenter {
         view.getLogin().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                Sound.play();
                 try {
                     if (!login.login(view.getUsername().getText().toLowerCase(), view.getPassword().getText())) {
                         view.getWrongLogin().setText("Verkeerd gebruikersnaam/wachtwoord.");

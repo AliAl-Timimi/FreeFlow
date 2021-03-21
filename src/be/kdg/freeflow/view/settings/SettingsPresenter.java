@@ -1,6 +1,7 @@
 package be.kdg.freeflow.view.settings;
 
 import be.kdg.freeflow.model.menus.Setting;
+import be.kdg.freeflow.model.menus.Sound;
 import be.kdg.freeflow.view.menu.MenuView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,6 +36,10 @@ public class SettingsPresenter {
             public void handle(ActionEvent actionEvent) {
                 setting.cycleSoundEffects();
                 view.getSound().setText(String.format("SFX: %s",setting.getSoundEffects()?"Aan":"Uit"));
+                if (!setting.getSoundEffects())
+                    Sound.setVolume(0);
+                else
+                    Sound.setVolume(1);
             }
         });
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {

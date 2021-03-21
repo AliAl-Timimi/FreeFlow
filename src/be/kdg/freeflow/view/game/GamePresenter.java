@@ -9,6 +9,7 @@ import be.kdg.freeflow.model.players.SaveToFile;
 import be.kdg.freeflow.view.levelchooser.LevelChooserView;
 import be.kdg.freeflow.view.popup.PopupPresenter;
 import be.kdg.freeflow.view.popup.PopupView;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -89,7 +90,12 @@ public class GamePresenter {
     }
 
     private void addEventHandlers() {
-        view.getBack().setOnAction(event -> updateViewToLevelChooser());
+        view.getBack().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                updateViewToLevelChooser();
+            }
+        });
         GridPane gridPane = view.getGamePane();
 
         gridPane.setOnMouseMoved(new EventHandler<MouseEvent>() {
@@ -111,15 +117,18 @@ public class GamePresenter {
                 if (selected) {
                     if (prevHoverColumn != currentHoverColumn) {
                         switch (prevHoverColumn - currentHoverColumn) {
-                            case 1: model.addMove('l');
-                            case -1: model.addMove('r');
+                            case 1:
+                                model.addMove('l'); break;
+                            case -1:
+                                model.addMove('r'); break;
                         }
                         prevHoverColumn = currentHoverColumn;
-                    }
-                    else if (prevHoverRow != currentHoverRow) {
+                    } else if (prevHoverRow != currentHoverRow) {
                         switch (prevHoverRow - currentHoverRow) {
-                            case 1: model.addMove('d');
-                            case -1: model.addMove('u');
+                            case 1:
+                                model.addMove('u'); break;
+                            case -1:
+                                model.addMove('d'); break;
                         }
                         prevHoverRow = currentHoverRow;
                     }
@@ -127,7 +136,7 @@ public class GamePresenter {
             }
         });
 
-        gridPane.setOnMouseDragEntered(new EventHandler<MouseEvent>() {
+        gridPane.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 selected = true;
@@ -135,12 +144,16 @@ public class GamePresenter {
                 prevHoverRow = currentHoverRow;
                 currentSelectedRow = currentHoverRow;
                 currentSelectedColumn = currentHoverColumn;
-                model.setSelectedCell(currentSelectedRow ,currentSelectedColumn );
-                System.out.println(1);
+                model.setSelectedCell(currentSelectedColumn, currentSelectedRow);
+                Cell[][] game = model.getEmpty().getGrid();
+                if (model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getBall().getColor() != null)
+                    model.setSelectedColor(model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getBall().getColor());
+                else if (model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getPipe().getColor() != null)
+                    model.setSelectedColor(model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getPipe().getColor());
             }
         });
 
-        gridPane.setOnMouseDragExited(new EventHandler<MouseEvent>() {
+        gridPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 model.writeToLevel();
@@ -152,6 +165,7 @@ public class GamePresenter {
         });
         if (model.isGameFinished())
             showPupWindow();
+
     }
 
     private void updateViewToLevelChooser() {

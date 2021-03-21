@@ -85,6 +85,7 @@ public class GameView<height> extends GridPane {
         return back;
     }
 
+
     public Label getLevelMarker() {
         return levelMarker;
     }

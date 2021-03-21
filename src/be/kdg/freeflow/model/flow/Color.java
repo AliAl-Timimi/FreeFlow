@@ -12,7 +12,6 @@ public enum Color {
     O(javafx.scene.paint.Color.ORANGE),
     N(javafx.scene.paint.Color.BROWN),
     W(javafx.scene.paint.Color.WHITE),
-    GREY(javafx.scene.paint.Color.GREY),
     P(javafx.scene.paint.Color.PINK),
     U(javafx.scene.paint.Color.PURPLE);
 

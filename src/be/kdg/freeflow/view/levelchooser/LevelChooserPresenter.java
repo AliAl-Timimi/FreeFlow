@@ -26,13 +26,13 @@ public class LevelChooserPresenter {
     private FreeFlow game;
     private Setting setting;
 
-    public LevelChooserPresenter(LevelChooser model, LevelChooserView view, Login login, MenuView menuView, LoginView loginView, Setting setting) {
+    public LevelChooserPresenter(LevelChooser model, LevelChooserView view, Login login, MenuView menuView, LoginView loginView, Setting setting, FreeFlow game) {
         this.view = view;
         this.model = model;
         this.login = login;
         this.menuView = menuView;
         this.loginView = loginView;
-        this.game = model.getGame();
+        this.game = game;
         this.levels = model.levelMenu();
         this.setting = setting;
         setLevelText();
@@ -107,7 +107,7 @@ public class LevelChooserPresenter {
         });
     }
 
-    private void setLevelText() {
+    public void setLevelText() {
         if (levels.size() >= 1 && levels.get(0) != null)
             view.getLevel1().setText(levels.get(0).toString() + (model.isLevelUnlocked(levels.get(0).getLevelNummer()) ? "" : "\uD83D\uDD12"));
         else
@@ -128,7 +128,6 @@ public class LevelChooserPresenter {
             view.getLevel5().setText(levels.get(4).toString() + (model.isLevelUnlocked(levels.get(4).getLevelNummer()) ? "" : "\uD83D\uDD12"));
         else
             view.getLevel5().setText("");
-
     }
 
     private void updateViewToMenu() {

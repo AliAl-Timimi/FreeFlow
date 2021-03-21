@@ -7,6 +7,7 @@ import be.kdg.freeflow.model.menus.LevelChooser;
 import be.kdg.freeflow.model.menus.Setting;
 import be.kdg.freeflow.model.players.Login;
 import be.kdg.freeflow.model.players.ReadFromFile;
+import be.kdg.freeflow.model.players.SaveToFile;
 import be.kdg.freeflow.view.help.HelpPresenter;
 import be.kdg.freeflow.view.help.HelpView;
 import be.kdg.freeflow.view.highscores.HighscoresPresenter;
@@ -39,6 +40,7 @@ public class MenuPresenter {
         else
             throw new FreeFlowException("Game is null");
         this.setting = setting;
+        SaveToFile.setPlayer(login.getPlayer());
         addEventHandlers();
     }
 
@@ -98,7 +100,7 @@ public class MenuPresenter {
     private void updateToLevels() {
         LevelChooserView levelChooserView = new LevelChooserView();
         LevelChooser levelChooser = new LevelChooser(game);
-        LevelChooserPresenter levelChooserPresenter = new LevelChooserPresenter(levelChooser, levelChooserView, login, view, loginView, setting);
+        LevelChooserPresenter levelChooserPresenter = new LevelChooserPresenter(levelChooser, levelChooserView, login, view, loginView, setting, game);
         view.getScene().setRoot(levelChooserView);
     }
 

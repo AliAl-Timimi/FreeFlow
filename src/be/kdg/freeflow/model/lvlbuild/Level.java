@@ -13,6 +13,7 @@ public class Level {
     private Grid empty;
     private final Grid solution;
     private int moves;
+    private String color;
 
     public Level(int levelNummer, int size, Grid empty, Grid solution) {
         this.levelNummer = levelNummer;
@@ -63,10 +64,6 @@ public class Level {
     public void setSelectedCell(int column, int row) {
         this.selectedColumn = column;
         this.selectedRow = row;
-        if (empty.getGrid()[selectedRow][selectedColumn].getBall() == null && empty.getGrid()[selectedRow][selectedColumn].getPipe() == null) {
-            this.selectedColumn = -1;
-            this.selectedRow = -1;
-        }
     }
 
     public void clearSelectedCell() {
@@ -82,11 +79,8 @@ public class Level {
         return selectedColumn;
     }
 
-    public Color getSelectedColor() {
-        if (empty.getGrid()[selectedRow][selectedColumn].getBall() != null)
-            return empty.getGrid()[selectedRow][selectedColumn].getBall().getColor();
-        else
-            return empty.getGrid()[selectedRow][selectedColumn].getPipe().getColor();
+    public void setSelectedColor(Color color) {
+        this.color = color.toString();
     }
 
     public boolean cellEmpty(int row, int col) {
@@ -105,6 +99,10 @@ public class Level {
 
     public void delMove() {
         moveArray.remove(moveArray.size() - 1);
+    }
+
+    public String getColor() {
+        return color;
     }
 
     public void writeToLevel() {
@@ -127,13 +125,12 @@ public class Level {
                         break;
                 }
                 if (empty.getGrid()[row][col].isEmpty()) {
-                    empty.fillCell(row, col, getSelectedColor().toString());
+                    empty.fillCell(row, col, getColor());
                 } else {
                     i = moveArray.size();
                 }
-                moves++;
-                System.out.print(empty);
             }
+            moves++;
         }
         isGameFinished();
     }

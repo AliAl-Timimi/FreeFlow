@@ -49,8 +49,4 @@ public class LevelChooser {
         }
         return false;
     }
-
-    public FreeFlow getGame() {
-        return game;
-    }
 }
