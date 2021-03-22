@@ -37,4 +37,8 @@ public class Cell {
     public Pipe getPipe() {
         return pipe;
     }
+
+    public void clearPipe() {
+        pipe = null;
+    }
 }

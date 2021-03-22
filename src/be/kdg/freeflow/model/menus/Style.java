@@ -3,15 +3,8 @@ package be.kdg.freeflow.model.menus;
 public enum Style {
     CLASSIC("/stylesheets/default.css"),
     DARK_MODE("/stylesheets/darkmode.css"),
-    LIGHT("/stylesheets/lightmode.css");
-
-    /*
-    classic: standaard
-    dark: zwarte achtergrond, geel, rood
-    light: witte achtergrond, blauw
-    holliday: rood, groen, blauw
-    winter_chill: blauw, wit
-     */
+    LIGHT("/stylesheets/lightmode.css"),
+    WINTER_CHILL("/stylesheets/winter_chill.css");
 
     private final String s;
 

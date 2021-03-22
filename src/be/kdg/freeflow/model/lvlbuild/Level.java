@@ -6,31 +6,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
-    private final int levelNummer;
-    private final int size;
+    private final int LEVELNUMMER;
+    private final int SIZE;
     private int highscore;
-    private final Grid reset;
+    private Grid reset;
     private Grid empty;
-    private final Grid solution;
+    private final Grid SOLUTION;
     private int moves;
     private Color color;
 
     public Level(int levelNummer, int size, Grid empty, Grid solution) {
-        this.levelNummer = levelNummer;
-        this.size = size;
+        this.LEVELNUMMER = levelNummer;
+        this.SIZE = size;
         this.highscore = 0;
         this.empty = empty;
         this.reset = empty;
-        this.solution = solution;
+        this.SOLUTION = solution;
         this.moves = 0;
     }
 
-    public int getSize() {
-        return size;
+    public int getSIZE() {
+        return SIZE;
     }
 
-    public int getLevelNummer() {
-        return levelNummer;
+    public int getLEVELNUMMER() {
+        return LEVELNUMMER;
     }
 
     public int getHighscore() {
@@ -45,8 +45,8 @@ public class Level {
         return empty;
     }
 
-    public Grid getSolution() {
-        return solution;
+    public Grid getSOLUTION() {
+        return SOLUTION;
     }
 
     public void reset() {
@@ -83,10 +83,6 @@ public class Level {
         this.color = color;
     }
 
-    public boolean cellEmpty(int row, int col) {
-        return empty.getGrid()[row][col].isEmpty();
-    }
-
     private List<Character> moveArray = new ArrayList<>();
 
     public void clearMoveArray() {
@@ -95,10 +91,6 @@ public class Level {
 
     public void addMove(char c) {
         moveArray.add(c);
-    }
-
-    public void delMove() {
-        moveArray.remove(moveArray.size() - 1);
     }
 
     public Color getColor() {
@@ -138,18 +130,18 @@ public class Level {
     public void createScore() {
         if (getMoves() == empty.minMoves())
             setHighscore(3);
-        else if (getMoves() + 1 == empty.minMoves())
+        else if (getMoves() == empty.minMoves() + 1)
             setHighscore(2);
-        else if (getMoves() + 2 >= empty.minMoves())
+        else if (getMoves() >= empty.minMoves() + 2)
             setHighscore(1);
     }
 
     public boolean isGameFinished() {
-        return getEmpty().equals(getSolution());
+        return getEmpty().equals(getSOLUTION());
     }
 
     public String toString() {
-        return String.format("Level %d: %dx%d %d★", getLevelNummer(), getSize(), getSize(), getHighscore());
+        return String.format("Level %d: %dx%d %d★", getLEVELNUMMER(), getSIZE(), getSIZE(), getHighscore());
     }
 
     public String starScore() {
@@ -158,5 +150,15 @@ public class Level {
             stringBuilder.append("★").append(" ");
         }
         return stringBuilder.toString();
+    }
+
+    public void resetColor(Color color) {
+        for (int i = 0; i < getSIZE(); i++) {
+            for (int j = 0; j < getSIZE(); j++) {
+                if (getEmpty().getGrid()[i][j].getPipe() != null && getEmpty().getGrid()[i][j].getPipe().getColor() == color) {
+                    getEmpty().getGrid()[i][j].clearPipe();
+                }
+            }
+        }
     }
 }

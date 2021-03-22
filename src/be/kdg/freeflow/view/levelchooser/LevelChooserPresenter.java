@@ -10,6 +10,7 @@ import be.kdg.freeflow.view.game.GamePresenter;
 import be.kdg.freeflow.view.game.GameView;
 import be.kdg.freeflow.view.login.LoginView;
 import be.kdg.freeflow.view.menu.MenuView;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -118,23 +119,23 @@ public class LevelChooserPresenter {
 
     public void setLevelText() {
         if (levels.size() >= 1 && levels.get(0) != null)
-            view.getLevel1().setText(levels.get(0).toString() + (model.isLevelUnlocked(levels.get(0).getLevelNummer()) ? "" : "\uD83D\uDD12"));
+            view.getLevel1().setText(levels.get(0).toString() + (model.isLevelUnlocked(levels.get(0).getLEVELNUMMER()) ? "" : "\uD83D\uDD12"));
         else
             view.getLevel1().setText("");
         if (levels.size() >1 && levels.get(1) != null)
-            view.getLevel2().setText(levels.get(1).toString() + (model.isLevelUnlocked(levels.get(1).getLevelNummer()) ? "" : "\uD83D\uDD12"));
+            view.getLevel2().setText(levels.get(1).toString() + (model.isLevelUnlocked(levels.get(1).getLEVELNUMMER()) ? "" : "\uD83D\uDD12"));
         else
             view.getLevel2().setText("");
         if (levels.size() >2 && levels.get(2) != null)
-            view.getLevel3().setText(levels.get(2).toString() + (model.isLevelUnlocked(levels.get(2).getLevelNummer()) ? "" : "\uD83D\uDD12"));
+            view.getLevel3().setText(levels.get(2).toString() + (model.isLevelUnlocked(levels.get(2).getLEVELNUMMER()) ? "" : "\uD83D\uDD12"));
         else
             view.getLevel3().setText("");
         if (levels.size() >3 && levels.get(3) != null)
-            view.getLevel4().setText(levels.get(3).toString() + (model.isLevelUnlocked(levels.get(3).getLevelNummer()) ? "" : "\uD83D\uDD12"));
+            view.getLevel4().setText(levels.get(3).toString() + (model.isLevelUnlocked(levels.get(3).getLEVELNUMMER()) ? "" : "\uD83D\uDD12"));
         else
             view.getLevel4().setText("");
         if (levels.size() >4 && levels.get(4) != null)
-            view.getLevel5().setText(levels.get(4).toString() + (model.isLevelUnlocked(levels.get(4).getLevelNummer()) ? "" : "\uD83D\uDD12"));
+            view.getLevel5().setText(levels.get(4).toString() + (model.isLevelUnlocked(levels.get(4).getLEVELNUMMER()) ? "" : "\uD83D\uDD12"));
         else
             view.getLevel5().setText("");
     }

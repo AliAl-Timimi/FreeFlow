@@ -21,7 +21,7 @@ public class Setting {
     }
 
     public void cycleStyle() {
-        if (style >= 2)
+        if (style >= Style.values().length-1)
             style = 0;
         else style++;
     }
