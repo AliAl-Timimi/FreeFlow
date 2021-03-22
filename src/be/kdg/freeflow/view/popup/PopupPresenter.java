@@ -37,7 +37,7 @@ public class PopupPresenter {
             @Override
             public void handle(ActionEvent event) {
                 Sound.play();
-                if (model.getLEVELNUMMER()<game.listLevels().size()) {
+                if (model.getLevelnummer()<game.listLevels().size()) {
                     updateToNextGameView();
                 }
             }
@@ -67,16 +67,16 @@ public class PopupPresenter {
 
     private void updateToCurrentGameView() {
         model.reset();
-        GameView gameView = new GameView(game.chooseLevel(model.getLEVELNUMMER()));
-        GamePresenter presenter = new GamePresenter(game.chooseLevel(model.getLEVELNUMMER()), gameView, levelChooserView, setting, game);
+        GameView gameView = new GameView(game.chooseLevel(model.getLevelnummer()));
+        GamePresenter presenter = new GamePresenter(game.chooseLevel(model.getLevelnummer()), gameView, levelChooserView, setting, game);
         this.gameView.getScene().setRoot(gameView);
         Stage stage = (Stage) view.getScene().getWindow();
         stage.close();
     }
 
     private void updateToNextGameView() {
-        GameView gameView = new GameView(game.chooseLevel(model.getLEVELNUMMER()+1));
-        GamePresenter presenter = new GamePresenter(game.chooseLevel(model.getLEVELNUMMER()+1), gameView, levelChooserView, setting, game);
+        GameView gameView = new GameView(game.chooseLevel(model.getLevelnummer()+1));
+        GamePresenter presenter = new GamePresenter(game.chooseLevel(model.getLevelnummer()+1), gameView, levelChooserView, setting, game);
         this.gameView.getScene().setRoot(gameView);
         Stage stage = (Stage) view.getScene().getWindow();
         stage.close();

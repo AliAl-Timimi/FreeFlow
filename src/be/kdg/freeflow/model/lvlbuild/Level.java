@@ -14,6 +14,8 @@ public class Level {
     private final Grid SOLUTION;
     private int moves;
     private Color color;
+    private int selectedRow;
+    private int selectedColumn;
 
     public Level(int levelNummer, int size, Grid empty, Grid solution) {
         this.LEVELNUMMER = levelNummer;
@@ -29,7 +31,7 @@ public class Level {
         return SIZE;
     }
 
-    public int getLEVELNUMMER() {
+    public int getLevelnummer() {
         return LEVELNUMMER;
     }
 
@@ -38,7 +40,8 @@ public class Level {
     }
 
     public void setHighscore(int highscore) {
-        this.highscore = highscore;
+        if (highscore > this.highscore)
+            this.highscore = highscore;
     }
 
     public Grid getEmpty() {
@@ -58,29 +61,22 @@ public class Level {
         return moves;
     }
 
-    private int selectedRow;
-    private int selectedColumn;
-
     public void setSelectedCell(int column, int row) {
         this.selectedColumn = column;
         this.selectedRow = row;
-    }
+        if (getEmpty().getGrid()[selectedRow][selectedColumn].getBall() != null)
+            setSelectedColor(getEmpty().getGrid()[selectedRow][selectedColumn].getBall().getColor());
+        else if (getEmpty().getGrid()[selectedRow][selectedColumn].getPipe() != null)
+            setSelectedColor(getEmpty().getGrid()[selectedRow][selectedColumn].getPipe().getColor());
 
-    public void clearSelectedCell() {
-        this.selectedColumn = -1;
-        this.selectedRow = -1;
-    }
-
-    public int getSelectedRow() {
-        return selectedRow;
-    }
-
-    public int getSelectedColumn() {
-        return selectedColumn;
     }
 
     public void setSelectedColor(Color color) {
         this.color = color;
+    }
+
+    public Cell getSelectedCell() {
+        return getEmpty().getGrid()[selectedRow][selectedColumn];
     }
 
     private List<Character> moveArray = new ArrayList<>();
@@ -116,7 +112,7 @@ public class Level {
                         row++;
                         break;
                 }
-                if (empty.getGrid()[row][col].isEmpty()) {
+                if (empty.getGrid()[row][col].isEmpty() && getColor() != null) {
                     empty.fillCell(row, col, getColor().toString());
                 } else {
                     i = moveArray.size();
@@ -141,7 +137,7 @@ public class Level {
     }
 
     public String toString() {
-        return String.format("Level %d: %dx%d %d★", getLEVELNUMMER(), getSIZE(), getSIZE(), getHighscore());
+        return String.format("Level %d: %dx%d %d★", getLevelnummer(), getSIZE(), getSIZE(), getHighscore());
     }
 
     public String starScore() {

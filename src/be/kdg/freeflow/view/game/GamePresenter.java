@@ -86,7 +86,7 @@ public class GamePresenter {
     }
 
     private void setLevelText() {
-        view.getLevelMarker().setText(String.format("Level %d", model.getLEVELNUMMER()));
+        view.getLevelMarker().setText(String.format("Level %d", model.getLevelnummer()));
     }
 
     private void updateMoves() {
@@ -100,7 +100,6 @@ public class GamePresenter {
                 Sound.play();
                 model.reset();
                 updateViewToLevelChooser();
-
             }
         });
         GridPane gridPane = view.getGamePane();
@@ -129,11 +128,28 @@ public class GamePresenter {
             }
         });
 
+
+
         gridPane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 GamePresenter.currentHoverColumn = translateXToColumn(mouseEvent.getX());
                 GamePresenter.currentHoverRow = translateYToRow(mouseEvent.getY());
+                try {
+                    if (model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall() != null) {
+                        if (model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall().getColor() != model.getColor()) {
+                            color = null;
+                            selected = false;
+                        }
+                    }
+                } catch (ArrayIndexOutOfBoundsException ignored) {}
+
+                if (currentHoverRow < 0 || currentHoverColumn < 0 || currentHoverRow > model.getSIZE() || currentHoverColumn > model.getSIZE()){
+                    model.clearMoveArray();
+                    selected = false;
+                    color = null;
+                    view.clearGrid();
+                }
                 if (selected) {
                     if (prevHoverColumn != currentHoverColumn) {
                         switch (prevHoverColumn - currentHoverColumn) {
@@ -177,10 +193,6 @@ public class GamePresenter {
                 currentSelectedColumn = currentHoverColumn;
                 model.setSelectedCell(currentSelectedColumn, currentSelectedRow);
                 try {
-                    if (model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getBall().getColor() != null)
-                        model.setSelectedColor(model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getBall().getColor());
-                    else if (model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getPipe().getColor() != null)
-                        model.setSelectedColor(model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getPipe().getColor());
                     color = model.getColor();
                 } catch (NullPointerException ignored) {
                 }
@@ -217,7 +229,7 @@ public class GamePresenter {
 
     private void gameFinished() {
         model.createScore();
-        game.chooseLevel(model.getLEVELNUMMER()).setHighscore(model.getHighscore());
+        game.chooseLevel(model.getLevelnummer()).setHighscore(model.getHighscore());
         SaveToFile.save(game.listLevels());
         showPupWindow();
     }
@@ -228,7 +240,7 @@ public class GamePresenter {
         Stage popupStage = new Stage();
         popupStage.initModality(Modality.APPLICATION_MODAL);
         popupStage.setScene(new Scene(pop));
-        popupStage.setTitle(String.format("Level %d complete!", model.getLEVELNUMMER()));
+        popupStage.setTitle(String.format("Level %d complete!", model.getLevelnummer()));
         popupStage.getIcons().add(new Image("/pictures/icon.png"));
         pop.getScene().getStylesheets().add(setting.getStyle().getS());
         popupStage.setHeight(300);
@@ -238,8 +250,8 @@ public class GamePresenter {
 
     private void updateToCurrentGameView() {
         model.reset();
-        GameView gameView = new GameView(game.chooseLevel(model.getLEVELNUMMER()));
-        GamePresenter presenter = new GamePresenter(game.chooseLevel(model.getLEVELNUMMER()), gameView, levelChooserView, setting, game);
+        GameView gameView = new GameView(game.chooseLevel(model.getLevelnummer()));
+        GamePresenter presenter = new GamePresenter(game.chooseLevel(model.getLevelnummer()), gameView, levelChooserView, setting, game);
         this.view.getScene().setRoot(gameView);
     }
 }
