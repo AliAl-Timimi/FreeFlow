@@ -3,7 +3,6 @@ package be.kdg.freeflow.model.flow;
 
 public class Ball {
     private final Color color;
-    private boolean lineCreated = false;
 
     public Ball(Color color) {
         this.color = color;
@@ -12,14 +11,6 @@ public class Ball {
     @Override
     public String toString() {
         return color.getC();
-    }
-
-    public boolean getLineCreated() {
-        return lineCreated;
-    }
-
-    public void createLine() {
-        lineCreated = true;
     }
 
     public Color getColor() {

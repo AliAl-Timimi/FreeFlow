@@ -16,8 +16,8 @@ public class SettingsPresenter {
         this.setting = setting;
         this.view = settingsView;
         this.menuView = menuView;
-        view.getStyleButton().setText(String.format("Stijl: %s",setting.getStyle()));
-        view.getSound().setText(String.format("SFX: %s",setting.getSoundEffects()?"Aan":"Uit"));
+        view.getStyleButton().setText(String.format("Stijl: %s", setting.getStyle()));
+        view.getSound().setText(String.format("SFX: %s", setting.getSoundEffects() ? "Aan" : "Uit"));
         addEventHandlers();
     }
 
@@ -37,7 +37,7 @@ public class SettingsPresenter {
             public void handle(ActionEvent actionEvent) {
                 Sound.play();
                 setting.cycleSoundEffects();
-                view.getSound().setText(String.format("SFX: %s",setting.getSoundEffects()?"Aan":"Uit"));
+                view.getSound().setText(String.format("SFX: %s", setting.getSoundEffects() ? "Aan" : "Uit"));
                 if (!setting.getSoundEffects())
                     Sound.setVolume(0);
                 else

@@ -3,7 +3,6 @@ package be.kdg.freeflow.model.menus;
 import be.kdg.freeflow.model.FreeFlow;
 import be.kdg.freeflow.model.lvlbuild.Level;
 import be.kdg.freeflow.model.players.ReadFromFile;
-
 import java.util.List;
 
 public class Scores {

@@ -2,7 +2,6 @@ package be.kdg.freeflow.model.players;
 
 import be.kdg.freeflow.model.FreeFlow;
 import be.kdg.freeflow.model.FreeFlowException;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,7 +13,7 @@ public class Player {
 
     public Player(String username, String password, String repeatPassword) {
         if (nietGebruikt(username))
-                this.username = username;
+            this.username = username;
         else
             throw new FreeFlowException("Gebruikersnaam is al in gebruik");
 
@@ -32,15 +31,6 @@ public class Player {
         this.password = pass;
     }
 
-    public void newWachtwoord(String oudWachtwoord, String nieuwWachtwoord, String herhaalNieuwWachtwoord) {
-        if (password.equals(oudWachtwoord)) {
-            if (nieuwWachtwoord.equals(herhaalNieuwWachtwoord))
-                password = nieuwWachtwoord;
-            else throw new InputMismatchException("Wachtwoorden komen niet overeen!");
-        } else
-            throw new InputMismatchException("Het oude wachtwoord klopt niet!");
-    }
-
     private boolean nietGebruikt(String name) {
         try (BufferedReader is = new BufferedReader(new FileReader("resources/data/users.csv"))) {
             String line = is.readLine();
@@ -51,8 +41,7 @@ public class Player {
                 }
                 line = is.readLine();
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new FreeFlowException("Gebruiker gegevens niet gevonden.");
         }
         return true;

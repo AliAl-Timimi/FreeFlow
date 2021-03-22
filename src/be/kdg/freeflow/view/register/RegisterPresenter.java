@@ -12,10 +12,10 @@ import javafx.event.EventHandler;
 import javafx.scene.paint.Color;
 
 public class RegisterPresenter {
-    private Login login;
-    private RegisterView view;
-    private LoginView loginView;
-    private Setting setting;
+    private final Login login;
+    private final RegisterView view;
+    private final LoginView loginView;
+    private final Setting setting;
 
     public RegisterPresenter(Login login, RegisterView view, LoginView loginView, Setting setting) {
         this.loginView = loginView;

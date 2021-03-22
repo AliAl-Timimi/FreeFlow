@@ -3,7 +3,6 @@ package be.kdg.freeflow.model;
 import be.kdg.freeflow.model.lvlbuild.Grid;
 import be.kdg.freeflow.model.lvlbuild.Level;
 import be.kdg.freeflow.model.players.Player;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -66,7 +65,7 @@ public class FreeFlow {
                     i++;
                 }
                 int size = lines.length;
-                levels.add(new Level(lvlNumber++,size,empty, solution));
+                levels.add(new Level(lvlNumber++, size, empty, solution));
             }
             sc.close();
         } catch (FileNotFoundException e) {

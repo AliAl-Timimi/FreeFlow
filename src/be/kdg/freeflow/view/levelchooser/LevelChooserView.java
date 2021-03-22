@@ -25,9 +25,9 @@ public class LevelChooserView extends GridPane {
         layoutNodes();
     }
 
-    private void initialiseNodes () {
+    private void initialiseNodes() {
         title = new Label("Levels");
-        back = new Button("back");
+        back = new Button("Terug");
         prev = new Button("prev");
         next = new Button("next");
         level1 = new Button();
@@ -37,7 +37,7 @@ public class LevelChooserView extends GridPane {
         level5 = new Button();
     }
 
-    private void layoutNodes () {
+    private void layoutNodes() {
         this.setAlignment(Pos.CENTER);
         GridPane.setHalignment(title, HPos.CENTER);
         GridPane.setHalignment(next, HPos.RIGHT);
@@ -80,10 +80,6 @@ public class LevelChooserView extends GridPane {
         level3.setId("level3");
         level4.setId("level4");
         level5.setId("level5");
-    }
-
-    Label getTitle() {
-        return title;
     }
 
     Button getBack() {

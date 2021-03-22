@@ -39,7 +39,7 @@ public class RegisterView extends GridPane {
         this.setAlignment(Pos.CENTER);
         GridPane.setHalignment(title, HPos.CENTER);
 
-        this.add(back,0,0);
+        this.add(back, 0, 0);
         this.add(title, 1, 1);
         this.add(email, 1, 2);
         this.add(password, 1, 3);

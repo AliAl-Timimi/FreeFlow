@@ -1,21 +1,21 @@
 package be.kdg.freeflow.model.lvlbuild;
 
 import be.kdg.freeflow.model.flow.Color;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
     private final int LEVELNUMMER;
     private final int SIZE;
-    private int highscore;
-    private Grid reset;
-    private Grid empty;
     private final Grid SOLUTION;
+    private int highscore;
+    private final Grid reset;
+    private Grid empty;
     private int moves;
     private Color color;
     private int selectedRow;
     private int selectedColumn;
+    private final List<Character> moveArray = new ArrayList<>();
 
     public Level(int levelNummer, int size, Grid empty, Grid solution) {
         this.LEVELNUMMER = levelNummer;
@@ -27,38 +27,9 @@ public class Level {
         this.moves = 0;
     }
 
-    public int getSIZE() {
-        return SIZE;
-    }
-
-    public int getLevelnummer() {
-        return LEVELNUMMER;
-    }
-
-    public int getHighscore() {
-        return highscore;
-    }
-
-    public void setHighscore(int highscore) {
-        if (highscore > this.highscore)
-            this.highscore = highscore;
-    }
-
-    public Grid getEmpty() {
-        return empty;
-    }
-
-    public Grid getSOLUTION() {
-        return SOLUTION;
-    }
-
     public void reset() {
         empty = new Grid(reset);
         moves = 0;
-    }
-
-    public int getMoves() {
-        return moves;
     }
 
     public void setSelectedCell(int column, int row) {
@@ -75,22 +46,12 @@ public class Level {
         this.color = color;
     }
 
-    public Cell getSelectedCell() {
-        return getEmpty().getGrid()[selectedRow][selectedColumn];
-    }
-
-    private List<Character> moveArray = new ArrayList<>();
-
     public void clearMoveArray() {
         moveArray.clear();
     }
 
     public void addMove(char c) {
         moveArray.add(c);
-    }
-
-    public Color getColor() {
-        return color;
     }
 
     public void writeToLevel() {
@@ -156,5 +117,38 @@ public class Level {
                 }
             }
         }
+    }
+
+    public int getSIZE() {
+        return SIZE;
+    }
+
+    public int getLevelnummer() {
+        return LEVELNUMMER;
+    }
+
+    public int getHighscore() {
+        return highscore;
+    }
+
+    public void setHighscore(int highscore) {
+        if (highscore > this.highscore)
+            this.highscore = highscore;
+    }
+
+    public int getMoves() {
+        return moves;
+    }
+
+    public Grid getEmpty() {
+        return empty;
+    }
+
+    public Grid getSOLUTION() {
+        return SOLUTION;
+    }
+
+    public Color getColor() {
+        return color;
     }
 }

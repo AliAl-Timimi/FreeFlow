@@ -34,9 +34,9 @@ public class SettingsView extends GridPane {
         GridPane.setHalignment(sound, HPos.CENTER);
 
         this.add(back, 0, 0);
-        this.add(title,1,1,2,1);
-        this.add(styleButton,1,2,2,1);
-        this.add(sound,1,3,2,1);
+        this.add(title, 1, 1, 2, 1);
+        this.add(styleButton, 1, 2, 2, 1);
+        this.add(sound, 1, 3, 2, 1);
 
         ColumnConstraints colum1 = new ColumnConstraints(100);
         ColumnConstraints colum2 = new ColumnConstraints(100);
@@ -45,9 +45,9 @@ public class SettingsView extends GridPane {
         this.getColumnConstraints().addAll(colum1, colum2, colum3, colum4);
 
         setMargin(back, new Insets(5));
-        GridPane.setMargin(title, new Insets(10,0,10,0));
-        GridPane.setMargin(styleButton, new Insets(10,0,10,0));
-        GridPane.setMargin(sound, new Insets(10,0,10,0));
+        GridPane.setMargin(title, new Insets(10, 0, 10, 0));
+        GridPane.setMargin(styleButton, new Insets(10, 0, 10, 0));
+        GridPane.setMargin(sound, new Insets(10, 0, 10, 0));
 
         title.setId("titles");
     }
@@ -55,7 +55,6 @@ public class SettingsView extends GridPane {
     public Button getBack() {
         return back;
     }
-
 
     public Button getStyleButton() {
         return styleButton;

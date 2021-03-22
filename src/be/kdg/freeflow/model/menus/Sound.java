@@ -9,11 +9,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Sound {
-    private static double volume = 1;
-
-    private static Path soundPath = Paths.get("resources/audio/button_click.wav");
-    private static Media media = new Media(new File(soundPath.toString()).toURI().toString());
-    private static MediaPlayer player = new MediaPlayer(media);
+    private static final Path soundPath = Paths.get("resources/audio/button_click.wav");
+    private static final Media media = new Media(new File(soundPath.toString()).toURI().toString());
+    private static final MediaPlayer player = new MediaPlayer(media);
 
     public static void play() {
         player.seek(Duration.ZERO);

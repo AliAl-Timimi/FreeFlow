@@ -41,8 +41,7 @@ public class LoginPresenter {
                     if (!login.login(view.getUsername().getText().toLowerCase(), view.getPassword().getText())) {
                         view.getWrongLogin().setText("Verkeerd gebruikersnaam/wachtwoord.");
                         view.getWrongLogin().setTextFill(Color.RED);
-                    }
-                    else
+                    } else
                         updateViewToMenu();
                 } catch (FreeFlowException e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);

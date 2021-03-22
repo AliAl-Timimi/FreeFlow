@@ -52,19 +52,19 @@ public class LoginView extends GridPane {
         this.add(flow, 1, 1);
         flow.setTextAlignment(TextAlignment.CENTER);
         /*this.add(welkom,1, 1);*/
-        this.add(username,1,3);
-        this.add(password,1,4);
-        this.add(login,1,6);
-        this.add(register,1,7);
-        this.add(wrongLogin, 1,5);
+        this.add(username, 1, 3);
+        this.add(password, 1, 4);
+        this.add(login, 1, 6);
+        this.add(register, 1, 7);
+        this.add(wrongLogin, 1, 5);
 
         login.setPrefWidth(310);
         register.setPrefWidth(310);
 
-        setMargin(wrongLogin,new Insets(0,0,0,10));
+        setMargin(wrongLogin, new Insets(0, 0, 0, 10));
         /*setMargin(welkom, new Insets(10));*/
-        setMargin(username, new Insets(5,10,5,10));
-        setMargin(password, new Insets(5,10,5,10));
+        setMargin(username, new Insets(5, 10, 5, 10));
+        setMargin(password, new Insets(5, 10, 5, 10));
         setMargin(register, new Insets(5, 10, 5, 10));
         setMargin(login, new Insets(5, 10, 5, 10));
 

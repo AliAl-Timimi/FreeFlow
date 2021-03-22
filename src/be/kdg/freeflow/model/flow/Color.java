@@ -15,7 +15,7 @@ public enum Color {
     P(javafx.scene.paint.Color.PINK),
     U(javafx.scene.paint.Color.PURPLE);
 
-    private javafx.scene.paint.Color color;
+    private final javafx.scene.paint.Color color;
 
     Color(javafx.scene.paint.Color color) {
         this.color = color;

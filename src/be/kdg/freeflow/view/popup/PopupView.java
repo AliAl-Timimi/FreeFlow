@@ -17,10 +17,10 @@ public class PopupView extends VBox {
     }
 
     private void initialiseNodes() {
-        score=new Label("null");
-        next=new Button("Volgend level");
-        replay=new Button("Speel opnieuw");
-        main=new Button("Level menu");
+        score = new Label("null");
+        next = new Button("Volgend level");
+        replay = new Button("Speel opnieuw");
+        main = new Button("Level menu");
     }
 
     private void layoutNodes() {

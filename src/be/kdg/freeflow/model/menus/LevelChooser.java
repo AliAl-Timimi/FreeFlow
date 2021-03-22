@@ -2,20 +2,19 @@ package be.kdg.freeflow.model.menus;
 
 import be.kdg.freeflow.model.FreeFlow;
 import be.kdg.freeflow.model.lvlbuild.Level;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class LevelChooser {
     private final FreeFlow game;
     private final List<Level> levels;
-    private int page = 0;
     private final int maxPage;
+    private int page = 0;
 
     public LevelChooser(FreeFlow game) {
         this.game = game;
         this.levels = this.game.listLevels();
-        this.maxPage = (int) Math.ceil(levels.size()/5.0)-1;
+        this.maxPage = (int) Math.ceil(levels.size() / 5.0) - 1;
     }
 
     public List<Level> levelMenu() {
@@ -26,10 +25,9 @@ public class LevelChooser {
         return displayLevels;
     }
 
-
     public boolean isLevelUnlocked(int lvl) {
         if (lvl > 1)
-            return levels.get(lvl-2).getHighscore() > 0;
+            return levels.get(lvl - 2).getHighscore() > 0;
         else
             return true;
     }

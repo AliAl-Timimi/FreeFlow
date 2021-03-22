@@ -22,11 +22,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 public class MenuPresenter {
-    private MenuView view;
-    private Login login;
-    private LoginView loginView;
-    private Setting setting;
-    private FreeFlow game;
+    private final MenuView view;
+    private final Login login;
+    private final LoginView loginView;
+    private final Setting setting;
+    private final FreeFlow game;
 
 
     public MenuPresenter(MenuView menuView, Login login, LoginView loginView, Setting setting) {

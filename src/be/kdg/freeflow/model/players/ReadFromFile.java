@@ -2,7 +2,6 @@ package be.kdg.freeflow.model.players;
 
 import be.kdg.freeflow.model.FreeFlow;
 import be.kdg.freeflow.model.FreeFlowException;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,14 +17,13 @@ public class ReadFromFile {
                 String[] userIter = user.split(";");
                 if (player.getUsername().equals(userIter[1])) {
                     for (int i = 3; i < userIter.length; i++) {
-                        game.listLevels().get(i-3).setHighscore(Integer.parseInt(userIter[i]));
+                        game.listLevels().get(i - 3).setHighscore(Integer.parseInt(userIter[i]));
                     }
                     return game;
                 }
                 user = is.readLine();
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new FreeFlowException("Gebruiker gegevens niet gevonden.");
         }
         return null;

@@ -9,13 +9,13 @@ public enum Style {
     private final String s;
 
     Style(String s) {
-        this.s=s;
+        this.s = s;
     }
 
     @Override
     public String toString() {
         String name = name().toLowerCase().replaceAll("_", " ");
-        return String.format("%s", name.substring(0,1).toUpperCase() + name.substring(1));
+        return String.format("%s", name.substring(0, 1).toUpperCase() + name.substring(1));
     }
 
     public String getS() {

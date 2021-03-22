@@ -22,21 +22,17 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class GamePresenter {
-    private Level model;
-    private GameView view;
-    private LevelChooserView levelChooserView;
-    private Setting setting;
-    private FreeFlow game;
-
     private static int currentHoverColumn;
     private static int currentHoverRow;
-
     private static int currentSelectedColumn;
     private static int currentSelectedRow;
-
     private static int prevHoverColumn;
     private static int prevHoverRow;
-
+    private final Level model;
+    private final GameView view;
+    private final LevelChooserView levelChooserView;
+    private final Setting setting;
+    private final FreeFlow game;
     private boolean selected;
     private Color color;
 
@@ -51,7 +47,6 @@ public class GamePresenter {
         fillLevel();
         addEventHandlers();
     }
-
 
     private int translateXToColumn(final double x) {
         final double width = this.view.getGamePane().getWidth();
@@ -129,7 +124,6 @@ public class GamePresenter {
         });
 
 
-
         gridPane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -142,9 +136,10 @@ public class GamePresenter {
                             selected = false;
                         }
                     }
-                } catch (ArrayIndexOutOfBoundsException ignored) {}
+                } catch (ArrayIndexOutOfBoundsException ignored) {
+                }
 
-                if (currentHoverRow < 0 || currentHoverColumn < 0 || currentHoverRow > model.getSIZE() || currentHoverColumn > model.getSIZE()){
+                if (currentHoverRow < 0 || currentHoverColumn < 0 || currentHoverRow > model.getSIZE() || currentHoverColumn > model.getSIZE()) {
                     model.clearMoveArray();
                     selected = false;
                     color = null;

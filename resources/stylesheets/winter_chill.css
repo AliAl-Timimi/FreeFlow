@@ -156,3 +156,9 @@
 #game_background Line {
     -fx-stroke: saddlebrown;
 }
+
+#controls {
+    -fx-text-fill: burlywood;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}

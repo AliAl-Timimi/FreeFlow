@@ -1,7 +1,6 @@
 package be.kdg.freeflow.model.players;
 
 import be.kdg.freeflow.model.FreeFlowException;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -21,8 +20,7 @@ public class Login {
                 }
                 user = is.readLine();
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new FreeFlowException("Gebruiker gegevens niet gevonden.");
         }
         return false;

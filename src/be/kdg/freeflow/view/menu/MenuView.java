@@ -27,10 +27,10 @@ public class MenuView extends GridPane {
 
     private void initialiseNodes() {
         titelp1 = new Text("Main");
-        titelp2 = new Text (" Menu");
+        titelp2 = new Text(" Menu");
         flow = new TextFlow();
         flow.getChildren().addAll(titelp1, titelp2);
-        logout = new Button("logout");
+        logout = new Button("log uit");
         start = new Button("Start Game");
         scores = new Button("Highscores");
         help = new Button("Help");
@@ -46,10 +46,10 @@ public class MenuView extends GridPane {
         GridPane.setHalignment(flow, HPos.CENTER);
         this.setAlignment(Pos.CENTER);
         this.add(logout, 0, 0);
-        this.add(start,1,2);
-        this.add(settings, 2,2);
-        this.add(scores, 1,3);
-        this.add(help,2,3);
+        this.add(start, 1, 2);
+        this.add(settings, 2, 2);
+        this.add(scores, 1, 3);
+        this.add(help, 2, 3);
 
         start.setPrefWidth(100);
         settings.setPrefWidth(100);
@@ -63,10 +63,10 @@ public class MenuView extends GridPane {
         this.getColumnConstraints().addAll(colum1, colum2, colum3, colum4);
 
         setMargin(logout, new Insets(10));
-        GridPane.setMargin(start, new Insets(10,5,10,0));
-        GridPane.setMargin(settings, new Insets(10,0,10,5));
-        GridPane.setMargin(scores, new Insets(10,5,10,0));
-        GridPane.setMargin(help, new Insets(10,0,10,5));
+        GridPane.setMargin(start, new Insets(10, 5, 10, 0));
+        GridPane.setMargin(settings, new Insets(10, 0, 10, 5));
+        GridPane.setMargin(scores, new Insets(10, 5, 10, 0));
+        GridPane.setMargin(help, new Insets(10, 0, 10, 5));
 
         flow.setId("titles");
         logout.setId("back");

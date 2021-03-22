@@ -8,14 +8,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 public class HighscoresPresenter {
-    private HighscoresView view;
-    private Scores scores;
-    private MenuView menuView;
+    private final HighscoresView view;
+    private final Scores scores;
+    private final MenuView menuView;
 
     public HighscoresPresenter(HighscoresView highscoresView, MenuView menuView, FreeFlow game) {
         this.view = highscoresView;
         this.menuView = menuView;
-        this.scores= new Scores(game);
+        this.scores = new Scores(game);
         this.view.getScores().setText(scores.highscores());
         addEventHandlers();
     }

@@ -13,21 +13,21 @@ import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
 public class PopupPresenter {
-    private PopupView view;
-    private Level model;
+    private final PopupView view;
+    private final Level model;
     private MenuView menuView;
-    private GameView gameView;
-    private LevelChooserView levelChooserView;
-    private Setting setting;
-    private FreeFlow game;
+    private final GameView gameView;
+    private final LevelChooserView levelChooserView;
+    private final Setting setting;
+    private final FreeFlow game;
 
     public PopupPresenter(Level model, PopupView view, GameView gameView, LevelChooserView levelChooserView, Setting setting, FreeFlow game) {
-        this.view=view;
+        this.view = view;
         this.model = model;
-        this.gameView=gameView;
-        this.levelChooserView=levelChooserView;
-        this.setting=setting;
-        this.game=game;
+        this.gameView = gameView;
+        this.levelChooserView = levelChooserView;
+        this.setting = setting;
+        this.game = game;
         view.getScore().setText(model.starScore());
         addEventHandlers();
     }
@@ -37,7 +37,7 @@ public class PopupPresenter {
             @Override
             public void handle(ActionEvent event) {
                 Sound.play();
-                if (model.getLevelnummer()<game.listLevels().size()) {
+                if (model.getLevelnummer() < game.listLevels().size()) {
                     updateToNextGameView();
                 }
             }
@@ -75,8 +75,9 @@ public class PopupPresenter {
     }
 
     private void updateToNextGameView() {
-        GameView gameView = new GameView(game.chooseLevel(model.getLevelnummer()+1));
-        GamePresenter presenter = new GamePresenter(game.chooseLevel(model.getLevelnummer()+1), gameView, levelChooserView, setting, game);
+        model.reset();
+        GameView gameView = new GameView(game.chooseLevel(model.getLevelnummer() + 1));
+        GamePresenter presenter = new GamePresenter(game.chooseLevel(model.getLevelnummer() + 1), gameView, levelChooserView, setting, game);
         this.gameView.getScene().setRoot(gameView);
         Stage stage = (Stage) view.getScene().getWindow();
         stage.close();

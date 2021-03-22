@@ -152,3 +152,9 @@
     -fx-text-fill: gold;
     -fx-font-size: 20px;
 }
+
+#controls {
+    -fx-text-fill: turquoise;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}

@@ -1,7 +1,5 @@
 package be.kdg.freeflow.model.lvlbuild;
 
-
-import be.kdg.freeflow.model.flow.Ball;
 import be.kdg.freeflow.model.flow.Color;
 
 public class Grid {
@@ -53,10 +51,6 @@ public class Grid {
             grid[x][y].addBall(Color.valueOf(color.toUpperCase()));
         } else
             grid[x][y].addPipe(Color.valueOf(color.toUpperCase()));
-    }
-
-    public Ball getBall(int row, int col) {
-        return grid[row][col].getBall();
     }
 
     public boolean equals(Grid o) {
