@@ -30,6 +30,12 @@ public class Level {
     public void reset() {
         empty = new Grid(reset);
         moves = 0;
+        for (int i = 0; i < getSIZE(); i++) {
+            for (int j = 0; j < getSIZE(); j++) {
+                if (empty.getGrid()[i][j].getBall() != null)
+                    empty.getGrid()[i][j].getBall().setLijnAanwezig(false);
+            }
+        }
     }
 
     public void setSelectedCell(int column, int row) {
@@ -58,6 +64,8 @@ public class Level {
         if (moveArray.size() != 0) {
             int col = selectedColumn;
             int row = selectedRow;
+            int prevCol = -1;
+            int prevRow = -1;
             for (int i = 0; i < moveArray.size(); i++) {
                 switch (moveArray.get(i)) {
                     case 'l':
@@ -75,13 +83,22 @@ public class Level {
                 }
                 if (empty.getGrid()[row][col].isEmpty() && getColor() != null) {
                     empty.fillCell(row, col, getColor().toString());
+                    empty.getGrid()[row][col].getPipe().addLine();
+
                 } else {
                     i = moveArray.size();
                 }
+                if (prevCol != -1) {
+                    empty.getGrid()[prevRow][prevCol].getPipe().addLine();
+                }
+                prevCol = col;
+                prevRow = row;
+                //if (moveArray.size() <= 2) {
+
+                //}
             }
             moves++;
         }
-        isGameFinished();
     }
 
     public void createScore() {
@@ -112,6 +129,9 @@ public class Level {
     public void resetColor(Color color) {
         for (int i = 0; i < getSIZE(); i++) {
             for (int j = 0; j < getSIZE(); j++) {
+                if (getEmpty().getGrid()[i][j].getBall() != null && getEmpty().getGrid()[i][j].getBall().getColor() == color) {
+                    getEmpty().getGrid()[i][j].getBall().setLijnAanwezig(false);
+                }
                 if (getEmpty().getGrid()[i][j].getPipe() != null && getEmpty().getGrid()[i][j].getPipe().getColor() == color) {
                     getEmpty().getGrid()[i][j].clearPipe();
                 }

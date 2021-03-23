@@ -14,7 +14,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.shape.Circle;
 
-
 public class GameView extends GridPane {
     private final double WIDTH = 500.0;
     private final double HEIGHT = 500.0;
@@ -72,7 +71,7 @@ public class GameView extends GridPane {
         for (int i = 0; i < level.getSIZE(); i++) {
             gamePane.getColumnConstraints().add(column);
         }
-        RowConstraints row = new RowConstraints(WIDTH / level.getSIZE());
+        RowConstraints row = new RowConstraints(HEIGHT / level.getSIZE());
         for (int i = 0; i < level.getSIZE(); i++) {
             gamePane.getRowConstraints().add(row);
         }
@@ -118,6 +117,7 @@ public class GameView extends GridPane {
         for (int i = 0; i < level.getSIZE(); i++) {
             for (int j = 0; j < level.getSIZE(); j++) {
                 grid[i][j] = level.getEmpty().getGrid()[i][j].toString();
+                remGlowUp(j, i);
             }
         }
         fillAllBalls();
@@ -155,7 +155,7 @@ public class GameView extends GridPane {
     }
 
     public void fillBalls(int column, int row, be.kdg.freeflow.model.flow.Color color) {
-        Circle circle = new Circle(WIDTH / level.getSIZE(), HEIGHT / level.getSIZE(), ((WIDTH / level.getSIZE()) / 2) - 5);
+        Circle circle = new Circle(WIDTH / level.getSIZE(), HEIGHT / level.getSIZE(), ((WIDTH / level.getSIZE()) / 2 - 5));
         circle.setFill(color.getColor());
         gamePane.add(circle, column, row);
         GridPane.setHalignment(circle, HPos.CENTER);
@@ -170,5 +170,13 @@ public class GameView extends GridPane {
                 }
             }
         }
+    }
+
+    public void glowUp(int column, int row, be.kdg.freeflow.model.flow.Color color) {
+
+    }
+
+    public void remGlowUp(int column, int row) {
+
     }
 }

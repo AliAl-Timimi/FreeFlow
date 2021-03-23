@@ -139,12 +139,18 @@ public class GamePresenter {
                 } catch (ArrayIndexOutOfBoundsException ignored) {
                 }
 
+
                 if (currentHoverRow < 0 || currentHoverColumn < 0 || currentHoverRow > model.getSIZE() || currentHoverColumn > model.getSIZE()) {
-                    model.clearMoveArray();
-                    selected = false;
-                    color = null;
-                    view.clearGrid();
+                    try {
+                        model.clearMoveArray();
+                        model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getBall().setLijnAanwezig(false);
+                        selected = false;
+                        color = null;
+                        view.clearGrid();
+                    } catch (NullPointerException ignored) {
+                    }
                 }
+
                 if (selected) {
                     if (prevHoverColumn != currentHoverColumn) {
                         switch (prevHoverColumn - currentHoverColumn) {
@@ -168,12 +174,15 @@ public class GamePresenter {
                         prevHoverRow = currentHoverRow;
                     }
                     try {
-                        view.fillPipe(currentHoverRow, currentHoverColumn, color);
+                        if (model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getPipe() != null &&
+                                model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getPipe().getLines() < 2 ||
+                                model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getBall() != null) {
+                            view.fillPipe(currentHoverRow, currentHoverColumn, color);
+                        }
                     } catch (FreeFlowException e) {
                         color = null;
                     }
                 }
-
             }
         });
 
@@ -186,10 +195,18 @@ public class GamePresenter {
                 prevHoverRow = currentHoverRow;
                 currentSelectedRow = currentHoverRow;
                 currentSelectedColumn = currentHoverColumn;
-                model.setSelectedCell(currentSelectedColumn, currentSelectedRow);
-                try {
-                    color = model.getColor();
-                } catch (NullPointerException ignored) {
+                if (model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall() != null &&
+                        !model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall().isLijnAanwezig() ||
+                        model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getPipe() != null &&
+                                model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getPipe().getLines() < 2) {
+                    try {
+                        model.setSelectedCell(currentSelectedColumn, currentSelectedRow);
+                        model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall().setLijnAanwezig(true);
+                        color = model.getColor();
+                    } catch (NullPointerException ignored) {
+                    }
+                } else {
+                    model.setSelectedColor(null);
                 }
             }
         });
@@ -197,11 +214,22 @@ public class GamePresenter {
         gridPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                try {
+                    if (model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall() != null)
+                        model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall().setLijnAanwezig(true);
+                    if( model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getPipe() != null &&
+                            model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getPipe().getLines() == 2) {
+                        model.clearMoveArray();
+                    }
+                } catch (ArrayIndexOutOfBoundsException ignored) {
+                }
                 Sound.play();
                 model.writeToLevel();
+                view.clearGrid();
                 updateMoves();
                 selected = false;
                 model.clearMoveArray();
+                model.setSelectedColor(null);
             }
         });
 

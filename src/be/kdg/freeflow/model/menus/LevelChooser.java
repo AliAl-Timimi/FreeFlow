@@ -11,6 +11,7 @@ public class LevelChooser {
     private final int maxPage;
     private int page = 0;
 
+    private int currentImage;
     public LevelChooser(FreeFlow game) {
         this.game = game;
         this.levels = this.game.listLevels();
