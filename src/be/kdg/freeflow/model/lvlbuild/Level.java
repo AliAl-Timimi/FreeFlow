@@ -9,7 +9,7 @@ public class Level {
     private final int SIZE;
     private final Grid SOLUTION;
     private int highscore;
-    private final Grid reset;
+    //private final Grid reset;
     private Grid empty;
     private int moves;
     private Color color;
@@ -22,33 +22,34 @@ public class Level {
         this.SIZE = size;
         this.highscore = 0;
         this.empty = empty;
-        this.reset = empty;
         this.SOLUTION = solution;
         this.moves = 0;
     }
 
     public void reset() {
-        empty = new Grid(reset);
-        moves = 0;
-        for (int i = 0; i < getSIZE(); i++) {
-            for (int j = 0; j < getSIZE(); j++) {
-                if (empty.getGrid()[i][j].getBall() != null)
-                    empty.getGrid()[i][j].getBall().setLijnAanwezig(false);
-            }
+        for (Color value : Color.values()) {
+            resetColor(value);
         }
+        //empty = new Grid(reset);
+        moves = 0;
+        setSelectedCell(-1, -1);
     }
 
     public void setSelectedCell(int column, int row) {
         this.selectedColumn = column;
         this.selectedRow = row;
-        if (getEmpty().getGrid()[selectedRow][selectedColumn].getBall() != null)
-            setSelectedColor(getEmpty().getGrid()[selectedRow][selectedColumn].getBall().getColor());
-        else if (getEmpty().getGrid()[selectedRow][selectedColumn].getPipe() != null)
-            setSelectedColor(getEmpty().getGrid()[selectedRow][selectedColumn].getPipe().getColor());
-
+        if (selectedColumn == -1 || selectedRow == -1) {
+            setSelectedColor(null);
+        }
+        else {
+            if (getEmpty().getGrid()[selectedRow][selectedColumn].getBall() != null)
+                setSelectedColor(getEmpty().getGrid()[selectedRow][selectedColumn].getBall().getColor());
+            else if (getEmpty().getGrid()[selectedRow][selectedColumn].getPipe() != null)
+                setSelectedColor(getEmpty().getGrid()[selectedRow][selectedColumn].getPipe().getColor());
+        }
     }
 
-    public void setSelectedColor(Color color) {
+    private void setSelectedColor(Color color) {
         this.color = color;
     }
 
@@ -84,21 +85,18 @@ public class Level {
                 if (empty.getGrid()[row][col].isEmpty() && getColor() != null) {
                     empty.fillCell(row, col, getColor().toString());
                     empty.getGrid()[row][col].getPipe().addLine();
-
                 } else {
                     i = moveArray.size();
                 }
                 if (prevCol != -1) {
-                    empty.getGrid()[prevRow][prevCol].getPipe().addLine();
+                    getEmpty().getGrid()[prevRow][prevCol].getPipe().addLine();
                 }
                 prevCol = col;
                 prevRow = row;
-                //if (moveArray.size() <= 2) {
-
-                //}
             }
             moves++;
         }
+        isGameFinished();
     }
 
     public void createScore() {
@@ -129,11 +127,11 @@ public class Level {
     public void resetColor(Color color) {
         for (int i = 0; i < getSIZE(); i++) {
             for (int j = 0; j < getSIZE(); j++) {
-                if (getEmpty().getGrid()[i][j].getBall() != null && getEmpty().getGrid()[i][j].getBall().getColor() == color) {
-                    getEmpty().getGrid()[i][j].getBall().setLijnAanwezig(false);
-                }
                 if (getEmpty().getGrid()[i][j].getPipe() != null && getEmpty().getGrid()[i][j].getPipe().getColor() == color) {
                     getEmpty().getGrid()[i][j].clearPipe();
+                }
+                if (getEmpty().getGrid()[i][j].getBall() != null && getEmpty().getGrid()[i][j].getBall().getColor() == color) {
+                    getEmpty().getGrid()[i][j].getBall().setLijnAanwezig(false);
                 }
             }
         }

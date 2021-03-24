@@ -67,7 +67,8 @@ public class PopupPresenter {
 
     private void updateToCurrentGameView() {
         model.reset();
-        GameView gameView = new GameView(game.chooseLevel(model.getLevelnummer()));
+        gameView.clearGrid();
+        GameView gameView = this.gameView;
         GamePresenter presenter = new GamePresenter(game.chooseLevel(model.getLevelnummer()), gameView, levelChooserView, setting, game);
         this.gameView.getScene().setRoot(gameView);
         Stage stage = (Stage) view.getScene().getWindow();
