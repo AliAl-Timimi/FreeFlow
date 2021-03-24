@@ -1,6 +1,7 @@
 package be.kdg.freeflow.view.game;
 
 import be.kdg.freeflow.model.FreeFlowException;
+import be.kdg.freeflow.model.lvlbuild.Cell;
 import be.kdg.freeflow.model.lvlbuild.Level;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -36,6 +37,7 @@ public class GameView extends GridPane {
                 grid[i][j] = level.getEmpty().getGrid()[i][j].toString();
             }
         }
+        fillLevel();
     }
 
     private void initialiseNodes() {
@@ -150,7 +152,7 @@ public class GameView extends GridPane {
                 this.grid[column][row] = color.toString();
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new FreeFlowException("index out of bouds");
+            throw new FreeFlowException("index out of bounds");
         }
     }
 
@@ -169,6 +171,18 @@ public class GameView extends GridPane {
                     fillBalls(j, i, level.getEmpty().getGrid()[i][j].getBall().getColor());
                 }
             }
+        }
+    }
+
+    private void fillLevel() {
+        Cell[][] game = level.getEmpty().getGrid();
+        for (int i = 0; i < game.length; i++) {
+            for (int j = 0; j < game.length; j++) {
+                if (game[i][j].getBall() != null) {
+                    this.fillBalls(j, i, game[i][j].getBall().getColor());
+                }
+            }
+
         }
     }
 }

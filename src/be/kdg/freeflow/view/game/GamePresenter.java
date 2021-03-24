@@ -44,7 +44,6 @@ public class GamePresenter {
         this.game = game;
         updateMoves();
         setLevelText();
-        fillLevel();
         addEventHandlers();
     }
 
@@ -68,24 +67,23 @@ public class GamePresenter {
         }
     }
 
-    private void fillLevel() {
-        Cell[][] game = model.getEmpty().getGrid();
-        for (int i = 0; i < game.length; i++) {
-            for (int j = 0; j < game.length; j++) {
-                if (game[i][j].getBall() != null) {
-                    view.fillBalls(j, i, game[i][j].getBall().getColor());
-                }
-            }
-
-        }
-    }
-
     private void setLevelText() {
         view.getLevelMarker().setText(String.format("Level %d", model.getLevelnummer()));
     }
 
     private void updateMoves() {
         view.getMoves().setText(String.format("Moves: %d/%d", model.getMoves(), model.getEmpty().minMoves()));
+    }
+
+    private void execRightClick() {
+        if (model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall() != null) {
+            model.resetColor(model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall().getColor());
+            view.clearGrid();
+        }
+        if (model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getPipe() != null) {
+            model.resetColor(model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getPipe().getColor());
+            view.clearGrid();
+        }
     }
 
     private void addEventHandlers() {
@@ -115,10 +113,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (mouseEvent.getButton() == MouseButton.SECONDARY) {
-                    if (model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall().getColor() != null) {
-                        model.resetColor(model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall().getColor());
-                        view.clearGrid();
-                    }
+                    execRightClick();
                 }
             }
         });
@@ -136,10 +131,20 @@ public class GamePresenter {
                             selected = false;
                         }
                     }
+                    if (model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getPipe() != null) {
+                        if (model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getPipe().getColor() != model.getColor()) {
+                            color = null;
+                            selected = false;
+                        }
+                    }
                 } catch (ArrayIndexOutOfBoundsException ignored) {
                 }
 
                 if (currentHoverRow < 0 || currentHoverColumn < 0 || currentHoverRow > model.getSIZE() || currentHoverColumn > model.getSIZE()) {
+                    try {
+                        model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getBall().setLijnAanwezig(false);
+                    } catch (NullPointerException ignored) {
+                    }
                     model.clearMoveArray();
                     selected = false;
                     color = null;
@@ -187,9 +192,16 @@ public class GamePresenter {
                 currentSelectedRow = currentHoverRow;
                 currentSelectedColumn = currentHoverColumn;
                 model.setSelectedCell(currentSelectedColumn, currentSelectedRow);
-                try {
-                    color = model.getColor();
-                } catch (NullPointerException ignored) {
+                if (model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall() != null &&
+                        !model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall().isLijnAanwezig() ||
+                        model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getPipe() != null &&
+                                model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getPipe().getLines() < 2) {
+                    try {
+                        if (model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall() != null)
+                            model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall().setLijnAanwezig(true);
+                        color = model.getColor();
+                    } catch (NullPointerException ignored) {
+                    }
                 }
             }
         });
@@ -197,11 +209,22 @@ public class GamePresenter {
         gridPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                Sound.play();
-                model.writeToLevel();
-                updateMoves();
-                selected = false;
-                model.clearMoveArray();
+                if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+                    try {
+                        if (model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall() != null)
+                            model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall().setLijnAanwezig(true);
+                        if( model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getPipe() != null &&
+                                model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getPipe().getLines() == 2) {
+                            model.clearMoveArray();
+                        }
+                    } catch (ArrayIndexOutOfBoundsException ignored) {}
+                    Sound.play();
+                    model.writeToLevel();
+                    updateMoves();
+                    view.clearGrid();
+                    selected = false;
+                    model.clearMoveArray();
+                }
             }
         });
 
@@ -245,8 +268,9 @@ public class GamePresenter {
 
     private void updateToCurrentGameView() {
         model.reset();
+        view.clearGrid();
         GameView gameView = new GameView(game.chooseLevel(model.getLevelnummer()));
-        GamePresenter presenter = new GamePresenter(game.chooseLevel(model.getLevelnummer()), gameView, levelChooserView, setting, game);
+        GamePresenter gamePresenter = new GamePresenter(model,gameView, levelChooserView,setting,game);
         this.view.getScene().setRoot(gameView);
     }
 }

@@ -9,7 +9,7 @@ public class Level {
     private final int SIZE;
     private final Grid SOLUTION;
     private int highscore;
-    private final Grid reset;
+    //private final Grid reset;
     private Grid empty;
     private int moves;
     private Color color;
@@ -22,27 +22,34 @@ public class Level {
         this.SIZE = size;
         this.highscore = 0;
         this.empty = empty;
-        this.reset = empty;
         this.SOLUTION = solution;
         this.moves = 0;
     }
 
     public void reset() {
-        empty = new Grid(reset);
+        for (Color value : Color.values()) {
+            resetColor(value);
+        }
+        //empty = new Grid(reset);
         moves = 0;
+        setSelectedCell(-1, -1);
     }
 
     public void setSelectedCell(int column, int row) {
         this.selectedColumn = column;
         this.selectedRow = row;
-        if (getEmpty().getGrid()[selectedRow][selectedColumn].getBall() != null)
-            setSelectedColor(getEmpty().getGrid()[selectedRow][selectedColumn].getBall().getColor());
-        else if (getEmpty().getGrid()[selectedRow][selectedColumn].getPipe() != null)
-            setSelectedColor(getEmpty().getGrid()[selectedRow][selectedColumn].getPipe().getColor());
-
+        if (selectedColumn == -1 || selectedRow == -1) {
+            setSelectedColor(null);
+        }
+        else {
+            if (getEmpty().getGrid()[selectedRow][selectedColumn].getBall() != null)
+                setSelectedColor(getEmpty().getGrid()[selectedRow][selectedColumn].getBall().getColor());
+            else if (getEmpty().getGrid()[selectedRow][selectedColumn].getPipe() != null)
+                setSelectedColor(getEmpty().getGrid()[selectedRow][selectedColumn].getPipe().getColor());
+        }
     }
 
-    public void setSelectedColor(Color color) {
+    private void setSelectedColor(Color color) {
         this.color = color;
     }
 
@@ -58,6 +65,8 @@ public class Level {
         if (moveArray.size() != 0) {
             int col = selectedColumn;
             int row = selectedRow;
+            int prevCol = -1;
+            int prevRow = -1;
             for (int i = 0; i < moveArray.size(); i++) {
                 switch (moveArray.get(i)) {
                     case 'l':
@@ -75,9 +84,15 @@ public class Level {
                 }
                 if (empty.getGrid()[row][col].isEmpty() && getColor() != null) {
                     empty.fillCell(row, col, getColor().toString());
+                    empty.getGrid()[row][col].getPipe().addLine();
                 } else {
                     i = moveArray.size();
                 }
+                if (prevCol != -1) {
+                    getEmpty().getGrid()[prevRow][prevCol].getPipe().addLine();
+                }
+                prevCol = col;
+                prevRow = row;
             }
             moves++;
         }
@@ -114,6 +129,9 @@ public class Level {
             for (int j = 0; j < getSIZE(); j++) {
                 if (getEmpty().getGrid()[i][j].getPipe() != null && getEmpty().getGrid()[i][j].getPipe().getColor() == color) {
                     getEmpty().getGrid()[i][j].clearPipe();
+                }
+                if (getEmpty().getGrid()[i][j].getBall() != null && getEmpty().getGrid()[i][j].getBall().getColor() == color) {
+                    getEmpty().getGrid()[i][j].getBall().setLijnAanwezig(false);
                 }
             }
         }
