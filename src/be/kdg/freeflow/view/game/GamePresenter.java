@@ -142,43 +142,45 @@ public class GamePresenter {
 
                 if (currentHoverRow < 0 || currentHoverColumn < 0 || currentHoverRow > model.getSIZE() || currentHoverColumn > model.getSIZE()) {
                     try {
-                        model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getBall().setLijnAanwezig(false);
+                        model.resetColor(model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getBall().getColor());
                     } catch (NullPointerException ignored) {
                     }
                     model.clearMoveArray();
                     selected = false;
                     color = null;
                     view.clearGrid();
+                    model.setSelectedCell(-1, -1);
                 }
-                if (selected) {
-                    if (prevHoverColumn != currentHoverColumn) {
-                        switch (prevHoverColumn - currentHoverColumn) {
-                            case 1:
-                                model.addMove('l');
-                                break;
-                            case -1:
-                                model.addMove('r');
-                                break;
+                if (color != null) {
+                    if (selected) {
+                        if (prevHoverColumn != currentHoverColumn) {
+                            switch (prevHoverColumn - currentHoverColumn) {
+                                case 1:
+                                    model.addMove('l');
+                                    break;
+                                case -1:
+                                    model.addMove('r');
+                                    break;
+                            }
+                            prevHoverColumn = currentHoverColumn;
+                        } else if (prevHoverRow != currentHoverRow) {
+                            switch (prevHoverRow - currentHoverRow) {
+                                case 1:
+                                    model.addMove('u');
+                                    break;
+                                case -1:
+                                    model.addMove('d');
+                                    break;
+                            }
+                            prevHoverRow = currentHoverRow;
                         }
-                        prevHoverColumn = currentHoverColumn;
-                    } else if (prevHoverRow != currentHoverRow) {
-                        switch (prevHoverRow - currentHoverRow) {
-                            case 1:
-                                model.addMove('u');
-                                break;
-                            case -1:
-                                model.addMove('d');
-                                break;
+                        try {
+                            view.fillPipe(currentHoverRow, currentHoverColumn, color);
+                        } catch (FreeFlowException e) {
+                            color = null;
                         }
-                        prevHoverRow = currentHoverRow;
-                    }
-                    try {
-                        view.fillPipe(currentHoverRow, currentHoverColumn, color);
-                    } catch (FreeFlowException e) {
-                        color = null;
                     }
                 }
-
             }
         });
 
@@ -203,6 +205,9 @@ public class GamePresenter {
                     } catch (NullPointerException ignored) {
                     }
                 }
+                else {
+                    model.setSelectedCell(-1, -1);
+                }
             }
         });
 
@@ -211,7 +216,8 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (mouseEvent.getButton() == MouseButton.PRIMARY) {
                     try {
-                        if (model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall() != null)
+                        if (model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall() != null &&
+                                model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall().getColor() == color)
                             model.getEmpty().getGrid()[currentHoverRow][currentHoverColumn].getBall().setLijnAanwezig(true);
                         if( model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getPipe() != null &&
                                 model.getEmpty().getGrid()[currentSelectedRow][currentSelectedColumn].getPipe().getLines() == 2) {
@@ -224,6 +230,8 @@ public class GamePresenter {
                     view.clearGrid();
                     selected = false;
                     model.clearMoveArray();
+                    model.setSelectedCell(-1, -1);
+                    color = model.getColor();
                 }
             }
         });
