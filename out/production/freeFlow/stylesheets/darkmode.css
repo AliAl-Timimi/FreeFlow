@@ -1,0 +1,168 @@
+#titles {
+    -fx-font-family: Impact;
+    -fx-font-size: 35;
+    -fx-text-alignment: center;
+    -fx-text-fill: blue;
+}
+
+.root {
+    /*-fx-background-color: black;*/
+    -fx-background-image: url("../backgrounds/darkthemebackground.jpg");
+    -fx-font-family: Impact;
+}
+
+.button {
+    -fx-text-fill: red;
+    -fx-font-family: Impact;
+    -fx-background-color: grey;
+    -fx-font-size: 15px;
+}
+
+.button:hover {
+    -fx-background-color: white;
+}
+
+
+#titelp1 {
+    -fx-font-family: Impact;
+    -fx-font-size: 35;
+    -fx-fill: blue;
+}
+
+#titelp2 {
+    -fx-font-family: Impact;
+    -fx-font-size: 35;
+    -fx-fill: red;
+}
+
+#start {
+    -fx-text-fill: black;
+    -fx-font-family: Impact;
+    -fx-background-color: orange;
+    -fx-font-size: 15px;
+}
+
+#settings {
+    -fx-text-fill: black;
+    -fx-font-family: Impact;
+    -fx-background-color: darkgreen;
+    -fx-font-size: 15px;
+}
+
+#scores {
+    -fx-text-fill: black;
+    -fx-font-family: Impact;
+    -fx-background-color: darkred;
+    -fx-font-size: 15px;
+}
+
+#help {
+    -fx-text-fill: black;
+    -fx-font-family: Impact;
+    -fx-background-color: purple;
+    -fx-font-size: 15px;
+}
+
+#start:hover {
+    -fx-background-color: white;
+}
+
+#settings:hover {
+    -fx-background-color: white;
+}
+
+#scores:hover {
+    -fx-background-color: white;
+}
+
+#help:hover {
+    -fx-background-color: white;
+}
+
+#helptekst {
+    -fx-text-fill: red;
+    /*-fx-font-family: Impact;*/
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
+
+#highscores {
+    -fx-text-fill: orange;
+    -fx-font-weight: bold;
+}
+/*levelchooser*/
+#level1 {
+    -fx-text-fill: black;
+    -fx-background-color: crimson;
+}
+
+#level2 {
+    -fx-text-fill: black;
+    -fx-background-color: midnightblue;
+}
+
+#level3 {
+    -fx-text-fill: black;
+    -fx-background-color: indigo;
+}
+
+#level4 {
+    -fx-text-fill: black;
+    -fx-background-color: saddlebrown;
+}
+
+#level5 {
+    -fx-text-fill: black;
+    -fx-background-color: seagreen;
+}
+
+#level1:hover {
+    -fx-background-color: white;
+}
+
+#level2:hover {
+    -fx-background-color: white;
+}
+
+#level3:hover {
+    -fx-background-color: white;
+}
+
+#level4:hover {
+    -fx-background-color: white;
+}
+
+#level5:hover {
+    -fx-background-color: white;
+}
+
+#levelmarker {
+    -fx-font-family: Impact;
+    -fx-font-size: 35px;
+    -fx-text-fill: blue;
+}
+
+#moves {
+    -fx-font-family: Impact;
+    -fx-font-size: 20px;
+    -fx-text-fill: red;
+}
+
+#score {
+    -fx-text-fill: gold;
+    -fx-font-size: 20px;
+}
+
+#game_background {
+    -fx-stroke: white;
+}
+
+#game_background Line {
+    -fx-stroke: white;
+}
+
+#controls {
+    -fx-text-fill: blue;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}

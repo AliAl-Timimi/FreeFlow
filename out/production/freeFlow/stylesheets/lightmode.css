@@ -1,0 +1,160 @@
+#titles {
+    -fx-font-family: Impact;
+    -fx-font-size: 35;
+    -fx-text-alignment: center;
+    -fx-text-fill: turquoise;
+}
+
+.root {
+    /*-fx-background-color: black;*/
+    -fx-background-image: url("../backgrounds/lightthemebackground.png");
+    -fx-font-family: Impact;
+}
+
+.button {
+    -fx-text-fill: orangered;
+    -fx-font-family: Impact;
+    -fx-background-color: lightgrey;
+    -fx-font-size: 15px;
+}
+
+.button:hover {
+    -fx-background-color: lightblue;
+}
+
+
+#titelp1 {
+    -fx-font-family: Impact;
+    -fx-font-size: 35;
+    -fx-fill: turquoise;
+}
+
+#titelp2 {
+    -fx-font-family: Impact;
+    -fx-font-size: 35;
+    -fx-fill: orangered;
+}
+
+#start {
+    -fx-text-fill: black;
+    -fx-font-family: Impact;
+    -fx-background-color: yellow;
+    -fx-font-size: 15px;
+}
+
+#settings {
+    -fx-text-fill: black;
+    -fx-font-family: Impact;
+    -fx-background-color: lightgreen;
+    -fx-font-size: 15px;
+}
+
+#scores {
+    -fx-text-fill: black;
+    -fx-font-family: Impact;
+    -fx-background-color: pink;
+    -fx-font-size: 15px;
+}
+
+#help {
+    -fx-text-fill: black;
+    -fx-font-family: Impact;
+    -fx-background-color: magenta;
+    -fx-font-size: 15px;
+}
+
+#start:hover {
+    -fx-background-color: lightblue;
+}
+
+#settings:hover {
+    -fx-background-color: lightblue;
+}
+
+#scores:hover {
+    -fx-background-color: lightblue;
+}
+
+#help:hover {
+    -fx-background-color: lightblue;
+}
+
+#helptekst {
+    -fx-text-fill: orangered;
+    /*-fx-font-family: Impact;*/
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
+
+#highscores {
+    -fx-text-fill: orange;
+    -fx-font-weight: bold;
+}
+/*levelchooser*/
+#level1 {
+    -fx-text-fill: black;
+    -fx-background-color: aqua;
+}
+
+#level2 {
+    -fx-text-fill: black;
+    -fx-background-color: lawngreen;
+}
+
+#level3 {
+    -fx-text-fill: black;
+    -fx-background-color: lightcoral;
+}
+
+#level4 {
+    -fx-text-fill: black;
+    -fx-background-color: lightgreen;
+}
+
+#level5 {
+    -fx-text-fill: black;
+    -fx-background-color: gold;
+}
+
+#level1:hover {
+    -fx-background-color: lightblue;
+}
+
+#level2:hover {
+    -fx-background-color: lightblue;
+}
+
+#level3:hover {
+    -fx-background-color: lightblue;
+}
+
+#level4:hover {
+    -fx-background-color: lightblue;
+}
+
+#level5:hover {
+    -fx-background-color: lightblue;
+}
+
+#levelmarker {
+    -fx-font-family: Impact;
+    -fx-font-size: 35px;
+    -fx-text-fill: turquoise;
+}
+
+#moves {
+    -fx-font-family: Impact;
+    -fx-font-size: 20px;
+    -fx-text-fill: orangered;
+}
+
+#score {
+    -fx-text-fill: gold;
+    -fx-font-size: 20px;
+}
+
+#controls {
+    -fx-text-fill: turquoise;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}

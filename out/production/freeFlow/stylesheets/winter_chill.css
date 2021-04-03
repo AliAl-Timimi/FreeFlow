@@ -1,0 +1,164 @@
+#titles {
+    -fx-font-family: Impact;
+    -fx-font-size: 35;
+    -fx-text-alignment: center;
+    -fx-text-fill: burlywood;
+}
+
+.root {
+    /*-fx-background-color: black;*/
+    -fx-background-image: url("../backgrounds/winterchillbackground.jpg");
+    -fx-font-family: Impact;
+}
+
+.button {
+    -fx-text-fill: burlywood;
+    -fx-font-family: Impact;
+    -fx-background-color: ivory;
+    -fx-font-size: 15px;
+}
+
+.button:hover {
+    -fx-background-color: ghostwhite;
+}
+
+
+#titelp1 {
+    -fx-font-family: Impact;
+    -fx-font-size: 35;
+    -fx-fill: burlywood;
+}
+
+#titelp2 {
+    -fx-font-family: Impact;
+    -fx-font-size: 35;
+    -fx-fill: cyan;
+}
+
+#start {
+    -fx-text-fill: black;
+    -fx-font-family: Impact;
+    -fx-background-color: cyan;
+    -fx-font-size: 15px;
+}
+
+#settings {
+    -fx-text-fill: black;
+    -fx-font-family: Impact;
+    -fx-background-color: burlywood;
+    -fx-font-size: 15px;
+}
+
+#scores {
+    -fx-text-fill: black;
+    -fx-font-family: Impact;
+    -fx-background-color: snow;
+    -fx-font-size: 15px;
+}
+
+#help {
+    -fx-text-fill: black;
+    -fx-font-family: Impact;
+    -fx-background-color: lightgreen;
+    -fx-font-size: 15px;
+}
+
+#start:hover {
+    -fx-background-color: ghostwhite;
+}
+
+#settings:hover {
+    -fx-background-color: ghostwhite;
+}
+
+#scores:hover {
+    -fx-background-color: ghostwhite;
+}
+
+#help:hover {
+    -fx-background-color: ghostwhite;
+}
+
+#helptekst {
+    -fx-text-fill: cyan;
+    /*-fx-font-family: Impact;*/
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
+
+#highscores {
+    -fx-text-fill: cyan;
+    -fx-font-weight: bold;
+}
+/*levelchooser*/
+#level1 {
+    -fx-text-fill: black;
+    -fx-background-color: burlywood;
+}
+
+#level2 {
+    -fx-text-fill: black;
+    -fx-background-color: cyan;
+}
+
+#level3 {
+    -fx-text-fill: black;
+    -fx-background-color: lightskyblue;
+}
+
+#level4 {
+    -fx-text-fill: black;
+    -fx-background-color: deepskyblue;
+}
+
+#level5 {
+    -fx-text-fill: black;
+    -fx-background-color: firebrick;
+}
+
+#level1:hover {
+    -fx-background-color: ghostwhite;
+}
+
+#level2:hover {
+    -fx-background-color: ghostwhite;
+}
+
+#level3:hover {
+    -fx-background-color: ghostwhite;
+}
+
+#level4:hover {
+    -fx-background-color: ghostwhite;
+}
+
+#level5:hover {
+    -fx-background-color: ghostwhite;
+}
+
+#levelmarker {
+    -fx-font-family: Impact;
+    -fx-font-size: 35px;
+    -fx-text-fill: burlywood;
+}
+
+#moves {
+    -fx-font-family: Impact;
+    -fx-font-size: 20px;
+    -fx-text-fill: cyan;
+}
+
+#score {
+    -fx-text-fill: gold;
+    -fx-font-size: 20px;
+}
+
+#game_background Line {
+    -fx-stroke: saddlebrown;
+}
+
+#controls {
+    -fx-text-fill: burlywood;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
