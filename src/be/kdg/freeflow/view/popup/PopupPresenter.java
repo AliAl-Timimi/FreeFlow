@@ -33,28 +33,19 @@ public class PopupPresenter {
     }
 
     private void addEventHandlers() {
-        view.getNext().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Sound.play();
-                if (model.getLevelnummer() < game.listLevels().size()) {
-                    updateToNextGameView();
-                }
+        view.getNext().setOnAction(event -> {
+            Sound.play();
+            if (model.getLevelnummer() < game.listLevels().size()) {
+                updateToNextGameView();
             }
         });
-        view.getReplay().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Sound.play();
-                updateToCurrentGameView();
-            }
+        view.getReplay().setOnAction(event -> {
+            Sound.play();
+            updateToCurrentGameView();
         });
-        view.getMain().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Sound.play();
-                updateToLevelChooser();
-            }
+        view.getMain().setOnAction(event -> {
+            Sound.play();
+            updateToLevelChooser();
         });
     }
 

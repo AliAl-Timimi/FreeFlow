@@ -46,16 +46,14 @@ public class SaveToFile {
         users.remove(currentPlayer);
         try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("resources/data/users.csv")))) {
             StringBuilder stringBuilder = new StringBuilder();
-            for (String s : string) {
+            for (String s : string)
                 stringBuilder.append(s).append(";");
-            }
             stringBuilder.append("\n");
             pw.write(stringBuilder.toString());
             for (String[] user : users) {
                 StringBuilder stringBuilder1 = new StringBuilder();
-                for (String s : user) {
+                for (String s : user)
                     stringBuilder1.append(s).append(";");
-                }
                 stringBuilder1.append("\n");
                 pw.write(stringBuilder1.toString());
             }
@@ -79,9 +77,8 @@ public class SaveToFile {
         try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("resources/data/users.csv")))) {
             for (String[] user : users) {
                 StringBuilder stringBuilder1 = new StringBuilder();
-                for (String s : user) {
+                for (String s : user)
                     stringBuilder1.append(s).append(";");
-                }
                 stringBuilder1.append("\n");
                 pw.write(stringBuilder1.toString());
             }
@@ -89,9 +86,7 @@ public class SaveToFile {
             stringBuilder.append("1").append(";");
             stringBuilder.append(player.getUsername()).append(";");
             stringBuilder.append(player.getPassword()).append(";");
-            for (int i = 0; i < levels.size(); i++) {
-                stringBuilder.append(levels.get(i).getHighscore()).append(";");
-            }
+            for (Level level : levels) stringBuilder.append(level.getHighscore()).append(";");
             stringBuilder.append("\n");
             pw.write(stringBuilder.toString());
         } catch (IOException e) {

@@ -31,8 +31,7 @@ public class Login {
             throw new FreeFlowException("Gebruikersnaam moet minstens\n 2 karakters lang zijn.");
         else if (password.length() < 4)
             throw new FreeFlowException("Wachtwoord moet minstens\n 4 karakters lang zijn.");
-        else
-            this.player = new Player(username, password, repeatPassword);
+        else this.player = new Player(username, password, repeatPassword);
     }
 
     public void logout() {

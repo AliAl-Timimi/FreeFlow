@@ -2,8 +2,6 @@ package be.kdg.freeflow.view.help;
 
 import be.kdg.freeflow.model.menus.Sound;
 import be.kdg.freeflow.view.menu.MenuView;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
 public class HelpPresenter {
     private final HelpView VIEW;
@@ -16,12 +14,9 @@ public class HelpPresenter {
     }
 
     private void addEventHandlers() {
-        VIEW.getBack().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                updateView();
-            }
+        VIEW.getBack().setOnAction(actionEvent -> {
+            Sound.play();
+            updateView();
         });
     }
 

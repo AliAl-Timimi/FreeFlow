@@ -21,12 +21,9 @@ public class HighscoresPresenter {
     }
 
     private void addEventHandlers() {
-        view.getBack().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                updateToMenu();
-            }
+        view.getBack().setOnAction(actionEvent -> {
+            Sound.play();
+            updateToMenu();
         });
     }
 

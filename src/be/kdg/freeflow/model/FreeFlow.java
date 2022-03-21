@@ -43,24 +43,20 @@ public class FreeFlow {
                 Grid solution = new Grid(lines.length);
                 int k = 0;
                 for (String line1 : lines) {
-                    for (int j = 0; j < line1.length(); j++) {
+                    for (int j = 0; j < line1.length(); j++)
                         solution.fillCell(k, j, line1.charAt(j) + "");
-                    }
                     k++;
                 }
 
                 String[] emptyLines = new String[lines.length];
                 Grid empty = new Grid(lines.length);
-                for (int i = 0; i < lines.length; i++) {
+                for (int i = 0; i < lines.length; i++)
                     emptyLines[i] = lines[i].replaceAll("[a-z]", " ");
-
-                }
                 int i = 0;
                 for (String line1 : emptyLines) {
                     for (int j = 0; j < line1.length(); j++) {
                         String letter = line1.charAt(j) + "";
-                        if (!letter.equals(" "))
-                            empty.fillCell(i, j, letter);
+                        if (!letter.equals(" ")) empty.fillCell(i, j, letter);
                     }
                     i++;
                 }

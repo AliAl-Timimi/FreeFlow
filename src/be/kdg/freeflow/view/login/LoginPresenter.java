@@ -28,36 +28,28 @@ public class LoginPresenter {
     public void applySettings() {
         view.getScene().getStylesheets().clear();
         view.getScene().getStylesheets().add(setting.getStyle().getS());
-        if (!setting.getSoundEffects())
-            Sound.setVolume(0);
+        if (!setting.getSoundEffects()) Sound.setVolume(0);
     }
 
     private void addEventHandlers() {
-        view.getLogin().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                try {
-                    if (!login.login(view.getUsername().getText().toLowerCase(), view.getPassword().getText())) {
-                        view.getWrongLogin().setText("Verkeerd gebruikersnaam/wachtwoord.");
-                        view.getWrongLogin().setTextFill(Color.RED);
-                    } else
-                        updateViewToMenu();
-                } catch (FreeFlowException e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Geen user file");
-                    alert.setContentText(e.getMessage());
-                    alert.showAndWait();
-                }
+        view.getLogin().setOnAction(actionEvent -> {
+            Sound.play();
+            try {
+                if (!login.login(view.getUsername().getText().toLowerCase(), view.getPassword().getText())) {
+                    view.getWrongLogin().setText("Verkeerd gebruikersnaam/wachtwoord.");
+                    view.getWrongLogin().setTextFill(Color.RED);
+                } else updateViewToMenu();
+            } catch (FreeFlowException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Geen user file");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
             }
         });
 
-        view.getRegister().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                updateViewToRegister();
-            }
+        view.getRegister().setOnAction(actionEvent -> {
+            Sound.play();
+            updateViewToRegister();
         });
     }
 

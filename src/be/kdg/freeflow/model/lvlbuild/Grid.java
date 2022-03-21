@@ -2,6 +2,9 @@ package be.kdg.freeflow.model.lvlbuild;
 
 import be.kdg.freeflow.model.flow.Color;
 
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Grid {
     private final Cell[][] grid;
 
@@ -12,7 +15,6 @@ public class Grid {
             for (int j = 0; j < grid.length; j++) {
                 grid[i][j] = new Cell();
             }
-
         }
     }
 
@@ -35,21 +37,21 @@ public class Grid {
     }
 
     public int ballCount() {
-        int count = 0;
+        AtomicInteger count = new AtomicInteger();
         for (Cell[] cells : grid) {
             for (Cell cell : cells) {
                 if (cell.getBall() != null) {
-                    count++;
+                    count.getAndIncrement();
                 }
             }
         }
-        return count;
+        return count.get();
     }
 
     public void fillCell(int x, int y, String color) {
-        if (!color.equals(color.toLowerCase())) {
+        if (!color.equals(color.toLowerCase()))
             grid[x][y].addBall(Color.valueOf(color.toUpperCase()));
-        } else
+        else
             grid[x][y].addPipe(Color.valueOf(color.toUpperCase()));
     }
 

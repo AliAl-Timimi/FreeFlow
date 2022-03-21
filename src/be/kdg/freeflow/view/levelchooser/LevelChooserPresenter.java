@@ -41,83 +41,54 @@ public class LevelChooserPresenter {
     }
 
     private void addEventHandlers() {
-        view.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
+        view.setOnMouseEntered(mouseEvent -> setLevelText());
+        view.getBack().setOnAction(event -> {
+            Sound.play();
+            updateViewToMenu();
+        });
+
+        view.getLevel1().setOnAction(event -> {
+            Sound.play();
+            int lvl = Integer.parseInt(view.getLevel1().getText().split(" ")[1].replaceAll(":", ""));
+            if (model.isLevelUnlocked(lvl))
+                updateViewToGame(lvl);
+        });
+        view.getLevel2().setOnAction(event -> {
+            Sound.play();
+            int lvl = Integer.parseInt(view.getLevel2().getText().split(" ")[1].replaceAll(":", ""));
+            if (model.isLevelUnlocked(lvl))
+                updateViewToGame(lvl);
+        });
+        view.getLevel3().setOnAction(event -> {
+            Sound.play();
+            int lvl = Integer.parseInt(view.getLevel3().getText().split(" ")[1].replaceAll(":", ""));
+            if (model.isLevelUnlocked(lvl))
+                updateViewToGame(lvl);
+        });
+        view.getLevel4().setOnAction(event -> {
+            Sound.play();
+            int lvl = Integer.parseInt(view.getLevel4().getText().split(" ")[1].replaceAll(":", ""));
+            if (model.isLevelUnlocked(lvl))
+                updateViewToGame(lvl);
+        });
+        view.getLevel5().setOnAction(event -> {
+            Sound.play();
+            int lvl = Integer.parseInt(view.getLevel5().getText().split(" ")[1].replaceAll(":", ""));
+            if (model.isLevelUnlocked(lvl))
+                updateViewToGame(lvl);
+        });
+        view.getPrev().setOnAction(actionEvent -> {
+            Sound.play();
+            if (model.prevPage()) {
+                levels = model.levelMenu();
                 setLevelText();
             }
         });
-        view.getBack().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Sound.play();
-                updateViewToMenu();
-            }
-        });
-
-        view.getLevel1().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Sound.play();
-                int lvl = Integer.parseInt(view.getLevel1().getText().split(" ")[1].replaceAll(":", ""));
-                if (model.isLevelUnlocked(lvl))
-                    updateViewToGame(lvl);
-            }
-        });
-        view.getLevel2().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Sound.play();
-                int lvl = Integer.parseInt(view.getLevel2().getText().split(" ")[1].replaceAll(":", ""));
-                if (model.isLevelUnlocked(lvl))
-                    updateViewToGame(lvl);
-            }
-        });
-        view.getLevel3().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Sound.play();
-                int lvl = Integer.parseInt(view.getLevel3().getText().split(" ")[1].replaceAll(":", ""));
-                if (model.isLevelUnlocked(lvl))
-                    updateViewToGame(lvl);
-            }
-        });
-        view.getLevel4().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Sound.play();
-                int lvl = Integer.parseInt(view.getLevel4().getText().split(" ")[1].replaceAll(":", ""));
-                if (model.isLevelUnlocked(lvl))
-                    updateViewToGame(lvl);
-            }
-        });
-        view.getLevel5().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Sound.play();
-                int lvl = Integer.parseInt(view.getLevel5().getText().split(" ")[1].replaceAll(":", ""));
-                if (model.isLevelUnlocked(lvl))
-                    updateViewToGame(lvl);
-            }
-        });
-        view.getPrev().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                if (model.prevPage()) {
-                    levels = model.levelMenu();
-                    setLevelText();
-                }
-            }
-        });
-        view.getNext().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                if (model.nextPage()) {
-                    levels = model.levelMenu();
-                    setLevelText();
-                }
+        view.getNext().setOnAction(actionEvent -> {
+            Sound.play();
+            if (model.nextPage()) {
+                levels = model.levelMenu();
+                setLevelText();
             }
         });
     }

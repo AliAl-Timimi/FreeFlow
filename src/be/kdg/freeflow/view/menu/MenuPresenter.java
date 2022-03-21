@@ -47,41 +47,26 @@ public class MenuPresenter {
 
 
     private void addEventHandlers() {
-        view.getStart().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                updateToLevels();
-            }
+        view.getStart().setOnAction(actionEvent -> {
+            Sound.play();
+            updateToLevels();
         });
-        view.getHelp().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                updateToHelp();
-            }
+        view.getHelp().setOnAction(actionEvent -> {
+            Sound.play();
+            updateToHelp();
         });
-        view.getScores().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                updateToScores();
-            }
+        view.getScores().setOnAction(actionEvent -> {
+            Sound.play();
+            updateToScores();
         });
-        view.getSettings().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                updateToSettings();
-            }
+        view.getSettings().setOnAction(actionEvent -> {
+            Sound.play();
+            updateToSettings();
         });
-        view.getLogout().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                login.logout();
-                updateToLogin();
-            }
+        view.getLogout().setOnAction(actionEvent -> {
+            Sound.play();
+            login.logout();
+            updateToLogin();
         });
     }
 

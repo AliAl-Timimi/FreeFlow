@@ -16,9 +16,8 @@ public class ReadFromFile {
             while (user != null) {
                 String[] userIter = user.split(";");
                 if (player.getUsername().equals(userIter[1])) {
-                    for (int i = 3; i < userIter.length; i++) {
+                    for (int i = 3; i < userIter.length; i++)
                         game.listLevels().get(i - 3).setHighscore(Integer.parseInt(userIter[i]));
-                    }
                     return game;
                 }
                 user = is.readLine();

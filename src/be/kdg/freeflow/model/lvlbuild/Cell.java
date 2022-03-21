@@ -14,12 +14,9 @@ public class Cell {
 
     @Override
     public String toString() {
-        if (ball != null)
-            return ball.toString();
-        else if (pipe != null)
-            return pipe.toString();
-        else
-            return " ";
+        if (ball != null) return ball.toString();
+        else if (pipe != null) return pipe.toString();
+        else return " ";
     }
 
     public void addBall(Color color) {

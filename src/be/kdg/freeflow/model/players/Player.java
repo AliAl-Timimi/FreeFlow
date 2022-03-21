@@ -17,11 +17,8 @@ public class Player {
         else
             throw new FreeFlowException("Gebruikersnaam is al in gebruik");
 
-        if (password.equals(repeatPassword)) {
-            this.password = password;
-        } else {
-            throw new FreeFlowException("Wachtwoorden komen niet overeen");
-        }
+        if (password.equals(repeatPassword)) this.password = password;
+        else throw new FreeFlowException("Wachtwoorden komen niet overeen");
         SaveToFile.setLevels(new FreeFlow(this).listLevels());
         SaveToFile.addPlayer(this);
     }
@@ -36,9 +33,8 @@ public class Player {
             String line = is.readLine();
             while (line != null) {
                 String readName = line.split(";")[1];
-                if (readName.equals(name)) {
+                if (readName.equals(name))
                     return false;
-                }
                 line = is.readLine();
             }
         } catch (IOException e) {

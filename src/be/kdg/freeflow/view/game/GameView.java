@@ -33,9 +33,8 @@ public class GameView extends GridPane {
         this.layoutNodes();
         this.grid = new String[level.getSIZE()][level.getSIZE()];
         for (int i = 0; i < level.getSIZE(); i++) {
-            for (int j = 0; j < level.getSIZE(); j++) {
+            for (int j = 0; j < level.getSIZE(); j++)
                 grid[i][j] = level.getEmpty().getGrid()[i][j].toString();
-            }
         }
         fillLevel();
     }
@@ -64,20 +63,17 @@ public class GameView extends GridPane {
         GridPane.setHalignment(gamePane, HPos.CENTER);
 
         ColumnConstraints column1 = new ColumnConstraints(166);
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 2; i++)
             this.getColumnConstraints().add(column1);
-        }
         RowConstraints row1 = new RowConstraints(100);
         RowConstraints row2 = new RowConstraints(500);
         this.getRowConstraints().addAll(row1, row2);
         ColumnConstraints column = new ColumnConstraints(WIDTH / level.getSIZE());
-        for (int i = 0; i < level.getSIZE(); i++) {
+        for (int i = 0; i < level.getSIZE(); i++)
             gamePane.getColumnConstraints().add(column);
-        }
         RowConstraints row = new RowConstraints(WIDTH / level.getSIZE());
-        for (int i = 0; i < level.getSIZE(); i++) {
+        for (int i = 0; i < level.getSIZE(); i++)
             gamePane.getRowConstraints().add(row);
-        }
 
         levelMarker.setId("levelmarker");
         moves.setId("moves");
@@ -118,9 +114,8 @@ public class GameView extends GridPane {
         gamePane.getChildren().clear();
         gamePane.getChildren().add(0, node);
         for (int i = 0; i < level.getSIZE(); i++) {
-            for (int j = 0; j < level.getSIZE(); j++) {
+            for (int j = 0; j < level.getSIZE(); j++)
                 grid[i][j] = level.getEmpty().getGrid()[i][j].toString();
-            }
         }
         fillAllBalls();
         fillAllPipes();
@@ -167,9 +162,8 @@ public class GameView extends GridPane {
     private void fillAllBalls() {
         for (int i = 0; i < level.getSIZE(); i++) {
             for (int j = 0; j < level.getSIZE(); j++) {
-                if (level.getEmpty().getGrid()[i][j].getBall() != null) {
+                if (level.getEmpty().getGrid()[i][j].getBall() != null)
                     fillBalls(j, i, level.getEmpty().getGrid()[i][j].getBall().getColor());
-                }
             }
         }
     }
@@ -178,11 +172,9 @@ public class GameView extends GridPane {
         Cell[][] game = level.getEmpty().getGrid();
         for (int i = 0; i < game.length; i++) {
             for (int j = 0; j < game.length; j++) {
-                if (game[i][j].getBall() != null) {
+                if (game[i][j].getBall() != null)
                     this.fillBalls(j, i, game[i][j].getBall().getColor());
-                }
             }
-
         }
     }
 }

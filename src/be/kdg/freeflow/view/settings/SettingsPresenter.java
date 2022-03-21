@@ -22,35 +22,26 @@ public class SettingsPresenter {
     }
 
     private void addEventHandlers() {
-        view.getStyleButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                setting.cycleStyle();
-                view.getScene().getStylesheets().clear();
-                view.getStyleButton().setText(String.format("Stijl: %s", setting.getStyle()));
-                view.getScene().getStylesheets().add(setting.getStyle().getS());
-            }
+        view.getStyleButton().setOnAction(actionEvent -> {
+            Sound.play();
+            setting.cycleStyle();
+            view.getScene().getStylesheets().clear();
+            view.getStyleButton().setText(String.format("Stijl: %s", setting.getStyle()));
+            view.getScene().getStylesheets().add(setting.getStyle().getS());
         });
-        view.getSound().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                setting.cycleSoundEffects();
-                view.getSound().setText(String.format("SFX: %s", setting.getSoundEffects() ? "Aan" : "Uit"));
-                if (!setting.getSoundEffects())
-                    Sound.setVolume(0);
-                else
-                    Sound.setVolume(1);
-            }
+        view.getSound().setOnAction(actionEvent -> {
+            Sound.play();
+            setting.cycleSoundEffects();
+            view.getSound().setText(String.format("SFX: %s", setting.getSoundEffects() ? "Aan" : "Uit"));
+            if (!setting.getSoundEffects())
+                Sound.setVolume(0);
+            else
+                Sound.setVolume(1);
         });
-        view.getBack().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                setting.save();
-                updateToMenu();
-            }
+        view.getBack().setOnAction(actionEvent -> {
+            Sound.play();
+            setting.save();
+            updateToMenu();
         });
     }
 

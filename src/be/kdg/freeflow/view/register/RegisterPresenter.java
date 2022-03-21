@@ -7,8 +7,6 @@ import be.kdg.freeflow.model.players.Login;
 import be.kdg.freeflow.view.login.LoginView;
 import be.kdg.freeflow.view.menu.MenuPresenter;
 import be.kdg.freeflow.view.menu.MenuView;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.paint.Color;
 
 public class RegisterPresenter {
@@ -27,25 +25,19 @@ public class RegisterPresenter {
     }
 
     private void addEventHandlers() {
-        view.getBack().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                updateToLogin();
-            }
+        view.getBack().setOnAction(actionEvent -> {
+            Sound.play();
+            updateToLogin();
         });
 
-        view.getCreate().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.play();
-                try {
-                    login.register(view.getEmail().getText().toLowerCase(), view.getPassword().getText(), view.getRepeatPassword().getText());
-                    updateToMenu();
-                } catch (FreeFlowException e) {
-                    view.getError().setText(e.getMessage());
-                    view.getError().setTextFill(Color.RED);
-                }
+        view.getCreate().setOnAction(actionEvent -> {
+            Sound.play();
+            try {
+                login.register(view.getEmail().getText().toLowerCase(), view.getPassword().getText(), view.getRepeatPassword().getText());
+                updateToMenu();
+            } catch (FreeFlowException e) {
+                view.getError().setText(e.getMessage());
+                view.getError().setTextFill(Color.RED);
             }
         });
     }

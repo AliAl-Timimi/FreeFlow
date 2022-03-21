@@ -12,7 +12,6 @@ public class Setting {
             String[] settings = is.readLine().split(";");
             this.setStyle(Integer.parseInt(settings[0]));
             setSoundEffects(settings[1].equalsIgnoreCase("true"));
-
         } catch (IOException e) {
             throw new FreeFlowException("Geen settings file");
         }

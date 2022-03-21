@@ -27,9 +27,8 @@ public class Level {
     }
 
     public void reset() {
-        for (Color value : Color.values()) {
+        for (Color value : Color.values())
             resetColor(value);
-        }
         //empty = new Grid(reset);
         moves = 0;
         setSelectedCell(-1, -1);
@@ -38,9 +37,8 @@ public class Level {
     public void setSelectedCell(int column, int row) {
         this.selectedColumn = column;
         this.selectedRow = row;
-        if (selectedColumn == -1 || selectedRow == -1) {
+        if (selectedColumn == -1 || selectedRow == -1)
             setSelectedColor(null);
-        }
         else {
             if (getEmpty().getGrid()[selectedRow][selectedColumn].getBall() != null)
                 setSelectedColor(getEmpty().getGrid()[selectedRow][selectedColumn].getBall().getColor());
@@ -85,12 +83,10 @@ public class Level {
                 if (empty.getGrid()[row][col].isEmpty() && getColor() != null) {
                     empty.fillCell(row, col, getColor().toString());
                     empty.getGrid()[row][col].getPipe().addLine();
-                } else {
+                } else
                     i = moveArray.size();
-                }
-                if (prevCol != -1) {
+                if (prevCol != -1)
                     getEmpty().getGrid()[prevRow][prevCol].getPipe().addLine();
-                }
                 prevCol = col;
                 prevRow = row;
             }
@@ -100,12 +96,9 @@ public class Level {
     }
 
     public void createScore() {
-        if (getMoves() == empty.minMoves())
-            setHighscore(3);
-        else if (getMoves() == empty.minMoves() + 1)
-            setHighscore(2);
-        else if (getMoves() >= empty.minMoves() + 2)
-            setHighscore(1);
+        if (getMoves() == empty.minMoves()) setHighscore(3);
+        else if (getMoves() == empty.minMoves() + 1) setHighscore(2);
+        else if (getMoves() >= empty.minMoves() + 2) setHighscore(1);
     }
 
     public boolean isGameFinished() {
@@ -118,21 +111,18 @@ public class Level {
 
     public String starScore() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = getHighscore(); i > 0; i--) {
+        for (int i = getHighscore(); i > 0; i--)
             stringBuilder.append("★").append(" ");
-        }
         return stringBuilder.toString();
     }
 
     public void resetColor(Color color) {
         for (int i = 0; i < getSIZE(); i++) {
             for (int j = 0; j < getSIZE(); j++) {
-                if (getEmpty().getGrid()[i][j].getPipe() != null && getEmpty().getGrid()[i][j].getPipe().getColor() == color) {
+                if (getEmpty().getGrid()[i][j].getPipe() != null && getEmpty().getGrid()[i][j].getPipe().getColor() == color)
                     getEmpty().getGrid()[i][j].clearPipe();
-                }
-                if (getEmpty().getGrid()[i][j].getBall() != null && getEmpty().getGrid()[i][j].getBall().getColor() == color) {
+                if (getEmpty().getGrid()[i][j].getBall() != null && getEmpty().getGrid()[i][j].getBall().getColor() == color)
                     getEmpty().getGrid()[i][j].getBall().setLijnAanwezig(false);
-                }
             }
         }
     }

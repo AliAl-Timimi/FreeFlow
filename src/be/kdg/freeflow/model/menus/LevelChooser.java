@@ -20,17 +20,16 @@ public class LevelChooser {
 
     public List<Level> levelMenu() {
         List<Level> displayLevels = new ArrayList<>();
-        for (int i = 5 * page; i < 5 * page + 5 && i < levels.size(); i++) {
+        for (int i = 5 * page; i < 5 * page + 5 && i < levels.size(); i++)
             displayLevels.add(levels.get(i));
-        }
         return displayLevels;
     }
 
     public boolean isLevelUnlocked(int lvl) {
-        if (lvl > 1)
-            return levels.get(lvl - 2).getHighscore() > 0;
-        else
+        if (lvl == 1)
             return true;
+        return levels.get(lvl - 2).getHighscore() > 0;
+
     }
 
     public boolean prevPage() {
